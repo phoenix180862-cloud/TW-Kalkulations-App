@@ -161,6 +161,45 @@ body{font-family:'Source Sans 3',-apple-system,sans-serif;background:var(--bg-pr
 .m2-empty{text-align:center;color:var(--text-muted);font-size:13px;padding:30px 16px;line-height:1.6;}
 .m2-empty .big{font-size:15px;color:var(--text-light);margin-bottom:6px;display:block;font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:0.5px;}
 
+
+/* ===== MODUL 3: KALKULATION & SZENARIEN ===== */
+.scen-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:6px;}
+.scen-card{background:var(--bg-secondary);border:1px solid var(--border-subtle);border-radius:var(--radius-md);padding:14px 12px;text-align:center;position:relative;}
+.scen-card.s1{border-top:3px solid #4da6ff;}
+.scen-card.s2{border-top:3px solid #f39c12;}
+.scen-card.s3{border-top:3px solid #2ecc71;}
+.scen-card .sc-lbl{font-family:'Oswald',sans-serif;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.8px;color:var(--text-muted);margin-bottom:8px;line-height:1.3;min-height:26px;display:flex;align-items:center;justify-content:center;}
+.scen-card .sc-val{font-family:'Oswald',sans-serif;font-size:21px;font-weight:700;color:var(--text-white);line-height:1;}
+.scen-card.s1 .sc-val{color:#4da6ff;}
+.scen-card.s2 .sc-val{color:#f39c12;}
+.scen-card.s3 .sc-val{color:#2ecc71;}
+.scen-card .sc-sub{font-size:10px;color:var(--text-muted);margin-top:6px;line-height:1.35;}
+.scen-delta{font-size:11px;font-family:'Oswald',sans-serif;font-weight:600;margin-top:5px;}
+.scen-delta.up{color:#2ecc71;} .scen-delta.flat{color:var(--text-muted);}
+
+.kalk-hint{background:rgba(243,156,18,0.10);border:1px solid #f39c12;border-radius:var(--radius-md);padding:11px 13px;margin:14px 0;font-size:12px;color:var(--text-light);line-height:1.5;}
+.kalk-hint b{color:#f39c12;font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:0.5px;font-size:11px;}
+
+.spreiz-ctrl{display:flex;align-items:center;gap:12px;background:var(--bg-secondary);border:1px solid var(--border-subtle);border-radius:var(--radius-md);padding:12px 14px;margin-bottom:6px;}
+.spreiz-ctrl label{font-family:'Oswald',sans-serif;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.6px;color:var(--text-secondary);white-space:nowrap;}
+.spreiz-ctrl input[type=range]{flex:1;accent-color:#2ecc71;}
+.spreiz-ctrl .val{font-family:'Oswald',sans-serif;font-size:16px;font-weight:700;color:#2ecc71;min-width:48px;text-align:right;}
+
+.krow{background:var(--bg-secondary);border:1px solid var(--border-subtle);border-radius:var(--radius-md);padding:11px 12px;}
+.krow.ro{opacity:0.6;border-style:dashed;}
+.krow-top{display:flex;align-items:flex-start;gap:9px;margin-bottom:9px;}
+.krow-oz{font-family:'Oswald',sans-serif;font-weight:700;font-size:13px;color:var(--accent-blue);flex-shrink:0;min-width:74px;}
+.krow-kurz{flex:1;font-size:12px;color:var(--text-light);line-height:1.35;}
+.krow-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;font-size:11px;}
+.kcell{background:var(--bg-tertiary);border-radius:7px;padding:7px 8px;}
+.kcell .kk{font-size:9px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.4px;font-family:'Oswald',sans-serif;margin-bottom:3px;}
+.kcell .kv{font-family:'Oswald',sans-serif;font-weight:700;font-size:13px;color:var(--text-white);}
+.kcell.erw{border:1px solid #f39c12;}
+.kcell.erw input{width:100%;background:none;border:none;color:#f39c12;font-family:'Oswald',sans-serif;font-weight:700;font-size:13px;padding:0;}
+.kcell.erw input:focus{outline:none;}
+.kcell.s3v .kv{color:#2ecc71;}
+.kbadge{display:inline-block;font-size:9px;font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:0.4px;padding:2px 6px;border-radius:5px;margin-left:6px;vertical-align:middle;}
+
 </style>
 </head>
 <body>
@@ -229,7 +268,8 @@ function parseX83(xmlString){
     positionen.push({
       oz:it.oz, kurz:it.kurz, qty:parseFloat((it.qty||"0").replace(",","."))||0,
       qu:it.qu, typ:it.typ, gruppe:g.lbl,
-      format:"", fabrikat:"", ek:0, zeit:defaultZeit(it.qu,it.typ)
+      format:"", fabrikat:"", ek:0, zeit:defaultZeit(it.qu,it.typ),
+      erwMenge:null, spreizPct:0
     });
   }));
   return {prj,groups,itemCount,upbkdn,bidder,groupCount:groups.length,positionen};
@@ -314,12 +354,13 @@ function StartScreen({drive,setDrive,ki,setKi,apiKey,setApiKey,onWeiter}){
 }
 
 // ============ SEITE 2: MODULWAHL ============
-function ModulScreen({drive,ki,onBack,lv,setLv,onOpenMaterial}){
+function ModulScreen({drive,ki,onBack,lv,setLv,onOpenMaterial,onOpenKalk}){
   const [err,setErr]=useState("");
   const fileRef=useRef(null);
   function pick(id){
     if(id==="import") fileRef.current.click();
     else if(id==="material") onOpenMaterial();
+    else if(id==="kalk") onOpenKalk();
   }
   function onFile(e){
     const f=e.target.files[0]; if(!f)return; setErr("");
@@ -419,7 +460,7 @@ function fmtEUR(n){
 }
 
 // ============ SEITE 3: MATERIAL & ZUSCHLÄGE ============
-function MaterialScreen({lv,setLv,zuschlag,setZuschlag,drive,ki,onBack}){
+function MaterialScreen({lv,setLv,zuschlag,setZuschlag,drive,ki,onBack,onOpenKalk}){
   if(!lv || !lv.positionen){
     return (
       <div className="page-container">
@@ -529,6 +570,10 @@ function MaterialScreen({lv,setLv,zuschlag,setZuschlag,drive,ki,onBack}){
         <span className="sum">{fmtEUR(gesamt)}</span>
       </div>
 
+      <div className="weiter-wrap">
+        <button className="weiter-btn" onClick={onOpenKalk}>Weiter zur Kalkulation {'\u2192'}</button>
+      </div>
+
       <div className="foot">
         <span className="ver">
           <span className={"dot "+(drive?"dot-on":"dot-off")}></span>Drive {drive?"verbunden":"offline"}
@@ -536,6 +581,152 @@ function MaterialScreen({lv,setLv,zuschlag,setZuschlag,drive,ki,onBack}){
           <span className={"dot "+(ki?"dot-on":"dot-off")}></span>KI {ki?"aktiv":"aus"}
         </span>
       </div>
+    </div>
+  );
+}
+
+
+// ============ SEITE 4: KALKULATION & 3-SZENARIEN ============
+// Szenario 1 (LV):        Summe = Σ LV-Menge × EP
+// Szenario 2 (Erwartung): Summe = Σ erwartete Menge × EP   (zeigt wahrscheinl. Schlussrechnung)
+// Szenario 3 (Spreizung): Angebotssumme bleibt = Szenario 1, aber EP werden umverteilt:
+//   Positionen mit erwartetem Mengen-PLUS bekommen höheren EP, andere niedriger,
+//   so dass die Angebotssumme (LV-Massen) IDENTISCH bleibt -> erwarteter Betrag steigt.
+function KalkulationScreen({lv,setLv,zuschlag,drive,ki,onBack}){
+  if(!lv || !lv.positionen){
+    return (
+      <div className="page-container">
+        <div className="back-row"><button className="back-btn" onClick={onBack}>{'\u2190'} Modul wählen</button></div>
+        <div className="head"><div className="head-logo-scale"><FirmenLogo/></div>
+          <div className="head-title">Kalkulation</div><div className="head-sub">Kein LV geladen</div></div>
+        <div className="m2-empty"><span className="big">Erst importieren</span>
+          Bitte zuerst ein LV einlesen und in „Material" bepreisen.</div>
+      </div>
+    );
+  }
+
+  const [spreizStaerke,setSpreizStaerke]=useState(0); // 0..100 % globaler Hebel
+
+  function setErw(i,wert){
+    const ps=lv.positionen.slice();
+    const v=String(wert).trim();
+    ps[i]={...ps[i], erwMenge: v===''? null : (parseFloat(v.replace(',','.'))||0)};
+    setLv({...lv, positionen:ps});
+  }
+  const erwOf = pos => (pos.erwMenge==null? pos.qty : pos.erwMenge);
+
+  // --- Basiswerte je Position ---
+  const calc = lv.positionen.map(pos=>{
+    const ep = pos.typ==='bid' ? 0 : calcEP(pos, zuschlag);
+    return {pos, ep, lvMenge:pos.qty, erwMenge:erwOf(pos)};
+  });
+
+  // Szenario 1 + 2
+  let sum1=0, sum2=0;
+  calc.forEach(c=>{ if(c.pos.typ!=='bid'){ sum1 += c.lvMenge*c.ep; sum2 += c.erwMenge*c.ep; } });
+
+  // --- Szenario 3: gewinn-neutrale EP-Spreizung ---
+  // Idee: Positionen mit (erwMenge - lvMenge) > 0 = "Gewinner" -> EP rauf.
+  //       Der Aufschlag wird so über die LV-Massen gegenfinanziert, dass sum1 konstant bleibt.
+  // staerke 0..1 skaliert, wie aggressiv gespreizt wird.
+  const k = spreizStaerke/100;
+  // Positionen mit Mengenplus
+  let plusBasisLV=0; // Σ (LV-Menge × EP) der Plus-Positionen
+  calc.forEach(c=>{ if(c.pos.typ!=='bid' && (c.erwMenge-c.lvMenge)>0.0001){ plusBasisLV += c.lvMenge*c.ep; } });
+  // Anhebung der Plus-Positionen um Faktor (1+k*0.5); Differenz wird auf Nicht-Plus verteilt
+  const anhebung = k*0.5; // bis +50% EP auf Gewinnerpositionen bei vollem Hebel
+  const mehrLV = plusBasisLV * anhebung; // zusätzliche LV-Summe durch Anhebung
+  // Gegenfinanzierung über Nicht-Plus-Positionen (deren LV-Basis)
+  let restBasisLV=0;
+  calc.forEach(c=>{ if(c.pos.typ!=='bid' && (c.erwMenge-c.lvMenge)<=0.0001){ restBasisLV += c.lvMenge*c.ep; } });
+  const senkung = restBasisLV>0 ? mehrLV/restBasisLV : 0; // anteilige Senkung der Rest-EP
+
+  let sum3lv=0, sum3erw=0;
+  const calc3 = calc.map(c=>{
+    if(c.pos.typ==='bid') return {...c, ep3:0};
+    const istPlus = (c.erwMenge-c.lvMenge)>0.0001;
+    let ep3;
+    if(istPlus) ep3 = c.ep*(1+anhebung);
+    else ep3 = c.ep*(1-senkung);
+    sum3lv += c.lvMenge*ep3;
+    sum3erw += c.erwMenge*ep3;
+    return {...c, ep3, istPlus};
+  });
+
+  const delta2 = sum1>0 ? ((sum2-sum1)/sum1*100) : 0;
+  const delta3 = sum1>0 ? ((sum3erw-sum1)/sum1*100) : 0;
+  const angebotKonstant = Math.abs(sum3lv-sum1) < 1; // Kontrolle: Angebotssumme bleibt
+
+  return (
+    <div className="page-container">
+      <div className="back-row"><button className="back-btn" onClick={onBack}>{'\u2190'} Modul wählen</button></div>
+      <div className="head"><div className="head-logo-scale"><FirmenLogo/></div>
+        <div className="head-title">Kalkulation</div><div className="head-sub">{lv.prj}</div></div>
+
+      <div className="m2-section-title">3-Szenarien-Vergleich</div>
+      <div className="scen-cards">
+        <div className="scen-card s1">
+          <div className="sc-lbl">1 · LV-Massen<br/>(Angebot)</div>
+          <div className="sc-val">{fmtEUR(sum1)}</div>
+          <div className="sc-sub">ausgeschriebene Mengen</div>
+        </div>
+        <div className="scen-card s2">
+          <div className="sc-lbl">2 · Erwartete Massen</div>
+          <div className="sc-val">{fmtEUR(sum2)}</div>
+          <div className={"scen-delta "+(delta2>0.1?"up":"flat")}>{delta2>=0?'+':''}{delta2.toFixed(1)} %</div>
+        </div>
+        <div className="scen-card s3">
+          <div className="sc-lbl">3 · EP-Spreizung</div>
+          <div className="sc-val">{fmtEUR(sum3erw)}</div>
+          <div className={"scen-delta "+(delta3>0.1?"up":"flat")}>{delta3>=0?'+':''}{delta3.toFixed(1)} %</div>
+        </div>
+      </div>
+
+      <div className="kalk-hint">
+        <b>So funktioniert die Spreizung:</b> Die Angebotssumme (Szenario 1) bleibt {angebotKonstant?'konstant':'nahezu konstant'} bei {fmtEUR(sum3lv)} – du gewinnst die Vergabe mit demselben Preis. Durch Anheben der EP bei Positionen mit erwartetem Mengen-Plus steigt der wahrscheinliche Schlussrechnungsbetrag. Auskömmlichkeit und Plausibilität im Blick behalten – die Einzelpreise müssen vertretbar bleiben.
+      </div>
+
+      <div className="spreiz-ctrl">
+        <label>Spreizung</label>
+        <input type="range" min="0" max="100" step="5" value={spreizStaerke} onChange={e=>setSpreizStaerke(parseInt(e.target.value))}/>
+        <span className="val">{spreizStaerke}%</span>
+      </div>
+
+      <div className="m2-section-title">Positionen · erwartete Mengen anpassen</div>
+      <div className="matlist">
+        {calc3.map((c,i)=>{
+          const pos=c.pos; const isBid=pos.typ==='bid';
+          return (
+            <div className={"krow"+(isBid?" ro":"")} key={i}>
+              <div className="krow-top">
+                <span className="krow-oz">{pos.oz}</span>
+                <span className="krow-kurz">{pos.kurz||'—'}
+                  {isBid && <span className="kbadge tag-bid">Bieterfeld</span>}
+                  {!isBid && c.istPlus && spreizStaerke>0 && <span className="kbadge tag-mat">EP ↑ gespreizt</span>}
+                </span>
+              </div>
+              {!isBid && (
+                <div className="krow-grid">
+                  <div className="kcell"><div className="kk">LV-Menge</div><div className="kv">{c.lvMenge.toLocaleString('de-DE')} {pos.qu}</div></div>
+                  <div className="kcell erw"><div className="kk">Erwartet ({pos.qu})</div><input type="text" value={pos.erwMenge==null?'':pos.erwMenge} placeholder={String(c.lvMenge)} onChange={e=>setErw(i,e.target.value)}/></div>
+                  <div className="kcell s3v"><div className="kk">EP gespreizt</div><div className="kv">{fmtEUR(c.ep3)}</div></div>
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+
+      <div className="summary-bar">
+        <span className="lbl">Erwartete Schlussrechnung (Szenario 3)</span>
+        <span className="sum">{fmtEUR(sum3erw)}</span>
+      </div>
+
+      <div className="foot"><span className="ver">
+        <span className={"dot "+(drive?"dot-on":"dot-off")}></span>Drive {drive?"verbunden":"offline"}
+        <span style={{margin:"0 8px",opacity:.4}}>·</span>
+        <span className={"dot "+(ki?"dot-on":"dot-off")}></span>KI {ki?"aktiv":"aus"}
+      </span></div>
     </div>
   );
 }
@@ -548,8 +739,9 @@ function App(){
   const [lv,setLv]=useState(null);
   const [zuschlag,setZuschlag]=useState({mittellohn:18.50, lohnZuschlag:131, materialZuschlag:15, geraeteZuschlag:10});
   if(page==="start") return <StartScreen drive={drive} setDrive={setDrive} ki={ki} setKi={setKi} apiKey={apiKey} setApiKey={setApiKey} onWeiter={()=>setPage("modul")} />;
-  if(page==="material") return <MaterialScreen lv={lv} setLv={setLv} zuschlag={zuschlag} setZuschlag={setZuschlag} drive={drive} ki={ki} onBack={()=>setPage("modul")} />;
-  return <ModulScreen drive={drive} ki={ki} lv={lv} setLv={setLv} onOpenMaterial={()=>setPage("material")} onBack={()=>setPage("start")} />;
+  if(page==="material") return <MaterialScreen lv={lv} setLv={setLv} zuschlag={zuschlag} setZuschlag={setZuschlag} drive={drive} ki={ki} onBack={()=>setPage("modul")} onOpenKalk={()=>setPage("kalk")} />;
+  if(page==="kalk") return <KalkulationScreen lv={lv} setLv={setLv} zuschlag={zuschlag} drive={drive} ki={ki} onBack={()=>setPage("modul")} />;
+  return <ModulScreen drive={drive} ki={ki} lv={lv} setLv={setLv} onOpenMaterial={()=>setPage("material")} onOpenKalk={()=>setPage("kalk")} onBack={()=>setPage("start")} />;
 }
 ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
 </script>
