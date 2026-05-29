@@ -513,6 +513,56 @@ body{font-family:'Source Sans 3',-apple-system,sans-serif;background:var(--bg-pr
 .set-saved{text-align:center;color:#2ecc71;font-size:12px;font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:0.5px;margin-top:6px;opacity:0;transition:opacity .3s;}
 .set-saved.show{opacity:1;}
 
+
+/* ===== PROJEKT-LEBENSZYKLUS: Auswahl & Dialoge ===== */
+.choice-wrap{max-width:480px;margin:0 auto;}
+.choice-card{background:var(--bg-secondary);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);padding:22px;margin-bottom:14px;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:16px;}
+.choice-card:hover{border-color:var(--accent-blue);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.3);}
+.choice-card.neu:hover{border-color:#2ecc71;}
+.choice-ico{width:54px;height:54px;border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.choice-ico.neu{background:rgba(46,204,113,0.15);}
+.choice-ico.open{background:rgba(77,166,255,0.15);}
+.choice-txt{flex:1;}
+.choice-title{font-family:'Oswald',sans-serif;font-weight:600;font-size:17px;color:var(--text-white);letter-spacing:0.3px;}
+.choice-desc{font-size:13px;color:var(--text-muted);margin-top:4px;line-height:1.4;}
+.choice-arrow{color:var(--text-muted);font-size:20px;flex-shrink:0;}
+.choice-count{display:inline-block;background:var(--accent-blue);color:#fff;font-family:'Oswald',sans-serif;font-size:11px;font-weight:700;padding:2px 9px;border-radius:20px;margin-left:8px;}
+
+/* Liste gespeicherter Angebote */
+.saved-list{margin-top:8px;}
+.saved-item{background:var(--bg-secondary);border:1px solid var(--border-subtle);border-radius:var(--radius-md);padding:13px 15px;margin-bottom:9px;display:flex;align-items:center;gap:13px;cursor:pointer;transition:all .18s;}
+.saved-item:hover{border-color:var(--accent-blue);background:var(--bg-tertiary);}
+.saved-ico{width:40px;height:40px;border-radius:10px;background:rgba(77,166,255,0.13);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.saved-info{flex:1;min-width:0;}
+.saved-name{font-family:'Oswald',sans-serif;font-weight:600;font-size:14px;color:var(--text-white);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.saved-meta{font-size:11px;color:var(--text-muted);margin-top:3px;}
+.saved-meta .badge{display:inline-block;background:var(--bg-card);padding:1px 7px;border-radius:5px;margin-right:6px;font-family:'Oswald',sans-serif;letter-spacing:0.3px;}
+.saved-actions{display:flex;align-items:center;gap:6px;flex-shrink:0;}
+.saved-del{background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:17px;padding:4px;}
+.saved-del:hover{color:var(--accent-red-light);}
+.saved-empty{text-align:center;color:var(--text-muted);font-size:13px;padding:30px 16px;line-height:1.5;}
+.saved-empty .big{display:block;font-family:'Oswald',sans-serif;font-size:15px;color:var(--text-light);margin-bottom:6px;text-transform:uppercase;letter-spacing:0.5px;}
+
+/* Modal (Speichern-Dialog) */
+.modal-overlay{position:fixed;inset:0;background:rgba(8,14,20,0.75);backdrop-filter:blur(3px);z-index:1000;display:flex;align-items:center;justify-content:center;padding:20px;}
+.modal-box{background:var(--bg-secondary);border:1px solid var(--border-color);border-radius:var(--radius-lg);padding:24px;max-width:420px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,0.5);}
+.modal-icon{width:52px;height:52px;border-radius:50%;background:rgba(243,156,18,0.15);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;}
+.modal-title{font-family:'Oswald',sans-serif;font-weight:600;font-size:18px;color:var(--text-white);text-align:center;margin-bottom:8px;letter-spacing:0.3px;}
+.modal-text{font-size:13px;color:var(--text-light);text-align:center;line-height:1.5;margin-bottom:12px;}
+.modal-field{margin-bottom:16px;}
+.modal-field label{display:block;font-size:10px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.6px;margin-bottom:5px;font-family:'Oswald',sans-serif;}
+.modal-field input{width:100%;padding:10px 12px;border:1px solid var(--border-color);border-radius:8px;background:var(--bg-tertiary);color:var(--text-primary);font-size:13px;}
+.modal-field input:focus{outline:none;border-color:var(--accent-blue);box-shadow:0 0 0 2px rgba(77,166,255,0.14);}
+.modal-btns{display:flex;gap:10px;}
+.modal-btn{flex:1;padding:12px;border:none;border-radius:9px;font-family:'Oswald',sans-serif;font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;cursor:pointer;transition:all .18s;}
+.modal-btn.save{background:linear-gradient(135deg,#2ecc71,#1e9e54);color:#fff;}
+.modal-btn.save:hover{filter:brightness(1.1);}
+.modal-btn.discard{background:var(--bg-card);color:var(--text-light);border:1px solid var(--border-color);}
+.modal-btn.discard:hover{border-color:var(--accent-red);color:var(--accent-red-light);}
+.modal-btn.cancel{background:transparent;color:var(--text-muted);border:1px solid var(--border-subtle);}
+.modal-drive-opt{display:flex;align-items:center;gap:9px;justify-content:center;margin-bottom:14px;font-size:12px;color:var(--text-light);cursor:pointer;user-select:none;}
+.modal-drive-opt input{width:16px;height:16px;accent-color:var(--accent-blue);cursor:pointer;}
+
 </style>
 </head>
 <body>
@@ -2531,6 +2581,147 @@ function merkeMaterial(db, pos){
 }
 
 
+
+// ============================================================
+// PROJEKT-LEBENSZYKLUS – gespeicherte Angebote
+// ------------------------------------------------------------
+// Lokaler Speicher (Sitzung/IndexedDB in der Suite), optional Drive-Sicherung.
+// Ein gespeichertes Angebot = {id, name, gespeichertAm, lv, zuschlag, firma, inDrive}
+// ============================================================
+function angId(){ return 'ang'+Date.now()+Math.random().toString(36).slice(2,5); }
+
+// In-Memory-Store (überlebt Seitenwechsel innerhalb der Sitzung).
+// In der Suite wird dies durch IndexedDB ersetzt – gleiche Funktionssignaturen.
+const _angStore = (typeof window!=='undefined' && window.__twAngebote) ? window.__twAngebote : [];
+if(typeof window!=='undefined') window.__twAngebote = _angStore;
+
+function ladeAngebote(){ return (typeof window!=='undefined' && window.__twAngebote) ? window.__twAngebote.slice() : []; }
+function speichereAngebot(eintrag){
+  if(typeof window==='undefined') return;
+  const arr = window.__twAngebote || [];
+  const idx = arr.findIndex(a=>a.id===eintrag.id);
+  if(idx>=0) arr[idx]=eintrag; else arr.unshift(eintrag);
+  window.__twAngebote = arr;
+}
+function loescheAngebot(id){
+  if(typeof window==='undefined') return;
+  window.__twAngebote = (window.__twAngebote||[]).filter(a=>a.id!==id);
+}
+function fmtDatum(iso){
+  try{ const d=new Date(iso); return d.toLocaleDateString('de-DE')+' '+d.toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'}); }
+  catch(e){ return iso||''; }
+}
+
+
+// ============ AUSWAHL-SCREEN (nach „Weiter zur Kalkulation") ============
+function AuswahlScreen({drive,ki,onNeu,onOeffnen,onZurueck}){
+  const [modus,setModus]=useState("wahl"); // wahl | liste
+  const [angebote,setAngebote]=useState(ladeAngebote());
+
+  function oeffne(a){ onOeffnen(a); }
+  function loesche(e, id){ e.stopPropagation(); if(confirm("Dieses gespeicherte Angebot wirklich löschen?")){ loescheAngebot(id); setAngebote(ladeAngebote()); } }
+
+  return (
+    <div className="page-container">
+      <div className="back-row"><button className="back-btn" onClick={onZurueck}>{'\u2190'} Startseite</button></div>
+      <div className="head"><div className="head-logo-scale"><FirmenLogo/></div>
+        <div className="head-title">Kalkulation</div><div className="head-sub">{modus==="wahl"?"Wie möchtest du starten?":"Gespeichertes Angebot öffnen"}</div></div>
+
+      {modus==="wahl" && (
+        <div className="choice-wrap">
+          <div className="choice-card neu" onClick={onNeu}>
+            <span className="choice-ico neu"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="#2ecc71" strokeWidth="2.4" strokeLinecap="round"/></svg></span>
+            <span className="choice-txt">
+              <span className="choice-title">Neues Angebot analysieren</span>
+              <span className="choice-desc">Unterlagen aus dem Eingangsordner laden und per KI analysieren – startet direkt mit der Dateiauswahl.</span>
+            </span>
+            <span className="choice-arrow">{'\u2192'}</span>
+          </div>
+
+          <div className="choice-card" onClick={()=>setModus("liste")}>
+            <span className="choice-ico open"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M3 7a1 1 0 011-1h5l1.5 2H20a1 1 0 011 1v9a1 1 0 01-1 1H4a1 1 0 01-1-1V7z" stroke="#4da6ff" strokeWidth="2" strokeLinejoin="round"/></svg></span>
+            <span className="choice-txt">
+              <span className="choice-title">Bearbeitetes Angebot öffnen
+                {angebote.length>0 && <span className="choice-count">{angebote.length}</span>}
+              </span>
+              <span className="choice-desc">Einen zuvor gespeicherten Stand fortsetzen.</span>
+            </span>
+            <span className="choice-arrow">{'\u2192'}</span>
+          </div>
+        </div>
+      )}
+
+      {modus==="liste" && (
+        <div className="choice-wrap">
+          <button className="mini-btn" style={{marginBottom:'12px'}} onClick={()=>setModus("wahl")}>{'\u2190'} Zurück zur Auswahl</button>
+          {angebote.length===0 ? (
+            <div className="saved-empty"><span className="big">Keine gespeicherten Angebote</span>
+              Sobald du ein Angebot bearbeitest und beim Verlassen speicherst, erscheint es hier.</div>
+          ) : (
+            <div className="saved-list">
+              {angebote.map(a=>(
+                <div className="saved-item" key={a.id} onClick={()=>oeffne(a)}>
+                  <span className="saved-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 2h9l5 5v15H6V2z" stroke="#4da6ff" strokeWidth="2" strokeLinejoin="round"/><path d="M9 13h6M9 17h6" stroke="#4da6ff" strokeWidth="1.6" strokeLinecap="round"/></svg></span>
+                  <span className="saved-info">
+                    <span className="saved-name">{a.name}</span>
+                    <span className="saved-meta">
+                      {a.inDrive && <span className="badge">Drive</span>}
+                      <span className="badge">{(a.lv&&a.lv.positionen?a.lv.positionen.length:0)} Pos.</span>
+                      {fmtDatum(a.gespeichertAm)}
+                    </span>
+                  </span>
+                  <span className="saved-actions">
+                    <button className="saved-del" onClick={(e)=>loesche(e,a.id)} title="Löschen">{'\u00d7'}</button>
+                    <span className="choice-arrow">{'\u2192'}</span>
+                  </span>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+
+      <div className="foot"><span className="ver">
+        <span className={"dot "+(drive?"dot-on":"dot-off")}></span>Drive {drive?"verbunden":"offline"}
+        <span style={{margin:"0 8px",opacity:.4}}>·</span>
+        <span className={"dot "+(ki?"dot-on":"dot-off")}></span>KI {ki?"aktiv":"aus"}
+      </span></div>
+    </div>
+  );
+}
+
+// ============ SPEICHERN-MODAL (beim Verlassen eines Angebots) ============
+function SpeichernModal({lv, drive, onSpeichern, onVerwerfen, onAbbrechen}){
+  const vorschlag = (lv && lv.prj) ? lv.prj : "Angebot "+new Date().toLocaleDateString('de-DE');
+  const [name,setName]=useState(vorschlag);
+  const [nachDrive,setNachDrive]=useState(false);
+  return (
+    <div className="modal-overlay" onClick={onAbbrechen}>
+      <div className="modal-box" onClick={e=>e.stopPropagation()}>
+        <div className="modal-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M5 3h11l3 3v15H5V3z" stroke="#f39c12" strokeWidth="2" strokeLinejoin="round"/><path d="M8 3v6h7V3M8 21v-7h8v7" stroke="#f39c12" strokeWidth="2" strokeLinejoin="round"/></svg></div>
+        <div className="modal-title">Stand speichern?</div>
+        <div className="modal-text">Möchtest du den aktuellen Bearbeitungsstand speichern, bevor du das Angebot verlässt?</div>
+        <div className="modal-field">
+          <label>Name des Angebots</label>
+          <input type="text" value={name} onChange={e=>setName(e.target.value)} autoFocus/>
+        </div>
+        <label className="modal-drive-opt">
+          <input type="checkbox" checked={nachDrive} onChange={e=>setNachDrive(e.target.checked)}/>
+          Zusätzlich in Google Drive sichern{!drive && " (in der Suite verfügbar)"}
+        </label>
+        <div className="modal-btns">
+          <button className="modal-btn discard" onClick={onVerwerfen}>Nicht speichern</button>
+          <button className="modal-btn save" onClick={()=>onSpeichern(name, nachDrive)}>Speichern</button>
+        </div>
+        <div className="modal-btns" style={{marginTop:'10px'}}>
+          <button className="modal-btn cancel" onClick={onAbbrechen}>Abbrechen</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+
 function App(){
   const [page,setPage]=useState("start");
   const [drive,setDrive]=useState(false);
@@ -2541,15 +2732,68 @@ function App(){
   const [subs,setSubs]=useState([]);
   const [firma,setFirma]=useState({name:"Thomas Willwacher Fliesenlegermeister e.K.", strasse:"", plz:"", ort:"", steuer:""});
   const [matDB,setMatDB]=useState(MAT_SEED);
-  if(page==="start") return <StartScreen drive={drive} setDrive={setDrive} ki={ki} setKi={setKi} apiKey={apiKey} setApiKey={setApiKey} onWeiter={()=>setPage("modul")} />;
-  if(page==="analyse") return <AnalyseScreen setLv={setLv} matDB={matDB} setMatDB={setMatDB} drive={drive} ki={ki} onBack={()=>setPage("modul")} onFertig={()=>setPage("material")} />;
-  if(page==="material") return <MaterialScreen lv={lv} setLv={setLv} zuschlag={zuschlag} setZuschlag={setZuschlag} drive={drive} ki={ki} onBack={()=>setPage("modul")} onOpenKalk={()=>setPage("kalk")} />;
-  if(page==="kalk") return <KalkulationScreen lv={lv} setLv={setLv} zuschlag={zuschlag} drive={drive} ki={ki} onBack={()=>setPage("modul")} onOpenExport={()=>setPage("export")} />;
-  if(page==="export") return <ExportScreen lv={lv} zuschlag={zuschlag} firma={firma} drive={drive} ki={ki} onBack={()=>setPage("modul")} />;
-  if(page==="preisspiegel") return <PreisspiegelScreen subs={subs} setSubs={setSubs} drive={drive} ki={ki} onBack={()=>setPage("modul")} />;
-  if(page==="drive") return <DriveScreen lv={lv} zuschlag={zuschlag} subs={subs} drive={drive} ki={ki} onBack={()=>setPage("modul")} />;
-  if(page==="settings") return <SettingsScreen zuschlag={zuschlag} setZuschlag={setZuschlag} firma={firma} setFirma={setFirma} drive={drive} setDrive={setDrive} onBack={()=>setPage("modul")} />;
-  return <ModulScreen drive={drive} ki={ki} lv={lv} setLv={setLv} onOpenAnalyse={()=>setPage("analyse")} onOpenMaterial={()=>setPage("material")} onOpenKalk={()=>setPage("kalk")} onOpenExport={()=>setPage("export")} onOpenPreisspiegel={()=>setPage("preisspiegel")} onOpenDrive={()=>setPage("drive")} onOpenSettings={()=>setPage("settings")} onBack={()=>setPage("start")} />;
+  const [aktAngId,setAktAngId]=useState(null);       // id des aktuell bearbeiteten Angebots
+  const [angDirty,setAngDirty]=useState(false);      // wurde am Angebot gearbeitet?
+  const [speicherModal,setSpeicherModal]=useState(null); // null | {ziel:"start"|"auswahl"}
+
+  // Ein Angebot ist "in Arbeit", sobald ein LV geladen ist
+  const hatAngebot = !!(lv && lv.positionen);
+
+  // Navigation, die ggf. erst den Speichern-Dialog zeigt
+  function verlasseAngebot(ziel){
+    if(hatAngebot){ setSpeicherModal({ziel}); }
+    else { goTo(ziel); }
+  }
+  function goTo(ziel){
+    setSpeicherModal(null);
+    if(ziel==="start"){ setPage("start"); }
+    else if(ziel==="auswahl"){ setPage("auswahl"); }
+    else setPage(ziel);
+  }
+  // Aktuellen Stand als Angebot ablegen
+  function speichereStand(name, nachDrive){
+    const id = aktAngId || angId();
+    const eintrag = { id, name: name||(lv&&lv.prj)||"Angebot", gespeichertAm: new Date().toISOString(),
+      lv, zuschlag, firma, inDrive: !!nachDrive };
+    speichereAngebot(eintrag);
+    setAktAngId(id);
+    if(nachDrive){
+      if(drive || driveVerfuegbar()) console.log("Angebot zusätzlich nach Drive gesichert (in Suite aktiv).");
+    }
+  }
+  function neuesAngebot(){
+    setLv(null); setAktAngId(null); setAngDirty(false);
+    setPage("analyse");
+  }
+  function oeffneAngebot(a){
+    setLv(a.lv||null);
+    if(a.zuschlag) setZuschlag(a.zuschlag);
+    if(a.firma) setFirma(a.firma);
+    setAktAngId(a.id); setAngDirty(false);
+    setPage("modul");
+  }
+
+  if(page==="start") return <StartScreen drive={drive} setDrive={setDrive} ki={ki} setKi={setKi} apiKey={apiKey} setApiKey={setApiKey} onWeiter={()=>setPage("auswahl")} />;
+  if(page==="auswahl") return <AuswahlScreen drive={drive} ki={ki} onNeu={neuesAngebot} onOeffnen={oeffneAngebot} onZurueck={()=>setPage("start")} />;
+  // Das Speichern-Modal wird über jeden Screen gelegt
+  const modal = speicherModal ? (
+    <SpeichernModal lv={lv} drive={drive}
+      onSpeichern={(name,nachDrive)=>{ speichereStand(name,nachDrive); const z=speicherModal.ziel; setSpeicherModal(null); if(z==="start"){setLv(null);setAktAngId(null);setPage("start");} else if(z==="auswahl"){setLv(null);setAktAngId(null);setPage("auswahl");} else goTo(z); }}
+      onVerwerfen={()=>{ const z=speicherModal.ziel; setSpeicherModal(null); setLv(null); setAktAngId(null); setPage(z==="auswahl"?"auswahl":"start"); }}
+      onAbbrechen={()=>setSpeicherModal(null)} />
+  ) : null;
+
+  function screen(){
+    if(page==="analyse") return <AnalyseScreen setLv={setLv} matDB={matDB} setMatDB={setMatDB} drive={drive} ki={ki} onBack={()=>setPage("modul")} onFertig={()=>setPage("material")} />;
+    if(page==="material") return <MaterialScreen lv={lv} setLv={setLv} zuschlag={zuschlag} setZuschlag={setZuschlag} drive={drive} ki={ki} onBack={()=>setPage("modul")} onOpenKalk={()=>setPage("kalk")} />;
+    if(page==="kalk") return <KalkulationScreen lv={lv} setLv={setLv} zuschlag={zuschlag} drive={drive} ki={ki} onBack={()=>setPage("modul")} onOpenExport={()=>setPage("export")} />;
+    if(page==="export") return <ExportScreen lv={lv} zuschlag={zuschlag} firma={firma} drive={drive} ki={ki} onBack={()=>setPage("modul")} />;
+    if(page==="preisspiegel") return <PreisspiegelScreen subs={subs} setSubs={setSubs} drive={drive} ki={ki} onBack={()=>setPage("modul")} />;
+    if(page==="drive") return <DriveScreen lv={lv} zuschlag={zuschlag} subs={subs} drive={drive} ki={ki} onBack={()=>setPage("modul")} />;
+    if(page==="settings") return <SettingsScreen zuschlag={zuschlag} setZuschlag={setZuschlag} firma={firma} setFirma={setFirma} drive={drive} setDrive={setDrive} onBack={()=>setPage("modul")} />;
+    return <ModulScreen drive={drive} ki={ki} lv={lv} setLv={setLv} onOpenAnalyse={()=>setPage("analyse")} onOpenMaterial={()=>setPage("material")} onOpenKalk={()=>setPage("kalk")} onOpenExport={()=>setPage("export")} onOpenPreisspiegel={()=>setPage("preisspiegel")} onOpenDrive={()=>setPage("drive")} onOpenSettings={()=>setPage("settings")} onBack={()=>verlasseAngebot("start")} />;
+  }
+  return <React.Fragment>{screen()}{modal}</React.Fragment>;
 }
 ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
 </script>
