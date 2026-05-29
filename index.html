@@ -227,6 +227,47 @@ body{font-family:'Source Sans 3',-apple-system,sans-serif;background:var(--bg-pr
 .exp-done b{color:#2ecc71;font-family:'Oswald',sans-serif;}
 
 /* ===== MODUL 5: PREISSPIEGEL & WETTBEWERB ===== */
+
+/* ===== ANGEBOTSANALYSE ===== */
+.ana-line{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--border-subtle);font-size:12px;}
+.ana-line:last-child{border-bottom:none;}
+.ana-line span{color:var(--text-muted);text-transform:uppercase;font-size:10px;letter-spacing:0.5px;font-family:'Oswald',sans-serif;}
+.ana-line b{color:var(--text-white);font-size:13px;text-align:right;max-width:60%;}
+.ana-warn{background:rgba(243,156,18,0.08);border:1px solid rgba(243,156,18,0.35);border-radius:var(--radius-md);padding:12px 14px;margin-bottom:12px;}
+.ana-warn-title{font-family:'Oswald',sans-serif;font-size:12px;font-weight:600;color:#f39c12;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;}
+.ana-warn-item{font-size:12px;color:var(--text-light);line-height:1.5;padding:2px 0;}
+.ana-poslist{background:var(--bg-secondary);border:1px solid var(--border-subtle);border-radius:var(--radius-md);overflow:hidden;margin-bottom:6px;}
+.ana-pos{display:grid;grid-template-columns:70px 1fr auto;gap:10px;align-items:center;padding:9px 13px;border-top:1px solid var(--border-subtle);font-size:12px;}
+.ana-pos:first-child{border-top:none;}
+.ana-oz{font-family:'Oswald',sans-serif;font-weight:600;color:var(--accent-blue);font-size:11px;}
+.ana-kurz{color:var(--text-light);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.ana-badge{font-size:8px;background:rgba(46,204,113,0.18);color:#2ecc71;padding:2px 6px;border-radius:5px;margin-left:7px;text-transform:uppercase;letter-spacing:0.4px;font-family:'Oswald',sans-serif;}
+.ana-mng{font-family:'Oswald',sans-serif;font-weight:600;color:var(--text-white);font-size:11px;white-space:nowrap;}
+
+/* ===== ERGEBNIS-UPLOAD (Preisspiegel) ===== */
+.erg-upload{background:var(--bg-secondary);border:1px solid var(--border-subtle);border-radius:var(--radius-md);padding:13px 14px;margin-bottom:14px;}
+.erg-upload-head{display:flex;align-items:center;gap:9px;margin-bottom:10px;}
+.erg-upload-head .euico{width:32px;height:32px;border-radius:8px;background:rgba(46,204,113,0.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.erg-upload-head .eut{flex:1;}
+.erg-upload-head .eutn{font-family:'Oswald',sans-serif;font-weight:600;font-size:13px;color:var(--text-white);letter-spacing:0.3px;}
+.erg-upload-head .euts{font-size:11px;color:var(--text-muted);margin-top:1px;}
+.erg-drop{border:1.5px dashed var(--border-color);border-radius:9px;padding:16px;text-align:center;cursor:pointer;transition:all .2s;background:var(--bg-tertiary);}
+.erg-drop:hover{border-color:#2ecc71;background:rgba(46,204,113,0.05);}
+.erg-drop .ed-ico{font-size:22px;color:var(--text-muted);margin-bottom:6px;}
+.erg-drop .ed-txt{font-size:12px;color:var(--text-light);line-height:1.4;}
+.erg-drop .ed-txt b{font-family:'Oswald',sans-serif;color:#2ecc71;text-transform:uppercase;font-size:11px;letter-spacing:0.5px;}
+.erg-files{margin-top:10px;}
+.erg-file{display:flex;align-items:center;gap:9px;padding:8px 11px;background:var(--bg-tertiary);border-radius:7px;margin-bottom:5px;font-size:12px;}
+.erg-file .effi{color:#2ecc71;font-size:15px;flex-shrink:0;}
+.erg-file .effn{flex:1;color:var(--text-light);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.erg-file .effs{font-size:10px;color:var(--text-muted);font-family:'Oswald',sans-serif;white-space:nowrap;}
+.erg-file .effx{background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:16px;flex-shrink:0;}
+.erg-analyse-btn{width:100%;margin-top:10px;padding:12px;border:none;border-radius:9px;font-family:'Oswald',sans-serif;font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:0.6px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;}
+.erg-analyse-btn.ready{background:linear-gradient(135deg,#2ecc71,#1e9e54);color:#fff;}
+.erg-analyse-btn.ready:hover{transform:translateY(-1px);filter:brightness(1.08);}
+.erg-analyse-btn.wait{background:var(--bg-card);color:var(--text-muted);border:1px solid var(--border-color);cursor:default;}
+.erg-drivebtn{font-family:'Oswald',sans-serif;font-size:10px;text-transform:uppercase;letter-spacing:0.4px;padding:6px 10px;border-radius:7px;border:1px solid var(--accent-blue);background:rgba(77,166,255,0.1);color:var(--accent-blue);cursor:pointer;white-space:nowrap;}
+
 .ps-tabs{display:flex;gap:6px;background:var(--bg-secondary);border-radius:var(--radius-md);padding:4px;margin-bottom:16px;}
 .ps-tab{flex:1;padding:9px 8px;border:none;background:transparent;color:var(--text-muted);font-family:'Oswald',sans-serif;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.6px;cursor:pointer;border-radius:8px;transition:all .2s;}
 .ps-tab.active{background:var(--accent-blue);color:#fff;}
@@ -338,6 +379,15 @@ body{font-family:'Source Sans 3',-apple-system,sans-serif;background:var(--bg-pr
 .dr-status .sact{font-family:'Oswald',sans-serif;font-size:11px;text-transform:uppercase;letter-spacing:0.5px;padding:6px 11px;border-radius:7px;background:var(--accent-blue);color:#fff;border:none;cursor:pointer;}
 
 /* ===== EINSTELLUNGEN ===== */
+.set-modell-liste{margin-top:10px;background:var(--bg-tertiary);border-radius:9px;padding:10px 12px;}
+.sml-title{font-family:'Oswald',sans-serif;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.6px;color:var(--text-muted);margin-bottom:9px;}
+.sml-row{display:flex;align-items:center;gap:10px;padding:7px 9px;border-radius:7px;margin-bottom:5px;background:var(--bg-secondary);}
+.sml-row.top{border:1px solid #2ecc71;}
+.sml-rank{font-family:'Oswald',sans-serif;font-weight:700;font-size:12px;color:var(--text-muted);width:16px;text-align:center;flex-shrink:0;}
+.sml-name{flex:1;font-family:'Oswald',sans-serif;font-weight:600;font-size:13px;color:var(--text-white);display:flex;align-items:center;gap:8px;}
+.sml-badge{font-size:8px;background:rgba(46,204,113,0.18);color:#2ecc71;padding:2px 6px;border-radius:5px;text-transform:uppercase;letter-spacing:0.4px;}
+.sml-hint{font-size:10px;color:var(--text-muted);}
+
 .set-block{background:var(--bg-secondary);border:1px solid var(--border-subtle);border-radius:var(--radius-md);padding:15px;margin-bottom:14px;}
 .set-block-title{font-family:'Oswald',sans-serif;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--accent-blue);margin-bottom:13px;display:flex;align-items:center;gap:8px;}
 .set-grid2{display:grid;grid-template-columns:1fr 1fr;gap:11px;}
@@ -374,6 +424,59 @@ body{font-family:'Source Sans 3',-apple-system,sans-serif;background:var(--bg-pr
 <script type="text/babel">
 const { useState, useRef } = React;
 
+// ============================================================
+// GEMINI-MODELL-KONFIGURATION – "immer das beste verfügbare Modell"
+// ------------------------------------------------------------
+// Prioritätsliste: Die App probiert von oben nach unten und nutzt
+// automatisch das erste Modell, das tatsächlich antwortet.
+// Kommt künftig ein besseres Modell: einfach OBEN eine Zeile ergänzen.
+// Kein blindes Raten unbekannter Namen -> sicher und kontrolliert.
+// ============================================================
+const GEMINI_MODELLE = [
+  { id: "gemini-3.5-pro",   label: "Gemini 3.5 Pro",   hinweis: "Frontier – ab Juni 2026" },
+  { id: "gemini-3.5-flash", label: "Gemini 3.5 Flash", hinweis: "Aktueller Standard – schnell & stark" },
+  { id: "gemini-2.5-pro",   label: "Gemini 2.5 Pro",   hinweis: "Bewährter Rückfall" },
+  { id: "gemini-2.5-flash", label: "Gemini 2.5 Flash", hinweis: "Letzter Rückfall" },
+];
+const GEMINI_BASE_URL = "https://generativelanguage.googleapis.com/v1beta";
+
+function getGeminiKey(){
+  try{ return (window.localStorage && localStorage.getItem('gemini_api_key')) || ''; }catch(e){ return ''; }
+}
+function geminiVerfuegbar(){ return !!getGeminiKey(); }
+
+// Ruft Gemini auf und durchläuft dabei automatisch die Prioritätsliste.
+// parts = Array von {text:"..."} und/oder {inline_data:{mime_type,data}} (PDF/Bild base64).
+// Gibt {text, modell} zurück oder wirft, wenn KEIN Modell funktioniert.
+async function geminiCall(parts){
+  const key = getGeminiKey();
+  if(!key) throw new Error("Kein Gemini-Schlüssel hinterlegt (kommt über die Suite).");
+  let letzterFehler = null;
+  for(const m of GEMINI_MODELLE){
+    try{
+      const resp = await fetch(GEMINI_BASE_URL + "/models/" + m.id + ":generateContent?key=" + encodeURIComponent(key), {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ contents: [{ parts: parts }] })
+      });
+      if(!resp.ok){
+        // 404 = Modell (noch) nicht verfügbar -> nächstes probieren. Andere Fehler ebenso durchreichen.
+        letzterFehler = new Error("HTTP " + resp.status + " bei " + m.id);
+        continue;
+      }
+      const data = await resp.json();
+      const text = (((data.candidates||[])[0]||{}).content||{}).parts||[];
+      const out = text.map(p=>p.text||"").join("").trim();
+      if(out) return { text: out, modell: m.label };
+      letzterFehler = new Error("Leere Antwort von " + m.id);
+    }catch(e){ letzterFehler = e; }
+  }
+  throw letzterFehler || new Error("Kein Gemini-Modell verfügbar.");
+}
+// Welches Modell würde aktuell zuerst versucht (für Anzeige)
+function aktuellesBestesModell(){ return GEMINI_MODELLE[0]; }
+
+
 function FirmenLogo(){
   return (
     <div className="logo-container">
@@ -397,6 +500,7 @@ function Icon({id}){
   if(id==="material") return <svg {...s}><rect x="5" y="5" width="9" height="9" rx="1" stroke="white" strokeWidth="2"/><rect x="18" y="5" width="9" height="9" rx="1" stroke="rgba(255,255,255,.6)" strokeWidth="2"/><rect x="5" y="18" width="9" height="9" rx="1" stroke="rgba(255,255,255,.6)" strokeWidth="2"/><rect x="18" y="18" width="9" height="9" rx="1" stroke="white" strokeWidth="2"/></svg>;
   if(id==="kalk") return <svg {...s}><rect x="6" y="4" width="20" height="24" rx="2" stroke="white" strokeWidth="2"/><line x1="10" y1="9" x2="22" y2="9" stroke="white" strokeWidth="1.6"/><line x1="10" y1="14" x2="14" y2="14" stroke="rgba(255,255,255,.7)" strokeWidth="1.6"/><line x1="18" y1="14" x2="22" y2="14" stroke="rgba(255,255,255,.7)" strokeWidth="1.6"/><line x1="10" y1="19" x2="14" y2="19" stroke="rgba(255,255,255,.7)" strokeWidth="1.6"/><line x1="18" y1="19" x2="22" y2="19" stroke="rgba(255,255,255,.7)" strokeWidth="1.6"/><line x1="10" y1="24" x2="22" y2="24" stroke="white" strokeWidth="1.6"/></svg>;
   if(id==="export") return <svg {...s}><path d="M16 20V4M16 4l-6 6M16 4l6 6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><path d="M6 24v2a2 2 0 002 2h16a2 2 0 002-2v-2" stroke="white" strokeWidth="2" strokeLinecap="round"/></svg>;
+  if(id==="analyse") return <svg {...s}><path d="M7 4h10l4 4v18H7a1 1 0 01-1-1V5a1 1 0 011-1z" stroke="white" strokeWidth="2" strokeLinejoin="round" fill="none"/><circle cx="14.5" cy="15.5" r="3.5" stroke="white" strokeWidth="2"/><path d="M17 18l2.5 2.5" stroke="white" strokeWidth="2" strokeLinecap="round"/></svg>;
   if(id==="preisspiegel") return <svg {...s}><line x1="5" y1="27" x2="27" y2="27" stroke="white" strokeWidth="2" strokeLinecap="round"/><rect x="7" y="17" width="4" height="9" fill="rgba(255,255,255,.55)"/><rect x="14" y="11" width="4" height="15" fill="white"/><rect x="21" y="20" width="4" height="6" fill="rgba(255,255,255,.55)"/></svg>;
   if(id==="driveworkflow") return <svg {...s}><path d="M4 9a2 2 0 012-2h6l2 3h10a2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V9z" stroke="white" strokeWidth="2" strokeLinejoin="round" fill="none"/></svg>;
   if(id==="settings") return <svg {...s}><circle cx="16" cy="16" r="4" stroke="white" strokeWidth="2"/><path d="M16 4v3M16 25v3M28 16h-3M7 16H4M24 8l-2 2M10 22l-2 2M24 24l-2-2M10 10L8 8" stroke="white" strokeWidth="2" strokeLinecap="round"/></svg>;
@@ -457,6 +561,7 @@ function defaultZeit(qu,typ){
 }
 
 const MODULE=[
+  {id:"analyse",ico:"analyse",name:"Angebotsanalyse (KI)",desc:"Unterlagen hochladen → automatisch analysieren"},
   {id:"import",ico:"import",name:"Import",desc:"GAEB X83 / LV-Basis / Drive einlesen"},
   {id:"material",ico:"material",name:"Material & Zuschläge",desc:"EK-Preise, Mittellohn, BGK / AGK / W&G"},
   {id:"kalk",ico:"kalk",name:"Kalkulation",desc:"EP / GP, 3-Szenarien-Vergleich"},
@@ -526,11 +631,12 @@ function StartScreen({drive,setDrive,ki,setKi,apiKey,setApiKey,onWeiter}){
 }
 
 // ============ SEITE 2: MODULWAHL ============
-function ModulScreen({drive,ki,onBack,lv,setLv,onOpenMaterial,onOpenKalk,onOpenExport,onOpenPreisspiegel,onOpenDrive,onOpenSettings}){
+function ModulScreen({drive,ki,onBack,lv,setLv,onOpenAnalyse,onOpenMaterial,onOpenKalk,onOpenExport,onOpenPreisspiegel,onOpenDrive,onOpenSettings}){
   const [err,setErr]=useState("");
   const fileRef=useRef(null);
   function pick(id){
-    if(id==="import") fileRef.current.click();
+    if(id==="analyse") onOpenAnalyse();
+    else if(id==="import") fileRef.current.click();
     else if(id==="material") onOpenMaterial();
     else if(id==="kalk") onOpenKalk();
     else if(id==="export") onOpenExport();
@@ -1190,6 +1296,30 @@ function PreisspiegelScreen({subs,setSubs,drive,ki,onBack}){
   const [bName,setBName]=useState("");
   const [bSumme,setBSumme]=useState("");
   const fileRef=useRef(null);
+  // Ergebnis-Dateien aus dem Ergebnis-Ordner (für KI-Analyse)
+  const [ergFiles,setErgFiles]=useState([]);
+  const ergRef=useRef(null);
+
+  function fmtBytes(n){ if(n<1024)return n+' B'; if(n<1048576)return (n/1024).toFixed(0)+' KB'; return (n/1048576).toFixed(1)+' MB'; }
+  function onErgFiles(e){
+    const fl=Array.from(e.target.files||[]);
+    if(fl.length===0) return;
+    const neu=fl.map(f=>({id:Date.now()+'_'+f.name, name:f.name, size:f.size, type:f.type, file:f}));
+    setErgFiles(prev=>[...prev, ...neu]);
+    e.target.value=''; // erlaubt erneutes Auswählen derselben Datei
+  }
+  function rmErg(id){ setErgFiles(ergFiles.filter(f=>f.id!==id)); }
+  function ladeAusDrive(){
+    if(drive || driveVerfuegbar()){
+      alert("In der Suite werden hier die Dateien direkt aus dem Ergebnis-Ordner deiner Drive-Struktur geladen.");
+    } else {
+      alert("Google Drive ist in dieser Vorschau nicht verbunden.\n\nIn der TW Business Suite lädt dieser Knopf die Dateien automatisch aus dem Ergebnis-Ordner – ohne manuelles Hochladen.");
+    }
+  }
+  function starteAnalyse(){
+    // Analyse-Ablauf folgt – wird über den Angebotsanalyse-Skill verdrahtet.
+    alert("Analyse vorbereitet.\n\nDer eigentliche Auswerte-Ablauf wird über deinen Angebotsanalyse-Skill verdrahtet (klären wir als Nächstes). Die "+ergFiles.length+" hochgeladene(n) Datei(en) stehen dafür bereit.");
+  }
 
   function addBidder(istMir){
     if(!bName.trim()||!bSumme) return;
@@ -1225,6 +1355,35 @@ function PreisspiegelScreen({subs,setSubs,drive,ki,onBack}){
         <button className={"ps-tab"+(tab==="uebersicht"?" active":"")} onClick={()=>setTab("uebersicht")}>Übersicht</button>
         <button className={"ps-tab"+(tab==="chronik"?" active":"")} onClick={()=>setTab("chronik")}>Chronik</button>
         <button className={"ps-tab"+(tab==="erfassen"?" active":"")} onClick={()=>setTab("erfassen")}>Erfassen</button>
+      </div>
+
+      <div className="erg-upload">
+        <div className="erg-upload-head">
+          <span className="euico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M3 7a1 1 0 011-1h5l1.5 2H20a1 1 0 011 1v9a1 1 0 01-1 1H4a1 1 0 01-1-1V7z" stroke="#2ecc71" strokeWidth="2" strokeLinejoin="round"/></svg></span>
+          <span className="eut"><span className="eutn">Ergebnisse aus dem Ergebnis-Ordner</span><span className="euts">Submissionsergebnisse für die Auswertung laden</span></span>
+          <button className="erg-drivebtn" onClick={ladeAusDrive}>aus Drive</button>
+        </div>
+        <div className="erg-drop" onClick={()=>ergRef.current.click()}>
+          <div className="ed-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 16V4M12 4l-4 4M12 4l4 4M5 20h14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg></div>
+          <div className="ed-txt"><b>Dateien wählen</b><br/>PDF-Niederschriften / Ergebnislisten (Mehrfachauswahl möglich)</div>
+        </div>
+        <input ref={ergRef} type="file" accept=".pdf,.csv,.xlsx,.xls,.txt,.png,.jpg,.jpeg" multiple style={{display:'none'}} onChange={onErgFiles}/>
+        {ergFiles.length>0 && (
+          <div className="erg-files">
+            {ergFiles.map(f=>(
+              <div className="erg-file" key={f.id}>
+                <span className="effi"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M6 2h9l5 5v15a0 0 0 01 0 0H6a0 0 0 01 0 0V2z" stroke="#2ecc71" strokeWidth="2" strokeLinejoin="round"/></svg></span>
+                <span className="effn" title={f.name}>{f.name}</span>
+                <span className="effs">{fmtBytes(f.size)}</span>
+                <button className="effx" onClick={()=>rmErg(f.id)}>{'\u00d7'}</button>
+              </div>
+            ))}
+            <button className={"erg-analyse-btn ready"} onClick={starteAnalyse}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="#fff" strokeWidth="2"/><path d="M20 20l-3-3" stroke="#fff" strokeWidth="2" strokeLinecap="round"/></svg>
+              {ergFiles.length} Datei(en) analysieren
+            </button>
+          </div>
+        )}
       </div>
 
       {subs.length===0 && tab!=="erfassen" && (
@@ -1548,10 +1707,7 @@ function erzeugeBericht(subs, lv, zuschlag, verbunden, setMsg){
 
 // ============ EINSTELLUNGEN ============
 // Zentrale Betriebs-Standards: Zuschläge, Firmendaten, Drive-Status.
-// KI = Google Gemini der Suite (kein eigener Schlüssel nötig).
-function geminiVerfuegbar(){
-  try{ return typeof window!=="undefined" && !!(window.localStorage && localStorage.getItem('gemini_api_key')); }catch(e){ return false; }
-}
+// KI = Google Gemini der Suite (Modellwahl zentral via GEMINI_MODELLE).
 function SettingsScreen({zuschlag,setZuschlag,firma,setFirma,drive,setDrive,onBack}){
   const [saved,setSaved]=useState(false);
   function setZ(feld,wert){ setZuschlag({...zuschlag,[feld]:parseFloat(String(wert).replace(',','.'))||0}); flash(); }
@@ -1599,9 +1755,19 @@ function SettingsScreen({zuschlag,setZuschlag,firma,setFirma,drive,setDrive,onBa
         </div>
         <div className={"set-conn "+(kiOn?"on":"off")}>
           <span className="cd"></span>
-          <span className="ct"><span className="ctn">KI (Google Gemini)</span>{kiOn?"Verfügbar über die Suite – kein zusätzlicher Schlüssel nötig.":"In dieser Vorschau nicht aktiv. In der Suite über die vorhandene Gemini-Anmeldung verfügbar."}</span>
+          <span className="ct"><span className="ctn">KI (Google Gemini)</span>{kiOn?("Verfügbar – nutzt automatisch das beste Modell ("+aktuellesBestesModell().label+")."):"In dieser Vorschau nicht aktiv. In der Suite über die vorhandene Gemini-Anmeldung verfügbar."}</span>
         </div>
-        <div className="ps-info" style={{marginTop:'4px'}}>Die KI nutzt den Google-Gemini-Zugang deiner Business Suite. Ein eigener Schlüssel ist nicht erforderlich.</div>
+        <div className="set-modell-liste">
+          <div className="sml-title">Modell-Priorität (immer das beste verfügbare zuerst)</div>
+          {GEMINI_MODELLE.map((m,i)=>(
+            <div className={"sml-row"+(i===0?" top":"")} key={m.id}>
+              <span className="sml-rank">{i+1}</span>
+              <span className="sml-name">{m.label}{i===0 && <span className="sml-badge">aktiv</span>}</span>
+              <span className="sml-hint">{m.hinweis}</span>
+            </div>
+          ))}
+        </div>
+        <div className="ps-info" style={{marginTop:'4px'}}>Die App probiert die Modelle von oben nach unten und verwendet automatisch das erste, das antwortet. Kommt ein besseres Modell, wird es oben ergänzt – ohne weitere Einstellung.</div>
       </div>
 
       <div className={"set-saved"+(saved?" show":"")}>{'\u2713'} Gespeichert</div>
@@ -1610,6 +1776,265 @@ function SettingsScreen({zuschlag,setZuschlag,firma,setFirma,drive,setDrive,onBa
         <span className={"dot "+(driveOn?"dot-on":"dot-off")}></span>Drive {driveOn?"verbunden":"offline"}
         <span style={{margin:"0 8px",opacity:.4}}>·</span>
         <span className={"dot "+(kiOn?"dot-on":"dot-off")}></span>KI {kiOn?"aktiv":"aus"}
+      </span></div>
+    </div>
+  );
+}
+
+
+
+// ============================================================
+// ANGEBOTSANALYSE (1. Stufe) – nach Skill tw-lv-kalkulationsexport
+// ------------------------------------------------------------
+// Nimmt Roh-Unterlagen (PDF / X83 / Text) entgegen, lässt sie von Gemini
+// nach dem Schema tw-kalk-1.0 analysieren und legt das Ergebnis direkt ins
+// App-Datenmodell (lv), sodass Material (Modul 2) + Kalkulation (Modul 3)
+// nahtlos weiterarbeiten. KEINE separate KI nötig – läuft in der App.
+// Leitplanken: LV-Reihenfolge wahren, nichts erfinden, EK-Preis Standardfliese
+// bleibt null (trägt der Meister in Modul 2 ein), Sondermaterial bepreist.
+// ============================================================
+
+// Der Analyse-Prompt – erzeugt strikt JSON nach Schema tw-kalk-1.0
+const ANALYSE_PROMPT = [
+  "Du bist Kalkulations-Assistent für den Fliesenlegerbetrieb Thomas Willwacher.",
+  "Analysiere das folgende Leistungsverzeichnis (LV) eines Bauvorhabens vollständig.",
+  "Gib AUSSCHLIESSLICH gültiges JSON nach diesem Schema zurück (keine Erklärung, keine Backticks):",
+  "{",
+  '  "schemaVersion":"tw-kalk-1.0",',
+  '  "meta":{"erzeugtAm":"<ISO-Datum>","quelle":"App-Angebotsanalyse","bauvorhaben":"<Bauvorhaben>","vergabenummer":"<Nr oder null>"},',
+  '  "kunde":{"auftraggeber":"<oder null>","baustelle":"<oder null>","planer":"<oder null>","bauleitung":"<oder null>"},',
+  '  "positionen":[{',
+  '    "posNr":"<Ordnungszahl exakt wie im LV>","titel":"<Kurzbezeichnung>","kurztext":"<Kurztext oder null>",',
+  '    "menge":<Zahl>,"einheit":"<m²|m|Stk|psch...>",',
+  '    "art":"<boden|wand|sockel|abdichtung|nebenleistung|sondermaterial|null>",',
+  '    "zeitansatz_h":null,',
+  '    "materialBedarf":<true|false>,"materialTyp":"<standardfliese|verlegematerial|sondermaterial|keine>",',
+  '    "material":{"bezeichnung":<null bei Standardfliese>,"fabrikat":null,"format":"<z.B. 60x60 oder null>","ekPreis":<null bei Standardfliese, Zahl bei Sondermaterial>,"einheitMaterial":"<m²|m|Stk>","quelle":"<vom_kalkulator_einzutragen|angefragt>"},',
+  '    "verlegematerial_proEinheit":null,',
+  '    "besonderheiten":"<Freitext oder null>",',
+  '    "alternativen":[{"fabrikat":"<Vorschlag>","format":"<Format>","hinweis":"<kurz>"}]',
+  '  }],',
+  '  "warnhinweise":["<unklare Mengen/Formate – nicht raten, hier vermerken>"],',
+  '  "massenpruefung_hinweise":[{"posNr":"<Pos>","hinweis":"<Plausibilität>"}]',
+  "}",
+  "REGELN: 1) LV-Reihenfolge exakt beibehalten, NICHT umsortieren.",
+  "2) Nichts erfinden – unklare Werte als Warnhinweis, nicht raten.",
+  "3) EK-Preis von Standardfliesen IMMER null (trägt der Kalkulator ein).",
+  "4) Nur bei ausgeschriebenem Sondermaterial (Edelstahl, Rinnstreifer, Spezialprofile) materialTyp='sondermaterial' und – falls erkennbar – einen ekPreis schätzen, sonst null.",
+  "5) Nebenleistungen (Baustelleneinrichtung, Bemusterung, Dokumentation): materialBedarf=false, materialTyp='keine'.",
+  "6) Fliesenformate aus dem LV-Text übernehmen, wenn angegeben.",
+  "7) Für Standardfliesen-Positionen 1-2 sinnvolle Fabrikat-/Format-Alternativen in 'alternativen' vorschlagen."
+].join("\n");
+
+// Wandelt die Schema-Positionen in das App-interne Datenmodell (wie parseX83 es liefert)
+function schemaZuLv(schema, fileName){
+  const positionen = (schema.positionen||[]).map(p=>({
+    oz: p.posNr||"",
+    kurz: p.titel || (p.kurztext||"").slice(0,80),
+    qty: Number(p.menge)||0,
+    qu: p.einheit||"",
+    typ: p.materialTyp==='sondermaterial' ? 'mat'
+        : p.materialTyp==='standardfliese' ? 'mat'
+        : p.materialTyp==='verlegematerial' ? 'mat' : 'none',
+    gruppe: p.art || "Angebotsanalyse",
+    format: (p.material&&p.material.format) || "",
+    fabrikat: (p.material&&p.material.fabrikat) || "",
+    ek: (p.material&&typeof p.material.ekPreis==='number') ? p.material.ekPreis : 0,
+    zeit: (typeof p.zeitansatz_h==='number') ? p.zeitansatz_h : defaultZeit(p.einheit, p.art),
+    erwMenge: null, spreizPct: 0,
+    // Zusatzinfos aus der Analyse (für Anzeige in Modul 2)
+    _materialTyp: p.materialTyp, _alternativen: p.alternativen||[],
+    _besonderheiten: p.besonderheiten||"", _istSonder: p.materialTyp==='sondermaterial'
+  }));
+  // Gruppen nach 'art' bündeln (für die LV-Ansicht)
+  const groupsMap = {};
+  positionen.forEach(p=>{ (groupsMap[p.gruppe]=groupsMap[p.gruppe]||[]).push({oz:p.oz,kurz:p.kurz,qty:p.qty,qu:p.qu,typ:p.typ}); });
+  const groups = Object.keys(groupsMap).map(k=>({lbl:k, items:groupsMap[k]}));
+  return {
+    prj: (schema.meta&&schema.meta.bauvorhaben) || fileName || "Angebotsanalyse",
+    groups, itemCount: positionen.length,
+    upbkdn:0, bidder:0, groupCount: groups.length,
+    positionen,
+    meta: schema.meta||{}, kunde: schema.kunde||{},
+    warnhinweise: schema.warnhinweise||[], massenHinweise: schema.massenpruefung_hinweise||[],
+    ausAnalyse:true
+  };
+}
+
+// Datei -> base64 (für PDF/Bild an Gemini)
+function fileZuBase64(file){
+  return new Promise((res,rej)=>{
+    const r=new FileReader();
+    r.onload=()=>res(String(r.result).split(',')[1]);
+    r.onerror=()=>rej(new Error("Datei nicht lesbar"));
+    r.readAsDataURL(file);
+  });
+}
+
+
+// ============ SEITE: ANGEBOTSANALYSE (1. Stufe) ============
+function AnalyseScreen({setLv,drive,ki,onBack,onFertig}){
+  const [files,setFiles]=useState([]);
+  const [status,setStatus]=useState("idle"); // idle | running | done | error
+  const [statusText,setStatusText]=useState("");
+  const [ergebnis,setErgebnis]=useState(null);
+  const [usedModel,setUsedModel]=useState("");
+  const aRef=useRef(null);
+  const kiBereit = geminiVerfuegbar();
+
+  function fmtBytes(n){ if(n<1024)return n+' B'; if(n<1048576)return (n/1024).toFixed(0)+' KB'; return (n/1048576).toFixed(1)+' MB'; }
+  function onFiles(e){
+    const fl=Array.from(e.target.files||[]);
+    if(fl.length===0)return;
+    setFiles(prev=>[...prev, ...fl.map(f=>({id:Date.now()+'_'+f.name,name:f.name,size:f.size,type:f.type,file:f}))]);
+    e.target.value='';
+  }
+  function rm(id){ setFiles(files.filter(f=>f.id!==id)); }
+
+  async function starteAnalyse(){
+    if(files.length===0)return;
+    if(!kiBereit){
+      setStatus("error");
+      setStatusText("Die KI (Google Gemini) ist in dieser Vorschau nicht aktiv. In der TW Business Suite läuft die Analyse automatisch über den dortigen Gemini-Zugang. Alternativ kannst du ein GAEB X83 direkt über „Import\" laden.");
+      return;
+    }
+    setStatus("running"); setStatusText("Unterlagen werden analysiert …"); setErgebnis(null);
+    try{
+      // Dateien in Gemini-parts umwandeln (PDF/Bilder als inline_data, Text direkt)
+      const parts=[{text:ANALYSE_PROMPT}];
+      for(const f of files){
+        const t=f.type||"";
+        if(t.includes("pdf")||t.includes("image")){
+          const b64=await fileZuBase64(f.file);
+          parts.push({inline_data:{mime_type:t||"application/pdf", data:b64}});
+        } else {
+          // Text/X83/CSV: als Text mitschicken
+          const txt=await f.file.text();
+          parts.push({text:"\n\n=== Datei: "+f.name+" ===\n"+txt.slice(0,200000)});
+        }
+      }
+      const {text,modell}=await geminiCall(parts);
+      setUsedModel(modell||"");
+      // JSON aus der Antwort schälen (falls doch Backticks o.ä.)
+      let raw=text.trim();
+      const m=raw.match(/\{[\s\S]*\}/);
+      if(m) raw=m[0];
+      const schema=JSON.parse(raw);
+      const lvObj=schemaZuLv(schema, files[0]&&files[0].name);
+      setErgebnis(lvObj);
+      setStatus("done");
+      setStatusText("Analyse abgeschlossen"+(modell?(" · "+modell):""));
+    }catch(ex){
+      setStatus("error");
+      setStatusText("Analyse fehlgeschlagen: "+ex.message+" — Du kannst die Unterlagen erneut versuchen oder ein X83 über „Import\" laden.");
+    }
+  }
+
+  function uebernehmen(){
+    if(!ergebnis)return;
+    setLv(ergebnis);
+    onFertig();
+  }
+
+  return (
+    <div className="page-container">
+      <div className="back-row"><button className="back-btn" onClick={onBack}>{'\u2190'} Modul wählen</button></div>
+      <div className="head"><div className="head-logo-scale"><FirmenLogo/></div>
+        <div className="head-title">Angebotsanalyse</div><div className="head-sub">1. Stufe · Unterlagen → Kalkulationsbasis</div></div>
+
+      <div className={"dr-status "+(kiBereit?"on":"off")} style={{marginBottom:'14px'}}>
+        <span className="sd"></span>
+        <span className="stxt">{kiBereit
+          ? ("KI bereit – analysiert automatisch mit dem besten Modell ("+aktuellesBestesModell().label+").")
+          : "KI in dieser Vorschau nicht aktiv. In der Suite läuft die Analyse über den vorhandenen Gemini-Zugang."}</span>
+      </div>
+
+      <div className="erg-upload">
+        <div className="erg-upload-head">
+          <span className="euico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M3 7a1 1 0 011-1h5l1.5 2H20a1 1 0 011 1v9a1 1 0 01-1 1H4a1 1 0 01-1-1V7z" stroke="#f39c12" strokeWidth="2" strokeLinejoin="round"/></svg></span>
+          <span className="eut"><span className="eutn">Unterlagen aus dem Eingangsordner</span><span className="euts">LV + zugehörige Dateien (PDF, X83, Text)</span></span>
+          <button className="erg-drivebtn" onClick={()=>alert(kiBereit||drive?"In der Suite werden hier die Unterlagen direkt aus dem Eingangsordner für Angebotsanalyse geladen.":"In der Suite lädt dieser Knopf die Unterlagen automatisch aus dem Eingangsordner für Angebotsanalyse.")}>aus Drive</button>
+        </div>
+        <div className="erg-drop" onClick={()=>aRef.current.click()}>
+          <div className="ed-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 16V4M12 4l-4 4M12 4l4 4M5 20h14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg></div>
+          <div className="ed-txt"><b>Unterlagen wählen</b><br/>LV als PDF oder GAEB X83, plus zugehörige Dateien (Mehrfachauswahl)</div>
+        </div>
+        <input ref={aRef} type="file" accept=".pdf,.x83,.X83,.xml,.txt,.csv,.png,.jpg,.jpeg" multiple style={{display:'none'}} onChange={onFiles}/>
+        {files.length>0 && (
+          <div className="erg-files">
+            {files.map(f=>(
+              <div className="erg-file" key={f.id}>
+                <span className="effi"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M6 2h9l5 5v15H6V2z" stroke="#f39c12" strokeWidth="2" strokeLinejoin="round"/></svg></span>
+                <span className="effn" title={f.name}>{f.name}</span>
+                <span className="effs">{fmtBytes(f.size)}</span>
+                <button className="effx" onClick={()=>rm(f.id)}>{'\u00d7'}</button>
+              </div>
+            ))}
+            <button className={"erg-analyse-btn "+(status==="running"?"wait":"ready")} onClick={starteAnalyse} disabled={status==="running"}>
+              {status==="running"
+                ? <span>Analysiert …</span>
+                : <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" style={{verticalAlign:'-2px',marginRight:'4px'}}><circle cx="11" cy="11" r="7" stroke="#fff" strokeWidth="2"/><path d="M20 20l-3-3" stroke="#fff" strokeWidth="2" strokeLinecap="round"/></svg>{files.length} Unterlage(n) analysieren</span>}
+            </button>
+          </div>
+        )}
+      </div>
+
+      {status==="running" && (
+        <div className="exp-done" style={{background:'rgba(243,156,18,0.10)',borderColor:'#f39c12'}}>{statusText}</div>
+      )}
+      {status==="error" && (
+        <div className="err-note">{statusText}</div>
+      )}
+
+      {status==="done" && ergebnis && (
+        <div>
+          <div className="m2-section-title">Ergebnis der Analyse</div>
+          <div className="ps-kpis">
+            <div className="ps-kpi"><div className="v">{ergebnis.itemCount}</div><div className="l">Positionen</div></div>
+            <div className="ps-kpi"><div className="v">{ergebnis.groupCount}</div><div className="l">Gruppen</div></div>
+            <div className="ps-kpi amber"><div className="v">{(ergebnis.warnhinweise||[]).length}</div><div className="l">Warnhinweise</div></div>
+            <div className="ps-kpi green"><div className="v">{ergebnis.positionen.filter(p=>p._istSonder).length}</div><div className="l">Sondermaterial</div></div>
+          </div>
+
+          {ergebnis.meta && (ergebnis.meta.bauvorhaben||ergebnis.kunde) && (
+            <div className="set-block">
+              <div className="set-block-title">Erkannte Eckdaten</div>
+              {ergebnis.meta.bauvorhaben && <div className="ana-line"><span>Bauvorhaben</span><b>{ergebnis.meta.bauvorhaben}</b></div>}
+              {ergebnis.kunde&&ergebnis.kunde.auftraggeber && <div className="ana-line"><span>Auftraggeber</span><b>{ergebnis.kunde.auftraggeber}</b></div>}
+              {ergebnis.kunde&&ergebnis.kunde.baustelle && <div className="ana-line"><span>Baustelle</span><b>{ergebnis.kunde.baustelle}</b></div>}
+              {ergebnis.meta.vergabenummer && <div className="ana-line"><span>Vergabe-Nr.</span><b>{ergebnis.meta.vergabenummer}</b></div>}
+            </div>
+          )}
+
+          {(ergebnis.warnhinweise||[]).length>0 && (
+            <div className="ana-warn">
+              <div className="ana-warn-title">{'\u26a0'} Warnhinweise (bitte prüfen)</div>
+              {ergebnis.warnhinweise.map((w,i)=><div className="ana-warn-item" key={i}>• {w}</div>)}
+            </div>
+          )}
+
+          <div className="ana-poslist">
+            {ergebnis.positionen.slice(0,40).map((p,i)=>(
+              <div className="ana-pos" key={i}>
+                <span className="ana-oz">{p.oz}</span>
+                <span className="ana-kurz">{p.kurz}{p._istSonder && <span className="ana-badge">Sonder</span>}</span>
+                <span className="ana-mng">{p.qty.toLocaleString('de-DE')} {p.qu}</span>
+              </div>
+            ))}
+            {ergebnis.positionen.length>40 && <div className="ps-info">… und {ergebnis.positionen.length-40} weitere Positionen</div>}
+          </div>
+
+          <div className="weiter-wrap">
+            <button className="weiter-btn" style={{background:'linear-gradient(135deg,#2ecc71,#1e9e54)',boxShadow:'0 6px 20px rgba(46,204,113,0.34)'}} onClick={uebernehmen}>Übernehmen → weiter zu Material</button>
+          </div>
+          <div className="ps-info">Die erkannten Positionen werden als Kalkulationsbasis übernommen. EK-Preise der Standardfliesen trägst du im nächsten Schritt ein.</div>
+        </div>
+      )}
+
+      <div className="foot"><span className="ver">
+        <span className={"dot "+(drive?"dot-on":"dot-off")}></span>Drive {drive?"verbunden":"offline"}
+        <span style={{margin:"0 8px",opacity:.4}}>·</span>
+        <span className={"dot "+(kiBereit?"dot-on":"dot-off")}></span>KI {kiBereit?"aktiv":"aus"}
       </span></div>
     </div>
   );
@@ -1626,13 +2051,14 @@ function App(){
   const [subs,setSubs]=useState([]);
   const [firma,setFirma]=useState({name:"Thomas Willwacher Fliesenlegermeister e.K.", strasse:"", plz:"", ort:"", steuer:""});
   if(page==="start") return <StartScreen drive={drive} setDrive={setDrive} ki={ki} setKi={setKi} apiKey={apiKey} setApiKey={setApiKey} onWeiter={()=>setPage("modul")} />;
+  if(page==="analyse") return <AnalyseScreen setLv={setLv} drive={drive} ki={ki} onBack={()=>setPage("modul")} onFertig={()=>setPage("material")} />;
   if(page==="material") return <MaterialScreen lv={lv} setLv={setLv} zuschlag={zuschlag} setZuschlag={setZuschlag} drive={drive} ki={ki} onBack={()=>setPage("modul")} onOpenKalk={()=>setPage("kalk")} />;
   if(page==="kalk") return <KalkulationScreen lv={lv} setLv={setLv} zuschlag={zuschlag} drive={drive} ki={ki} onBack={()=>setPage("modul")} onOpenExport={()=>setPage("export")} />;
   if(page==="export") return <ExportScreen lv={lv} zuschlag={zuschlag} firma={firma} drive={drive} ki={ki} onBack={()=>setPage("modul")} />;
   if(page==="preisspiegel") return <PreisspiegelScreen subs={subs} setSubs={setSubs} drive={drive} ki={ki} onBack={()=>setPage("modul")} />;
   if(page==="drive") return <DriveScreen lv={lv} zuschlag={zuschlag} subs={subs} drive={drive} ki={ki} onBack={()=>setPage("modul")} />;
   if(page==="settings") return <SettingsScreen zuschlag={zuschlag} setZuschlag={setZuschlag} firma={firma} setFirma={setFirma} drive={drive} setDrive={setDrive} onBack={()=>setPage("modul")} />;
-  return <ModulScreen drive={drive} ki={ki} lv={lv} setLv={setLv} onOpenMaterial={()=>setPage("material")} onOpenKalk={()=>setPage("kalk")} onOpenExport={()=>setPage("export")} onOpenPreisspiegel={()=>setPage("preisspiegel")} onOpenDrive={()=>setPage("drive")} onOpenSettings={()=>setPage("settings")} onBack={()=>setPage("start")} />;
+  return <ModulScreen drive={drive} ki={ki} lv={lv} setLv={setLv} onOpenAnalyse={()=>setPage("analyse")} onOpenMaterial={()=>setPage("material")} onOpenKalk={()=>setPage("kalk")} onOpenExport={()=>setPage("export")} onOpenPreisspiegel={()=>setPage("preisspiegel")} onOpenDrive={()=>setPage("drive")} onOpenSettings={()=>setPage("settings")} onBack={()=>setPage("start")} />;
 }
 ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
 </script>
