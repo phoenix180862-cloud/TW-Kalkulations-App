@@ -229,6 +229,51 @@ body{font-family:'Source Sans 3',-apple-system,sans-serif;background:var(--bg-pr
 /* ===== MODUL 5: PREISSPIEGEL & WETTBEWERB ===== */
 
 
+
+/* ===== MATERIAL-STAMMLISTE ===== */
+.mdb-bar{display:flex;gap:8px;align-items:center;margin-bottom:12px;}
+.mdb-search{flex:1;padding:9px 12px;border:1px solid var(--border-color);border-radius:8px;background:var(--bg-tertiary);color:var(--text-primary);font-size:13px;}
+.mdb-search:focus{outline:none;border-color:var(--accent-blue);box-shadow:0 0 0 2px rgba(77,166,255,0.14);}
+.mdb-count{font-family:'Oswald',sans-serif;font-size:11px;color:var(--text-muted);white-space:nowrap;text-transform:uppercase;letter-spacing:0.5px;}
+.mdb-add{background:var(--bg-secondary);border:1px solid var(--border-subtle);border-radius:var(--radius-md);padding:13px;margin-bottom:12px;}
+.mdb-add-grid{display:grid;grid-template-columns:1.4fr 0.7fr 0.7fr 70px 34px;gap:7px;align-items:end;}
+.mdb-add .mf label{display:block;font-size:9px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:3px;font-family:'Oswald',sans-serif;}
+.mdb-add .mf input{width:100%;padding:7px 9px;border:1px solid var(--border-color);border-radius:6px;background:var(--bg-tertiary);color:var(--text-primary);font-size:12px;}
+.mdb-add .mf input:focus{outline:none;border-color:var(--accent-blue);}
+.mdb-add .mf input.num{font-family:'Oswald',sans-serif;font-weight:600;text-align:right;}
+.mdb-list{background:var(--bg-secondary);border:1px solid var(--border-subtle);border-radius:var(--radius-md);overflow:hidden;max-height:340px;overflow-y:auto;}
+.mdb-row{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center;padding:9px 13px;border-top:1px solid var(--border-subtle);}
+.mdb-row:first-child{border-top:none;}
+.mdb-row:hover{background:var(--bg-tertiary);}
+.mdb-info{min-width:0;}
+.mdb-name{font-size:13px;color:var(--text-white);font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.mdb-sub{font-size:11px;color:var(--text-muted);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.mdb-tags{display:inline-flex;gap:4px;margin-left:6px;}
+.mdb-tag{font-size:8px;background:var(--bg-card);color:var(--text-muted);padding:1px 5px;border-radius:4px;font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:0.3px;}
+.mdb-tag.used{background:rgba(46,204,113,0.18);color:#2ecc71;}
+.mdb-right{display:flex;align-items:center;gap:9px;}
+.mdb-price{font-family:'Oswald',sans-serif;font-weight:700;font-size:13px;color:var(--accent-blue);white-space:nowrap;}
+.mdb-x{background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:16px;}
+.mdb-upload{border:1.5px dashed var(--border-color);border-radius:9px;padding:13px;text-align:center;cursor:pointer;transition:all .2s;background:var(--bg-tertiary);margin-bottom:12px;}
+.mdb-upload:hover{border-color:var(--accent-blue);background:rgba(77,166,255,0.05);}
+.mdb-upload .mu-t{font-size:12px;color:var(--text-light);line-height:1.4;}
+.mdb-upload .mu-t b{font-family:'Oswald',sans-serif;color:var(--accent-blue);text-transform:uppercase;font-size:11px;letter-spacing:0.5px;}
+.mdb-upload .mu-hint{font-size:10px;color:var(--text-muted);margin-top:4px;}
+.mdb-empty{text-align:center;color:var(--text-muted);font-size:12px;padding:24px 14px;line-height:1.5;}
+/* Dropdown-Auswahl in Material-Eingabe */
+.matpick-wrap{position:relative;}
+.matpick-btn{width:100%;padding:7px 9px;border:1px solid var(--border-color);border-radius:6px;background:var(--bg-tertiary);color:var(--accent-blue);font-size:11px;font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:0.4px;cursor:pointer;text-align:left;display:flex;justify-content:space-between;align-items:center;}
+.matpick-btn:hover{border-color:var(--accent-blue);}
+.matpick-pop{position:absolute;top:100%;left:0;right:0;z-index:30;margin-top:4px;background:var(--bg-card);border:1px solid var(--accent-blue);border-radius:8px;box-shadow:0 8px 24px rgba(0,0,0,0.4);max-height:230px;overflow-y:auto;}
+.matpick-search{width:100%;padding:8px 10px;border:none;border-bottom:1px solid var(--border-color);background:var(--bg-tertiary);color:var(--text-primary);font-size:12px;position:sticky;top:0;}
+.matpick-search:focus{outline:none;}
+.matpick-item{padding:8px 11px;cursor:pointer;border-top:1px solid var(--border-subtle);font-size:12px;}
+.matpick-item:hover{background:var(--bg-tertiary);}
+.matpick-item .mpi-name{color:var(--text-white);font-weight:600;}
+.matpick-item .mpi-sub{font-size:10px;color:var(--text-muted);margin-top:1px;}
+.matpick-item .mpi-price{color:var(--accent-blue);font-family:'Oswald',sans-serif;font-weight:700;float:right;}
+.matpick-none{padding:12px;text-align:center;color:var(--text-muted);font-size:11px;}
+
 /* ===== ANALYSE: MATERIAL-EINGABE ===== */
 .ana-matlist{margin-bottom:6px;}
 .ana-mat{background:var(--bg-secondary);border:1px solid var(--border-subtle);border-radius:var(--radius-md);padding:11px 13px;margin-bottom:8px;}
@@ -1908,13 +1953,46 @@ function fileZuBase64(file){
 
 
 // ============ SEITE: ANGEBOTSANALYSE (1. Stufe) ============
-function AnalyseScreen({setLv,drive,ki,onBack,onFertig}){
+function AnalyseScreen({setLv,matDB,setMatDB,drive,ki,onBack,onFertig}){
   const [files,setFiles]=useState([]);
   const [status,setStatus]=useState("idle"); // idle | running | done | error
   const [statusText,setStatusText]=useState("");
   const [ergebnis,setErgebnis]=useState(null);
   const [usedModel,setUsedModel]=useState("");
-  const [rtab,setRtab]=useState("uebersicht"); // uebersicht | material
+  const [rtab,setRtab]=useState("uebersicht"); // uebersicht | material | liste
+  // Stammlisten-Verwaltung
+  const [mdbSuche,setMdbSuche]=useState("");
+  const [nName,setNName]=useState(""); const [nFormat,setNFormat]=useState(""); const [nEk,setNEk]=useState(""); const [nEinheit,setNEinheit]=useState("m²");
+  const [pickOpen,setPickOpen]=useState(null); // index der Position, deren Dropdown offen ist
+  const [pickSuche,setPickSuche]=useState("");
+  const listRef=useRef(null);
+  function addMatManuell(){
+    if(!nName.trim())return;
+    setMatDB([{id:matId(),name:nName.trim(),format:nFormat.trim(),einheit:nEinheit||"m²",ekPreis:parsePreis(nEk),hersteller:"",aliase:[],tags:[],verwendet:false},...matDB]);
+    setNName("");setNFormat("");setNEk("");
+  }
+  function rmMat(id){ setMatDB(matDB.filter(m=>m.id!==id)); }
+  function onMatListe(e){
+    const f=e.target.files[0]; if(!f)return;
+    const reader=new FileReader();
+    reader.onload=()=>{
+      try{
+        const neu=parseMatListe(String(reader.result));
+        if(neu.length===0){ alert("Keine Einträge erkannt. Erwartet wird eine CSV/Textliste mit Spalten wie: Bezeichnung; Format; EK-Preis; Einheit; Hersteller."); return; }
+        setMatDB([...neu, ...matDB]);
+        alert(neu.length+" Material-Einträge importiert.");
+      }catch(ex){ alert("Liste konnte nicht gelesen werden: "+ex.message); }
+    };
+    reader.readAsText(f);
+    e.target.value='';
+  }
+  // Material aus Stammliste in eine Position übernehmen
+  function pickMaterial(i, m){
+    const ps=ergebnis.positionen.slice();
+    ps[i]={...ps[i], fabrikat:m.name||ps[i].fabrikat, format:m.format||ps[i].format, ek: (typeof m.ekPreis==='number'&&m.ekPreis>0)? m.ekPreis : ps[i].ek};
+    setErgebnis({...ergebnis, positionen:ps});
+    setPickOpen(null); setPickSuche("");
+  }
   // lokale Zuschläge für Live-EP (Standardwerte; final justierbar in Modul Material/Einstellungen)
   const [zuschlag,setZuschlag]=useState({mittellohn:18.50, lohnZuschlag:131, materialZuschlag:15, geraeteZuschlag:10});
   const aRef=useRef(null);
@@ -1984,6 +2062,14 @@ function AnalyseScreen({setLv,drive,ki,onBack,onFertig}){
 
   function uebernehmen(){
     if(!ergebnis)return;
+    // Bepreiste Materialien in die Stammliste merken (für künftige Angebote)
+    let db=matDB;
+    ergebnis.positionen.forEach(pos=>{
+      if(pos.typ!=='none' && (pos.ek>0) && (pos.fabrikat||pos.format)){
+        db=merkeMaterial(db, pos);
+      }
+    });
+    if(db!==matDB) setMatDB(db);
     setLv(ergebnis);
     onFertig();
   }
@@ -2068,6 +2154,7 @@ function AnalyseScreen({setLv,drive,ki,onBack,onFertig}){
           <div className="ana-tabs">
             <button className={"ana-rtab"+(rtab==="uebersicht"?" active":"")} onClick={()=>setRtab("uebersicht")}>Übersicht</button>
             <button className={"ana-rtab"+(rtab==="material"?" active":"")} onClick={()=>setRtab("material")}>Material bearbeiten</button>
+            <button className={"ana-rtab"+(rtab==="liste"?" active":"")} onClick={()=>setRtab("liste")}>Material-Liste</button>
           </div>
 
           {rtab==="uebersicht" && (
@@ -2108,6 +2195,28 @@ function AnalyseScreen({setLv,drive,ki,onBack,onFertig}){
                           <div className="amf"><label>EK-Preis €</label><input className="num" type="text" value={pos.ek||''} placeholder="0,00" readOnly={isSonder} onChange={e=>updMat(i,'ek',e.target.value)}/></div>
                         </div>
                       )}
+                      {!isNone && !isSonder && (
+                        <div className="matpick-wrap" style={{marginTop:'7px'}}>
+                          <button className="matpick-btn" onClick={()=>{setPickOpen(pickOpen===i?null:i);setPickSuche("");}}>
+                            <span>{'\u2630'} Aus Material-Liste wählen</span>
+                            <span>{pickOpen===i?'\u25b2':'\u25bc'}</span>
+                          </button>
+                          {pickOpen===i && (
+                            <div className="matpick-pop">
+                              <input className="matpick-search" type="text" autoFocus value={pickSuche} placeholder="Suchen …" onChange={e=>setPickSuche(e.target.value)}/>
+                              {matSuche(matDB,pickSuche).length===0 ? (
+                                <div className="matpick-none">Kein Treffer. Eintrag im Tab „Material-Liste" anlegen.</div>
+                              ) : matSuche(matDB,pickSuche).slice(0,30).map(m=>(
+                                <div className="matpick-item" key={m.id} onClick={()=>pickMaterial(i,m)}>
+                                  {typeof m.ekPreis==='number' && <span className="mpi-price">{fmtEUR(m.ekPreis)}</span>}
+                                  <div className="mpi-name">{m.name}</div>
+                                  <div className="mpi-sub">{[m.format,m.hersteller].filter(Boolean).join(" · ")||m.einheit}</div>
+                                </div>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      )}
                       {!isNone && pos._alternativen && pos._alternativen.length>0 && (
                         <div className="ana-mat-alt">
                           <b>Alternative:</b> {pos._alternativen.map((alt,ai)=>(
@@ -2131,6 +2240,58 @@ function AnalyseScreen({setLv,drive,ki,onBack,onFertig}){
                   <span className="sv">{fmtEUR(ergebnis.positionen.reduce((a,p)=>a+(p.typ!=='bid'?p.qty*calcEP(p,zuschlag):0),0))}</span>
                 </div>
               </div>
+
+          {rtab==="liste" && (
+            <div>
+              <div className="ps-info" style={{marginBottom:'10px'}}>Deine Material-Stammliste. Verwendete Materialien werden hier gemerkt. Du kannst Einträge von Hand hinzufügen oder eine Liste hochladen – beim Bepreisen wählst du dann per Dropdown daraus aus.</div>
+
+              <div className="mdb-upload" onClick={()=>listRef.current.click()}>
+                <div className="mu-t"><b>Liste hochladen</b></div>
+                <div className="mu-hint">CSV / Textdatei mit Spalten wie: Bezeichnung; Format; EK-Preis; Einheit; Hersteller</div>
+              </div>
+              <input ref={listRef} type="file" accept=".csv,.txt,.tsv" style={{display:'none'}} onChange={onMatListe}/>
+
+              <div className="mdb-add">
+                <div className="mdb-add-grid">
+                  <div className="mf"><label>Bezeichnung</label><input type="text" value={nName} placeholder="z.B. Marazzi Treverk" onChange={e=>setNName(e.target.value)}/></div>
+                  <div className="mf"><label>Format</label><input type="text" value={nFormat} placeholder="60x60" onChange={e=>setNFormat(e.target.value)}/></div>
+                  <div className="mf"><label>Einheit</label><input type="text" value={nEinheit} onChange={e=>setNEinheit(e.target.value)}/></div>
+                  <div className="mf"><label>EK €</label><input className="num" type="text" value={nEk} placeholder="0,00" onChange={e=>setNEk(e.target.value)}/></div>
+                  <button className="mini-btn blue" style={{height:'33px'}} onClick={addMatManuell}>+</button>
+                </div>
+              </div>
+
+              <div className="mdb-bar">
+                <input className="mdb-search" type="text" value={mdbSuche} placeholder="In Stammliste suchen …" onChange={e=>setMdbSuche(e.target.value)}/>
+                <span className="mdb-count">{matSuche(matDB,mdbSuche).length} / {matDB.length}</span>
+              </div>
+
+              {matDB.length===0 ? (
+                <div className="mdb-empty">Noch keine Materialien. Lade eine Liste hoch oder füge oben Einträge hinzu.</div>
+              ) : (
+                <div className="mdb-list">
+                  {matSuche(matDB,mdbSuche).map(m=>(
+                    <div className="mdb-row" key={m.id}>
+                      <div className="mdb-info">
+                        <div className="mdb-name">{m.name}
+                          <span className="mdb-tags">
+                            {m.verwendet && <span className="mdb-tag used">verwendet</span>}
+                            {(m.tags||[]).slice(0,1).map((t,ti)=><span className="mdb-tag" key={ti}>{t}</span>)}
+                          </span>
+                        </div>
+                        <div className="mdb-sub">{[m.format,m.hersteller,m.einheit].filter(Boolean).join(" · ")||"—"}</div>
+                      </div>
+                      <div className="mdb-right">
+                        <span className="mdb-price">{typeof m.ekPreis==='number'? fmtEUR(m.ekPreis) : '—'}</span>
+                        <button className="mdb-x" onClick={()=>rmMat(m.id)}>{'\u00d7'}</button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+
             </div>
           )}
 
@@ -2151,6 +2312,115 @@ function AnalyseScreen({setLv,drive,ki,onBack,onFertig}){
 }
 
 
+
+// ============================================================
+// MATERIAL-STAMMLISTE – zentrale Fliesendatenbank
+// ------------------------------------------------------------
+// Eintrag: {id, name, format, einheit, ekPreis, hersteller, aliase[], verwendet(bool), tags[]}
+// Quellen: Seed (gängige Bezeichnungen), Handeingabe, Listen-Upload (CSV/Text),
+// automatisch gemerkt aus Angeboten. In der Suite persistiert via IndexedDB.
+// ============================================================
+function matId(){ return 'm'+Date.now()+Math.random().toString(36).slice(2,6); }
+// Robuster Preisparser: deutsches (1.234,56) UND US-Format (29.90 / 1,234.56)
+function parsePreis(raw){
+  if(raw==null) return null;
+  let s=String(raw).replace(/[^0-9.,-]/g,'').trim();
+  if(!s) return null;
+  const hasComma=s.includes(','), hasDot=s.includes('.');
+  if(hasComma && hasDot){
+    if(s.lastIndexOf(',')>s.lastIndexOf('.')) s=s.replace(/\./g,'').replace(',','.');
+    else s=s.replace(/,/g,'');
+  } else if(hasComma){ s=s.replace(',','.'); }
+  const n=parseFloat(s);
+  return isFinite(n)&&n>0 ? n : null;
+}
+
+// Start-Liste mit gängigen Fliesen-/Materialbezeichnungen (erweiterbar)
+const MAT_SEED = [
+  {name:"Feinsteinzeug Bodenfliese", format:"60x60", einheit:"m²", ekPreis:null, hersteller:"", aliase:["FSZ","Feinsteinzeug","Bodenfliese 60x60"], tags:["boden"]},
+  {name:"Feinsteinzeug Bodenfliese", format:"30x60", einheit:"m²", ekPreis:null, hersteller:"", aliase:["FSZ 30x60"], tags:["boden"]},
+  {name:"Wandfliese glasiert", format:"30x60", einheit:"m²", ekPreis:null, hersteller:"", aliase:["Wandfliese","WF 30x60"], tags:["wand"]},
+  {name:"Wandfliese glasiert", format:"25x40", einheit:"m²", ekPreis:null, hersteller:"", aliase:["WF 25x40"], tags:["wand"]},
+  {name:"Mosaik Glas/Naturstein", format:"Matte", einheit:"m²", ekPreis:null, hersteller:"", aliase:["Mosaik"], tags:["wand","dusche"]},
+  {name:"Sockelfliese", format:"7x60", einheit:"m", ekPreis:null, hersteller:"", aliase:["Sockel","Sockelleiste"], tags:["sockel"]},
+  {name:"Naturstein Bodenplatte", format:"60x60", einheit:"m²", ekPreis:null, hersteller:"", aliase:["Naturstein","Marmor","Granit"], tags:["boden"]},
+  {name:"Großformatfliese", format:"120x60", einheit:"m²", ekPreis:null, hersteller:"", aliase:["Großformat","XXL"], tags:["boden","wand"]},
+  {name:"Dünnbettmörtel/Kleber", format:"Sack", einheit:"Sack", ekPreis:null, hersteller:"", aliase:["Kleber","Flexkleber","Dünnbett"], tags:["verlegematerial"]},
+  {name:"Fugenmörtel", format:"Sack", einheit:"Sack", ekPreis:null, hersteller:"", aliase:["Fuge","Fugmasse"], tags:["verlegematerial"]},
+  {name:"Edelstahl-Rinne befliesbar", format:"", einheit:"m", ekPreis:null, hersteller:"", aliase:["Duschrinne","Rinnstreifer","Niro-Rinne"], tags:["sondermaterial","dusche"]},
+  {name:"Edelstahl-Profil/Schiene", format:"", einheit:"m", ekPreis:null, hersteller:"", aliase:["Schiene","Abschlussprofil","Niro-Profil"], tags:["sondermaterial"]},
+  {name:"Abdichtung Verbundabdichtung", format:"", einheit:"m²", ekPreis:null, hersteller:"", aliase:["Abdichtung","Dichtschlämme","Flüssigfolie"], tags:["abdichtung"]},
+  {name:"Entkopplungsmatte", format:"Rolle", einheit:"m²", ekPreis:null, hersteller:"", aliase:["Entkopplung","Matte"], tags:["verlegematerial"]},
+  {name:"Sauberlaufsystem/Schmutzfangmatte", format:"", einheit:"m²", ekPreis:null, hersteller:"", aliase:["Sauberlauf","Schmutzfangzone"], tags:["sondermaterial"]},
+].map(m=>({id:matId(), verwendet:false, ...m}));
+
+// Suche in der Stammliste (Name, Format, Hersteller, Aliase)
+function matSuche(db, q){
+  q=(q||"").trim().toLowerCase();
+  if(!q) return db;
+  return db.filter(m=>{
+    const hay=[m.name,m.format,m.hersteller,...(m.aliase||[])].join(" ").toLowerCase();
+    return hay.includes(q);
+  });
+}
+
+// CSV/Text-Liste parsen -> Material-Einträge. Erkennt Spalten flexibel.
+function parseMatListe(text){
+  const zeilen = text.split(/\r?\n/).map(z=>z.trim()).filter(z=>z.length>0);
+  if(zeilen.length===0) return [];
+  // Trennzeichen erkennen (; , oder Tab)
+  const sample = zeilen[0];
+  const sep = sample.includes(';')?';' : sample.includes('\t')?'\t' : ',';
+  // Header erkennen (enthält Wörter wie name/bezeichnung/format/preis?)
+  let startIdx=0;
+  const headLow = sample.toLowerCase();
+  const hasHeader = /name|bezeichn|format|preis|ek|hersteller|einheit/.test(headLow);
+  let cols={name:0, format:1, ek:2, einheit:3, hersteller:4};
+  if(hasHeader){
+    const h = sample.split(sep).map(x=>x.trim().toLowerCase());
+    const find=(keys)=>{ for(let i=0;i<h.length;i++){ if(keys.some(k=>h[i].includes(k))) return i; } return -1; };
+    cols={
+      name: find(['name','bezeichn','artikel','material','fliese']),
+      format: find(['format','maß','mass','größe','groesse']),
+      ek: find(['ek','preis','€','euro','vk','kosten']),
+      einheit: find(['einheit','einh','me']),
+      hersteller: find(['hersteller','fabrikat','marke','lieferant'])
+    };
+    startIdx=1;
+  }
+  const out=[];
+  for(let i=startIdx;i<zeilen.length;i++){
+    const c=zeilen[i].split(sep).map(x=>x.trim().replace(/^"|"$/g,''));
+    const name=(cols.name>=0?c[cols.name]:c[0])||"";
+    if(!name) continue;
+    const ekRaw=(cols.ek>=0?c[cols.ek]:"")||"";
+    out.push({
+      id:matId(), verwendet:false,
+      name,
+      format:(cols.format>=0?c[cols.format]:"")||"",
+      einheit:(cols.einheit>=0?c[cols.einheit]:"")||"m²",
+      ekPreis: parsePreis(ekRaw),
+      hersteller:(cols.hersteller>=0?c[cols.hersteller]:"")||"",
+      aliase:[], tags:[]
+    });
+  }
+  return out;
+}
+
+// Material aus einer bepreisten Position in der Stammliste merken (Dedup über name+format)
+function merkeMaterial(db, pos){
+  if(!pos || pos.typ==='none' || !pos.fabrikat && !pos.format) return db;
+  const name=(pos.fabrikat||pos.kurz||"").trim();
+  if(!name) return db;
+  const exists=db.find(m=>m.name.toLowerCase()===name.toLowerCase() && (m.format||"")===(pos.format||""));
+  if(exists){
+    // Preis aktualisieren falls neuer vorhanden, als verwendet markieren
+    return db.map(m=>m===exists ? {...m, ekPreis: pos.ek||m.ekPreis, verwendet:true} : m);
+  }
+  return [{id:matId(), name, format:pos.format||"", einheit:pos.qu||"m²", ekPreis:pos.ek||null, hersteller:"", aliase:[], tags:[], verwendet:true}, ...db];
+}
+
+
 function App(){
   const [page,setPage]=useState("start");
   const [drive,setDrive]=useState(false);
@@ -2160,8 +2430,9 @@ function App(){
   const [zuschlag,setZuschlag]=useState({mittellohn:18.50, lohnZuschlag:131, materialZuschlag:15, geraeteZuschlag:10});
   const [subs,setSubs]=useState([]);
   const [firma,setFirma]=useState({name:"Thomas Willwacher Fliesenlegermeister e.K.", strasse:"", plz:"", ort:"", steuer:""});
+  const [matDB,setMatDB]=useState(MAT_SEED);
   if(page==="start") return <StartScreen drive={drive} setDrive={setDrive} ki={ki} setKi={setKi} apiKey={apiKey} setApiKey={setApiKey} onWeiter={()=>setPage("modul")} />;
-  if(page==="analyse") return <AnalyseScreen setLv={setLv} drive={drive} ki={ki} onBack={()=>setPage("modul")} onFertig={()=>setPage("material")} />;
+  if(page==="analyse") return <AnalyseScreen setLv={setLv} matDB={matDB} setMatDB={setMatDB} drive={drive} ki={ki} onBack={()=>setPage("modul")} onFertig={()=>setPage("material")} />;
   if(page==="material") return <MaterialScreen lv={lv} setLv={setLv} zuschlag={zuschlag} setZuschlag={setZuschlag} drive={drive} ki={ki} onBack={()=>setPage("modul")} onOpenKalk={()=>setPage("kalk")} />;
   if(page==="kalk") return <KalkulationScreen lv={lv} setLv={setLv} zuschlag={zuschlag} drive={drive} ki={ki} onBack={()=>setPage("modul")} onOpenExport={()=>setPage("export")} />;
   if(page==="export") return <ExportScreen lv={lv} zuschlag={zuschlag} firma={firma} drive={drive} ki={ki} onBack={()=>setPage("modul")} />;
