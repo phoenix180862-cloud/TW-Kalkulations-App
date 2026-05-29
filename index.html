@@ -200,6 +200,32 @@ body{font-family:'Source Sans 3',-apple-system,sans-serif;background:var(--bg-pr
 .kcell.s3v .kv{color:#2ecc71;}
 .kbadge{display:inline-block;font-size:9px;font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:0.4px;padding:2px 6px;border-radius:5px;margin-left:6px;vertical-align:middle;}
 
+
+/* ===== MODUL 4: EXPORT X84 ===== */
+.exp-bieter{background:var(--bg-secondary);border:1px solid var(--border-subtle);border-radius:var(--radius-md);padding:14px;margin-bottom:6px;}
+.exp-bieter .ebrow{margin-bottom:10px;}
+.exp-bieter .ebrow:last-child{margin-bottom:0;}
+.exp-bieter label{display:block;font-size:10px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:4px;font-family:'Oswald',sans-serif;}
+.exp-bieter input{width:100%;padding:9px 11px;border:1px solid var(--border-color);border-radius:7px;background:var(--bg-tertiary);color:var(--text-primary);font-size:13px;font-family:'Source Sans 3',sans-serif;}
+.exp-bieter input:focus{outline:none;border-color:var(--accent-blue);box-shadow:0 0 0 2px rgba(77,166,255,0.14);}
+.check-panel{background:var(--bg-secondary);border:1px solid var(--border-subtle);border-radius:var(--radius-md);overflow:hidden;margin-bottom:6px;}
+.check-head{padding:12px 14px;background:var(--bg-tertiary);border-bottom:1px solid var(--border-color);font-family:'Oswald',sans-serif;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--text-white);}
+.check-row{display:flex;align-items:center;gap:10px;padding:10px 14px;border-top:1px solid var(--border-subtle);font-size:13px;}
+.check-row:first-child{border-top:none;}
+.check-icon{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;font-weight:700;}
+.check-icon.ok{background:rgba(46,204,113,0.18);color:#2ecc71;}
+.check-icon.warn{background:rgba(243,156,18,0.18);color:#f39c12;}
+.check-row .ctxt{flex:1;color:var(--text-light);}
+.check-row .cval{font-family:'Oswald',sans-serif;font-weight:700;color:var(--text-white);}
+.exp-missing{max-height:150px;overflow-y:auto;background:var(--bg-tertiary);border-radius:8px;margin:0 14px 12px;padding:8px 10px;}
+.exp-missing .mi{font-size:11px;color:#f39c12;padding:3px 0;font-family:'Oswald',sans-serif;}
+.dl-btn{width:100%;padding:15px;border:none;border-radius:var(--radius-lg);cursor:pointer;font-family:'Oswald',sans-serif;font-size:15px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:#fff;transition:all .22s ease;display:flex;align-items:center;justify-content:center;gap:10px;}
+.dl-btn.ready{background:linear-gradient(135deg,#2ecc71,#1e9e54);box-shadow:0 6px 20px rgba(46,204,113,0.34);}
+.dl-btn.ready:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(46,204,113,0.46);}
+.dl-btn.blocked{background:var(--bg-card);color:var(--text-muted);cursor:not-allowed;border:1px solid var(--border-color);}
+.exp-done{background:rgba(46,204,113,0.10);border:1px solid #2ecc71;border-radius:var(--radius-md);padding:13px;margin-top:10px;font-size:13px;color:var(--text-light);line-height:1.5;text-align:center;}
+.exp-done b{color:#2ecc71;font-family:'Oswald',sans-serif;}
+
 </style>
 </head>
 <body>
@@ -256,8 +282,11 @@ function parseX83(xmlString){
       const lang=collectText(it,"DetailTxt");
       const hasUP=!!Array.from(it.children).find(c=>c.tagName==="UPBkdn"&&c.textContent.trim()==="Yes");
       const hasBid=!!it.querySelector('TextComplement[Kind="Bidder"]');
+      const isLump=!!Array.from(it.children).find(c=>c.tagName==="LumpSumItem"&&c.textContent.trim()==="Yes");
+      const provEl=Array.from(it.children).find(c=>c.tagName==="Provis");
+      const isProvis=provEl && /WithoutTotal/i.test(provEl.textContent);
       if(hasUP)upbkdn++;if(hasBid)bidder++;
-      items.push({oz,qty,qu,kurz:kurz||lang.slice(0,80),typ:classify(lang,hasBid)});
+      items.push({oz,qty,qu,kurz:kurz||lang.slice(0,80),typ:classify(lang,hasBid),hasUP,hasBid,isLump,isProvis});
       itemCount++;
     });
     if(items.length)groups.push({lbl,items});
@@ -269,10 +298,11 @@ function parseX83(xmlString){
       oz:it.oz, kurz:it.kurz, qty:parseFloat((it.qty||"0").replace(",","."))||0,
       qu:it.qu, typ:it.typ, gruppe:g.lbl,
       format:"", fabrikat:"", ek:0, zeit:defaultZeit(it.qu,it.typ),
-      erwMenge:null, spreizPct:0
+      erwMenge:null, spreizPct:0,
+      hasUP:it.hasUP, hasBid:it.hasBid, isLump:it.isLump, isProvis:it.isProvis
     });
   }));
-  return {prj,groups,itemCount,upbkdn,bidder,groupCount:groups.length,positionen};
+  return {prj,groups,itemCount,upbkdn,bidder,groupCount:groups.length,positionen,xml:xmlString};
 }
 
 // Default-Zeitansatz (h je Einheit) als sinnvoller Startwert - vom Nutzer ueberschreibbar
@@ -354,13 +384,14 @@ function StartScreen({drive,setDrive,ki,setKi,apiKey,setApiKey,onWeiter}){
 }
 
 // ============ SEITE 2: MODULWAHL ============
-function ModulScreen({drive,ki,onBack,lv,setLv,onOpenMaterial,onOpenKalk}){
+function ModulScreen({drive,ki,onBack,lv,setLv,onOpenMaterial,onOpenKalk,onOpenExport}){
   const [err,setErr]=useState("");
   const fileRef=useRef(null);
   function pick(id){
     if(id==="import") fileRef.current.click();
     else if(id==="material") onOpenMaterial();
     else if(id==="kalk") onOpenKalk();
+    else if(id==="export") onOpenExport();
   }
   function onFile(e){
     const f=e.target.files[0]; if(!f)return; setErr("");
@@ -592,7 +623,7 @@ function MaterialScreen({lv,setLv,zuschlag,setZuschlag,drive,ki,onBack,onOpenKal
 // Szenario 3 (Spreizung): Angebotssumme bleibt = Szenario 1, aber EP werden umverteilt:
 //   Positionen mit erwartetem Mengen-PLUS bekommen höheren EP, andere niedriger,
 //   so dass die Angebotssumme (LV-Massen) IDENTISCH bleibt -> erwarteter Betrag steigt.
-function KalkulationScreen({lv,setLv,zuschlag,drive,ki,onBack}){
+function KalkulationScreen({lv,setLv,zuschlag,drive,ki,onBack,onOpenExport}){
   if(!lv || !lv.positionen){
     return (
       <div className="page-container">
@@ -722,6 +753,194 @@ function KalkulationScreen({lv,setLv,zuschlag,drive,ki,onBack}){
         <span className="sum">{fmtEUR(sum3erw)}</span>
       </div>
 
+      <div className="weiter-wrap">
+        <button className="weiter-btn" onClick={onOpenExport}>Weiter zum Export {'\u2192'}</button>
+      </div>
+
+      <div className="foot"><span className="ver">
+        <span className={"dot "+(drive?"dot-on":"dot-off")}></span>Drive {drive?"verbunden":"offline"}
+        <span style={{margin:"0 8px",opacity:.4}}>·</span>
+        <span className={"dot "+(ki?"dot-on":"dot-off")}></span>KI {ki?"aktiv":"aus"}
+      </span></div>
+    </div>
+  );
+}
+
+// ============ X84-ERZEUGUNG (DOM-basiert, gemäß gaeb-mechanik.md) ============
+// Arbeitet am Original-X83-DOM: Phase 83->84, EP je Item ergänzen, bei UPBkdn=Yes
+// die vier Teilpreise, Bieterfelder/Bieterkopf füllen. IDs/Mengen/Texte unverändert.
+function buildX84(lv, zuschlag, bieter){
+  const dom = new DOMParser().parseFromString(lv.xml, "application/xml");
+  if(dom.querySelector("parsererror")) throw new Error("X83-DOM nicht lesbar.");
+  let root = dom.documentElement;
+
+  // EP-Lookup je Ordnungszahl
+  const epOf = {};
+  lv.positionen.forEach(pos=>{
+    if(pos.typ!=='bid'){ epOf[pos.oz] = calcEP(pos, zuschlag); }
+  });
+
+  // pro Item ergänzen
+  const items = dom.querySelectorAll("Itemlist > Item");
+  items.forEach(it=>{
+    const oz = it.getAttribute("RNoPart")||"";
+    const ep = epOf[oz];
+    if(ep==null || ep<=0) return; // Bieterfelder / unbepreist überspringen
+    const qtyEl = it.querySelector(":scope > Qty");
+    const qty = qtyEl ? (parseFloat((qtyEl.textContent||"0").replace(",","."))||0) : 0;
+
+    // <UP> Einheitspreis (Punkt als Dezimaltrenner)
+    let up = it.querySelector(":scope > UP");
+    if(!up){ up = dom.createElementNS(root.namespaceURI, "UP"); it.appendChild(up); }
+    up.textContent = ep.toFixed(2);
+
+    // <IT> Gesamtbetrag = Menge × EP
+    let itTotal = it.querySelector(":scope > IT");
+    if(!itTotal){ itTotal = dom.createElementNS(root.namespaceURI, "IT"); it.appendChild(itTotal); }
+    itTotal.textContent = (qty*ep).toFixed(2);
+
+    // Bei UPBkdn=Yes: vier Teilpreise (1=Lohn,2=Material,3=Gerät,4=Sonstiges)
+    const hasUP = !!Array.from(it.children).find(c=>c.tagName==="UPBkdn" && c.textContent.trim()==="Yes");
+    if(hasUP){
+      const pos = lv.positionen.find(p=>p.oz===oz);
+      const vl = verrechnungslohn(zuschlag.mittellohn, zuschlag.lohnZuschlag);
+      const lohn = pos? vl*(pos.zeit||0) : 0;
+      const material = pos? (pos.ek||0)*(1+zuschlag.materialZuschlag/100) : 0;
+      const geraet = 0, sonst = 0;
+      let comps = it.querySelector(":scope > UPComps");
+      if(!comps){ comps = dom.createElementNS(root.namespaceURI,"UPComps"); it.appendChild(comps); }
+      while(comps.firstChild) comps.removeChild(comps.firstChild);
+      [lohn,material,geraet,sonst].forEach(v=>{
+        const c = dom.createElementNS(root.namespaceURI,"UPComp");
+        c.textContent = v.toFixed(2);
+        comps.appendChild(c);
+      });
+    }
+  });
+
+  // Bieterangaben im Award-Kopf (best effort, ohne Struktur zu brechen)
+  if(bieter && bieter.name){
+    let award = dom.querySelector("Award");
+    if(award){
+      let prcCat = award.querySelector("PrcCat");
+      // Bietername als OWN-Element nur ergänzen, wenn nicht vorhanden
+      if(!award.querySelector("BidderName")){
+        const bn = dom.createElementNS(root.namespaceURI,"BidderName");
+        bn.textContent = bieter.name;
+        // ans Ende der AwardInfo oder Award hängen
+        const ai = award.querySelector("AwardInfo");
+        (ai||award).appendChild(bn);
+      }
+    }
+  }
+
+  let out = new XMLSerializer().serializeToString(dom);
+  // Namespace DA83 -> DA84 (am String, da DOM-Namespace nicht zuverlaessig aenderbar)
+  out = out.replace(/GAEB_DA_XML\/DA83\//g, "GAEB_DA_XML/DA84/");
+  // Phase 83 -> 84 (erstes <DP>83</DP> im Award-Kopf)
+  out = out.replace(/<DP>\s*83\s*<\/DP>/, "<DP>84</DP>");
+  // XML-Deklaration + CRLF sicherstellen
+  if(out.indexOf("<?xml")!==0) out = '<?xml version="1.0" encoding="UTF-8"?>\r\n'+out;
+  out = out.replace(/\r?\n/g,"\r\n");
+  return out;
+}
+
+// ============ SEITE 5: EXPORT X84 ============
+function ExportScreen({lv,zuschlag,drive,ki,onBack}){
+  const [bieterName,setBieterName]=useState("Thomas Willwacher Fliesenlegermeister e.K.");
+  const [done,setDone]=useState(false);
+  const [err,setErr]=useState("");
+
+  if(!lv || !lv.positionen){
+    return (
+      <div className="page-container">
+        <div className="back-row"><button className="back-btn" onClick={onBack}>{'\u2190'} Modul wählen</button></div>
+        <div className="head"><div className="head-logo-scale"><FirmenLogo/></div>
+          <div className="head-title">Export X84</div><div className="head-sub">Kein LV geladen</div></div>
+        <div className="m2-empty"><span className="big">Erst importieren</span>
+          Bitte zuerst ein LV einlesen, bepreisen und kalkulieren.</div>
+      </div>
+    );
+  }
+
+  const istJson = !lv.xml; // JSON-Import hat kein X83-DOM -> kein X84 moeglich
+
+  // Vollständigkeitsprüfung: jede nicht-Provis, nicht-Pauschal, nicht-Bieter Position braucht EP>0
+  const fehlend=[];
+  let bepreisbar=0, bepreist=0;
+  lv.positionen.forEach(pos=>{
+    if(pos.typ==='bid' || pos.isProvis) return;
+    bepreisbar++;
+    const ep = calcEP(pos, zuschlag);
+    if(ep>0) bepreist++; else fehlend.push(pos);
+  });
+  const vollstaendig = fehlend.length===0;
+
+  let summe=0;
+  lv.positionen.forEach(pos=>{ if(pos.typ!=='bid'){ summe += pos.qty*calcEP(pos,zuschlag); } });
+
+  function download(){
+    if(!vollstaendig || istJson) return;
+    try{
+      const xml = buildX84(lv, zuschlag, {name:bieterName});
+      const blob = new Blob([xml], {type:"application/xml"});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      const base = (lv.prj||"Angebot").replace(/[^a-zA-Z0-9_\-]/g,"_").slice(0,40);
+      a.href = url; a.download = base + ".X84";
+      document.body.appendChild(a); a.click();
+      document.body.removeChild(a); URL.revokeObjectURL(url);
+      setDone(true); setErr("");
+    }catch(ex){ setErr("Export fehlgeschlagen: "+ex.message); }
+  }
+
+  return (
+    <div className="page-container">
+      <div className="back-row"><button className="back-btn" onClick={onBack}>{'\u2190'} Modul wählen</button></div>
+      <div className="head"><div className="head-logo-scale"><FirmenLogo/></div>
+        <div className="head-title">Export X84</div><div className="head-sub">{lv.prj}</div></div>
+
+      <div className="m2-section-title">Bieterangaben</div>
+      <div className="exp-bieter">
+        <div className="ebrow">
+          <label>Bieter / Firma</label>
+          <input type="text" value={bieterName} onChange={e=>setBieterName(e.target.value)}/>
+        </div>
+      </div>
+
+      <div className="m2-section-title">Vollständigkeitsprüfung</div>
+      <div className="check-panel">
+        <div className="check-head">Vor dem Export</div>
+        <div className="check-row">
+          <span className={"check-icon "+(vollstaendig?"ok":"warn")}>{vollstaendig?'\u2713':'!'}</span>
+          <span className="ctxt">Bepreiste Positionen</span>
+          <span className="cval">{bepreist} / {bepreisbar}</span>
+        </div>
+        <div className="check-row">
+          <span className={"check-icon "+(istJson?"warn":"ok")}>{istJson?'!':'\u2713'}</span>
+          <span className="ctxt">{istJson?'JSON-Import – kein X84 möglich (X83 nötig)':'X83-Struktur vorhanden'}</span>
+          <span className="cval">{istJson?'—':'OK'}</span>
+        </div>
+        <div className="check-row">
+          <span className="check-icon ok">{'\u2713'}</span>
+          <span className="ctxt">Angebotssumme (netto)</span>
+          <span className="cval">{fmtEUR(summe)}</span>
+        </div>
+        {!vollstaendig && (
+          <div className="exp-missing">
+            {fehlend.map((p,i)=><div className="mi" key={i}>○ {p.oz} – {(p.kurz||'').slice(0,46)} (kein EP)</div>)}
+          </div>
+        )}
+      </div>
+
+      <div className="weiter-wrap">
+        <button className={"dl-btn "+((vollstaendig&&!istJson)?"ready":"blocked")} onClick={download} disabled={!vollstaendig||istJson}>
+          {(vollstaendig&&!istJson)?'\u2193 X84-Datei erzeugen':'Erst alle Positionen bepreisen'}
+        </button>
+        {err && <div className="err-note">{err}</div>}
+        {done && <div className="exp-done"><b>X84 erzeugt.</b> Die Datei wurde heruntergeladen. Bitte vor dem Versand an die Vergabestelle mit einem GAEB-Viewer gegenprüfen.</div>}
+      </div>
+
       <div className="foot"><span className="ver">
         <span className={"dot "+(drive?"dot-on":"dot-off")}></span>Drive {drive?"verbunden":"offline"}
         <span style={{margin:"0 8px",opacity:.4}}>·</span>
@@ -740,8 +959,9 @@ function App(){
   const [zuschlag,setZuschlag]=useState({mittellohn:18.50, lohnZuschlag:131, materialZuschlag:15, geraeteZuschlag:10});
   if(page==="start") return <StartScreen drive={drive} setDrive={setDrive} ki={ki} setKi={setKi} apiKey={apiKey} setApiKey={setApiKey} onWeiter={()=>setPage("modul")} />;
   if(page==="material") return <MaterialScreen lv={lv} setLv={setLv} zuschlag={zuschlag} setZuschlag={setZuschlag} drive={drive} ki={ki} onBack={()=>setPage("modul")} onOpenKalk={()=>setPage("kalk")} />;
-  if(page==="kalk") return <KalkulationScreen lv={lv} setLv={setLv} zuschlag={zuschlag} drive={drive} ki={ki} onBack={()=>setPage("modul")} />;
-  return <ModulScreen drive={drive} ki={ki} lv={lv} setLv={setLv} onOpenMaterial={()=>setPage("material")} onOpenKalk={()=>setPage("kalk")} onBack={()=>setPage("start")} />;
+  if(page==="kalk") return <KalkulationScreen lv={lv} setLv={setLv} zuschlag={zuschlag} drive={drive} ki={ki} onBack={()=>setPage("modul")} onOpenExport={()=>setPage("export")} />;
+  if(page==="export") return <ExportScreen lv={lv} zuschlag={zuschlag} drive={drive} ki={ki} onBack={()=>setPage("modul")} />;
+  return <ModulScreen drive={drive} ki={ki} lv={lv} setLv={setLv} onOpenMaterial={()=>setPage("material")} onOpenKalk={()=>setPage("kalk")} onOpenExport={()=>setPage("export")} onBack={()=>setPage("start")} />;
 }
 ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
 </script>
