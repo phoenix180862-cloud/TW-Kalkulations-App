@@ -230,6 +230,25 @@ body{font-family:'Source Sans 3',-apple-system,sans-serif;background:var(--bg-pr
 
 
 
+
+/* ===== KI-MATERIALVORSCHLÄGE ===== */
+.kivor-bar{display:flex;gap:9px;align-items:center;margin-bottom:12px;}
+.kivor-btn{flex:1;padding:11px;border:none;border-radius:9px;font-family:'Oswald',sans-serif;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,#8e44ad,#6c2f87);color:#fff;}
+.kivor-btn:hover{transform:translateY(-1px);filter:brightness(1.1);}
+.kivor-btn.wait{background:var(--bg-card);color:var(--text-muted);cursor:default;border:1px solid var(--border-color);}
+.kivor-allbtn{padding:11px 14px;border:1px solid #2ecc71;border-radius:9px;background:rgba(46,204,113,0.1);color:#2ecc71;font-family:'Oswald',sans-serif;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;cursor:pointer;white-space:nowrap;}
+.kivor-allbtn:hover{background:rgba(46,204,113,0.2);}
+.kivor-status{font-size:12px;padding:9px 12px;border-radius:8px;margin-bottom:12px;line-height:1.4;}
+.kivor-status.run{background:rgba(142,68,173,0.1);border:1px solid #8e44ad;color:#b06fd0;}
+.kivor-status.err{background:rgba(196,30,30,0.1);border:1px solid var(--accent-red);color:var(--accent-red-light);}
+.kivor-hit{margin-top:7px;background:rgba(142,68,173,0.08);border:1px solid rgba(142,68,173,0.35);border-radius:7px;padding:7px 10px;display:flex;align-items:center;gap:9px;font-size:11px;}
+.kivor-hit .kvi{color:#b06fd0;flex-shrink:0;}
+.kivor-hit .kvt{flex:1;color:var(--text-light);line-height:1.35;}
+.kivor-hit .kvt b{color:#b06fd0;font-family:'Oswald',sans-serif;}
+.kivor-hit .kvt .kvg{color:var(--text-muted);font-style:italic;}
+.kivor-hit .kvbtn{padding:5px 11px;border:none;border-radius:6px;background:#8e44ad;color:#fff;font-family:'Oswald',sans-serif;font-size:10px;text-transform:uppercase;letter-spacing:0.4px;cursor:pointer;white-space:nowrap;}
+.kivor-hit .kvbtn:hover{filter:brightness(1.12);}
+
 /* ===== MATERIAL-STAMMLISTE ===== */
 .mdb-bar{display:flex;gap:8px;align-items:center;margin-bottom:12px;}
 .mdb-search{flex:1;padding:9px 12px;border:1px solid var(--border-color);border-radius:8px;background:var(--bg-tertiary);color:var(--text-primary);font-size:13px;}
@@ -1993,6 +2012,75 @@ function AnalyseScreen({setLv,matDB,setMatDB,drive,ki,onBack,onFertig}){
     setErgebnis({...ergebnis, positionen:ps});
     setPickOpen(null); setPickSuche("");
   }
+
+  // KI-Materialvorschläge: ordnet jeder Position das passende Material AUS DER STAMMLISTE zu
+  const [kiVorStatus,setKiVorStatus]=useState("idle"); // idle | running | done | error
+  const [kiVorschlaege,setKiVorschlaege]=useState({}); // posIndex -> {matId, name, format, ekPreis, begruendung}
+  const [kiVorText,setKiVorText]=useState("");
+  async function kiMaterialVorschlag(){
+    if(!ergebnis)return;
+    if(!geminiVerfuegbar()){
+      setKiVorStatus("error");
+      setKiVorText("Die KI ist in dieser Vorschau nicht aktiv. In der Suite läuft das automatisch über den Gemini-Zugang.");
+      return;
+    }
+    if(matDB.length<3){
+      setKiVorStatus("error");
+      setKiVorText("Deine Material-Liste ist noch zu klein für sinnvolle Vorschläge. Lade im Tab Material-Liste mehr Material hoch oder lege Einträge an.");
+      return;
+    }
+    setKiVorStatus("running"); setKiVorText("KI gleicht Positionen mit deiner Material-Liste ab …"); setKiVorschlaege({});
+    try{
+      // Nur materialpflichtige, nicht-Sonder-Positionen vorschlagen
+      const posListe = ergebnis.positionen.map((p,idx)=>({idx, oz:p.oz, titel:p.kurz, einheit:p.qu, format:p.format||"", art:p.gruppe, typ:p.typ, istSonder:p._istSonder}))
+        .filter(p=>p.typ!=='none' && !p.istSonder);
+      const matListe = matDB.map(m=>({id:m.id, name:m.name, format:m.format||"", einheit:m.einheit||"", hersteller:m.hersteller||"", tags:(m.tags||[]).join(",")}));
+      const prompt = [
+        "Du bist Materialdisponent im Fliesenlegerbetrieb Thomas Willwacher.",
+        "Ordne jeder LV-Position das am besten passende Material AUS DER GEGEBENEN MATERIAL-LISTE zu.",
+        "WICHTIG: Wähle NUR aus der Liste (per id). Erfinde nichts. Passt nichts, gib matId=null.",
+        "Gib AUSSCHLIESSLICH gültiges JSON zurück (keine Backticks, keine Erklärung):",
+        '{"zuordnungen":[{"posIdx":<Zahl>,"matId":"<id aus Liste oder null>","begruendung":"<kurz, max 8 Wörter>"}]}',
+        "",
+        "POSITIONEN:",
+        JSON.stringify(posListe),
+        "",
+        "MATERIAL-LISTE:",
+        JSON.stringify(matListe)
+      ].join("\n");
+      const {text,modell}=await geminiCall([{text:prompt}]);
+      let raw=text.trim(); const mm=raw.match(/\{[\s\S]*\}/); if(mm) raw=mm[0];
+      const data=JSON.parse(raw);
+      const vor={};
+      (data.zuordnungen||[]).forEach(z=>{
+        if(z.matId){
+          const mat=matDB.find(m=>m.id===z.matId);
+          if(mat) vor[z.posIdx]={matId:mat.id, name:mat.name, format:mat.format, ekPreis:mat.ekPreis, begruendung:z.begruendung||""};
+        }
+      });
+      setKiVorschlaege(vor);
+      setKiVorStatus("done");
+      setKiVorText(Object.keys(vor).length+" Vorschläge"+(modell?(" · "+modell):""));
+    }catch(ex){
+      setKiVorStatus("error");
+      setKiVorText("Vorschläge fehlgeschlagen: "+ex.message);
+    }
+  }
+  function vorschlagUebernehmen(idx){
+    const v=kiVorschlaege[idx]; if(!v)return;
+    const mat=matDB.find(m=>m.id===v.matId); if(!mat)return;
+    pickMaterial(idx, mat);
+  }
+  function alleVorschlaegeUebernehmen(){
+    if(!ergebnis)return;
+    const ps=ergebnis.positionen.slice();
+    Object.keys(kiVorschlaege).forEach(k=>{
+      const i=parseInt(k,10); const v=kiVorschlaege[k];
+      const mat=matDB.find(m=>m.id===v.matId);
+      if(mat) ps[i]={...ps[i], fabrikat:mat.name||ps[i].fabrikat, format:mat.format||ps[i].format, ek:(typeof mat.ekPreis==='number'&&mat.ekPreis>0)?mat.ekPreis:ps[i].ek};
+    });
+    setErgebnis({...ergebnis, positionen:ps});
+  }
   // lokale Zuschläge für Live-EP (Standardwerte; final justierbar in Modul Material/Einstellungen)
   const [zuschlag,setZuschlag]=useState({mittellohn:18.50, lohnZuschlag:131, materialZuschlag:15, geraeteZuschlag:10});
   const aRef=useRef(null);
@@ -2173,6 +2261,21 @@ function AnalyseScreen({setLv,matDB,setMatDB,drive,ki,onBack,onFertig}){
           {rtab==="material" && (
             <div>
               <div className="ps-info" style={{marginBottom:'10px'}}>Trage hier Format, Fabrikat und EK-Preis ein. EP/GP rechnen live mit. Sondermaterial ist bereits bepreist, Nebenleistungen brauchen kein Material.</div>
+
+              <div className="kivor-bar">
+                <button className={"kivor-btn"+(kiVorStatus==="running"?" wait":"")} onClick={kiMaterialVorschlag} disabled={kiVorStatus==="running"}>
+                  {kiVorStatus==="running"
+                    ? <span>KI sucht passendes Material …</span>
+                    : <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" style={{verticalAlign:'-2px',marginRight:'3px'}}><path d="M12 3v4M12 17v4M5 12H1M23 12h-4M6 6l2 2M16 16l2 2M18 6l-2 2M8 16l-2 2" stroke="#fff" strokeWidth="2" strokeLinecap="round"/><circle cx="12" cy="12" r="3" stroke="#fff" strokeWidth="2"/></svg>KI-Vorschläge aus meiner Liste</span>}
+                </button>
+                {kiVorStatus==="done" && Object.keys(kiVorschlaege).length>0 && (
+                  <button className="kivor-allbtn" onClick={alleVorschlaegeUebernehmen}>Alle übernehmen</button>
+                )}
+              </div>
+              {kiVorStatus==="running" && <div className="kivor-status run">{kiVorText}</div>}
+              {kiVorStatus==="error" && <div className="kivor-status err">{kiVorText}</div>}
+              {kiVorStatus==="done" && <div className="ps-info" style={{marginBottom:'10px'}}>{kiVorText} – Vorschläge erscheinen bei den jeweiligen Positionen (lila). Du kannst sie einzeln oder alle übernehmen.</div>}
+
               <div className="ana-matlist">
                 {ergebnis.positionen.map((pos,i)=>{
                   const isNone = pos.typ==='none' || pos._materialTyp==='keine';
@@ -2222,6 +2325,13 @@ function AnalyseScreen({setLv,matDB,setMatDB,drive,ki,onBack,onFertig}){
                           <b>Alternative:</b> {pos._alternativen.map((alt,ai)=>(
                             <span key={ai}>{ai>0?' · ':' '}<span className="altpick" onClick={()=>alternativeUebernehmen(i,alt)}>{alt.fabrikat}{alt.format?(' '+alt.format):''}</span>{alt.hinweis?(' ('+alt.hinweis+')'):''}</span>
                           ))}
+                        </div>
+                      )}
+                      {!isNone && !isSonder && kiVorschlaege[i] && (
+                        <div className="kivor-hit">
+                          <span className="kvi"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="#b06fd0" strokeWidth="2"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3" stroke="#b06fd0" strokeWidth="2" strokeLinecap="round"/></svg></span>
+                          <span className="kvt">KI-Vorschlag: <b>{kiVorschlaege[i].name}</b>{kiVorschlaege[i].format?(' '+kiVorschlaege[i].format):''}{typeof kiVorschlaege[i].ekPreis==='number'?(' · '+fmtEUR(kiVorschlaege[i].ekPreis)):''} {kiVorschlaege[i].begruendung && <span className="kvg">({kiVorschlaege[i].begruendung})</span>}</span>
+                          <button className="kvbtn" onClick={()=>vorschlagUebernehmen(i)}>Übernehmen</button>
                         </div>
                       )}
                       {!isNone && (
