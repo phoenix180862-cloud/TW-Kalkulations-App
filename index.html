@@ -123,6 +123,44 @@ body{font-family:'Source Sans 3',-apple-system,sans-serif;background:var(--bg-pr
 .foot .ver{display:inline-block;padding:8px 14px;background:var(--bg-secondary);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);font-size:11px;color:var(--text-muted);font-family:'Oswald',sans-serif;letter-spacing:0.5px;}
 .foot .ver .dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:6px;vertical-align:middle;}
 .dot-on{background:var(--success);} .dot-off{background:var(--text-muted);}
+
+/* ===== MODUL 2: MATERIAL & ZUSCHLÄGE ===== */
+.m2-section-title{font-family:'Oswald',sans-serif;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:1.2px;color:var(--accent-blue);margin:18px 0 10px;display:flex;align-items:center;gap:8px;}
+.m2-section-title::before{content:"";width:3px;height:14px;background:var(--accent-blue);border-radius:2px;}
+.dash{background:var(--bg-secondary);border:1px solid var(--border-subtle);border-radius:var(--radius-md);padding:14px;}
+.dash-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 14px;}
+.dash-field label{display:block;font-size:10px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:4px;font-family:'Oswald',sans-serif;}
+.dash-inputwrap{display:flex;align-items:center;gap:6px;}
+.dash-field input{flex:1;width:100%;padding:8px 10px;border:1px solid var(--border-color);border-radius:7px;background:var(--bg-tertiary);color:var(--text-primary);font-size:14px;font-family:'Oswald',sans-serif;font-weight:600;text-align:right;}
+.dash-field input:focus{outline:none;border-color:var(--accent-blue);box-shadow:0 0 0 3px rgba(77,166,255,0.14);}
+.dash-unit{font-size:12px;color:var(--text-muted);min-width:24px;}
+.dash-vl{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;padding:9px 11px;background:var(--bg-tertiary);border-radius:8px;border:1px dashed var(--accent-blue);}
+.dash-vl .k{font-size:11px;color:var(--text-secondary);text-transform:uppercase;letter-spacing:0.5px;font-family:'Oswald',sans-serif;}
+.dash-vl .v{font-family:'Oswald',sans-serif;font-size:18px;font-weight:700;color:var(--accent-blue);}
+
+.matlist{display:flex;flex-direction:column;gap:8px;}
+.matrow{background:var(--bg-secondary);border:1px solid var(--border-subtle);border-radius:var(--radius-md);padding:11px 12px;}
+.matrow.ro{opacity:0.72;border-style:dashed;}
+.matrow-top{display:flex;align-items:flex-start;gap:9px;margin-bottom:9px;}
+.matrow-oz{font-family:'Oswald',sans-serif;font-weight:700;font-size:13px;color:var(--accent-blue);flex-shrink:0;min-width:74px;}
+.matrow-kurz{flex:1;font-size:12.5px;color:var(--text-light);line-height:1.35;}
+.matrow-qty{font-size:11px;color:var(--text-muted);white-space:nowrap;flex-shrink:0;font-family:'Oswald',sans-serif;}
+.matrow-fields{display:grid;grid-template-columns:1fr 1fr 88px;gap:8px;}
+.mf label{display:block;font-size:9px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.6px;margin-bottom:3px;font-family:'Oswald',sans-serif;}
+.mf input{width:100%;padding:7px 9px;border:1px solid var(--border-color);border-radius:7px;background:var(--bg-tertiary);color:var(--text-primary);font-size:13px;font-family:'Source Sans 3',sans-serif;}
+.mf input:focus{outline:none;border-color:var(--accent-blue);box-shadow:0 0 0 2px rgba(77,166,255,0.14);}
+.mf.ek input{font-family:'Oswald',sans-serif;font-weight:600;text-align:right;}
+.matrow-calc{display:flex;justify-content:flex-end;gap:16px;margin-top:9px;padding-top:9px;border-top:1px solid var(--border-subtle);}
+.matrow-calc .c{font-size:11px;color:var(--text-muted);font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:0.5px;}
+.matrow-calc .c b{display:block;font-size:15px;color:var(--text-white);font-weight:700;margin-top:1px;}
+.matrow-calc .c.gp b{color:var(--accent-blue);}
+.matrow-badge{display:inline-block;font-size:9px;font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:0.4px;padding:2px 6px;border-radius:5px;margin-left:7px;vertical-align:middle;}
+.summary-bar{position:sticky;bottom:0;margin-top:14px;background:linear-gradient(135deg,#1E88E5,#1565C0);border-radius:var(--radius-md);padding:14px 16px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 -4px 16px rgba(0,0,0,0.3);}
+.summary-bar .lbl{font-family:'Oswald',sans-serif;font-size:11px;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,0.85);}
+.summary-bar .sum{font-family:'Oswald',sans-serif;font-size:26px;font-weight:700;color:#fff;}
+.m2-empty{text-align:center;color:var(--text-muted);font-size:13px;padding:30px 16px;line-height:1.6;}
+.m2-empty .big{font-size:15px;color:var(--text-light);margin-bottom:6px;display:block;font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:0.5px;}
+
 </style>
 </head>
 <body>
@@ -185,7 +223,27 @@ function parseX83(xmlString){
     });
     if(items.length)groups.push({lbl,items});
   });
-  return {prj,groups,itemCount,upbkdn,bidder,groupCount:groups.length};
+  // flache Positionsliste fuer das Material-Modul (LV-Reihenfolge bleibt erhalten)
+  const positionen=[];
+  groups.forEach(g=>g.items.forEach(it=>{
+    positionen.push({
+      oz:it.oz, kurz:it.kurz, qty:parseFloat((it.qty||"0").replace(",","."))||0,
+      qu:it.qu, typ:it.typ, gruppe:g.lbl,
+      format:"", fabrikat:"", ek:0, zeit:defaultZeit(it.qu,it.typ)
+    });
+  }));
+  return {prj,groups,itemCount,upbkdn,bidder,groupCount:groups.length,positionen};
+}
+
+// Default-Zeitansatz (h je Einheit) als sinnvoller Startwert - vom Nutzer ueberschreibbar
+function defaultZeit(qu,typ){
+  const u=(qu||"").toLowerCase();
+  if(typ==="lohn") return 0;
+  if(u==="m2") return 0.55;
+  if(u==="m") return 0.25;
+  if(u==="st") return 0.4;
+  if(u==="psch"||u==="h") return 0;
+  return 0;
 }
 
 const MODULE=[
@@ -256,11 +314,13 @@ function StartScreen({drive,setDrive,ki,setKi,apiKey,setApiKey,onWeiter}){
 }
 
 // ============ SEITE 2: MODULWAHL ============
-function ModulScreen({drive,ki,onBack}){
-  const [lv,setLv]=useState(null);
+function ModulScreen({drive,ki,onBack,lv,setLv,onOpenMaterial}){
   const [err,setErr]=useState("");
   const fileRef=useRef(null);
-  function pick(id){ if(id==="import") fileRef.current.click(); }
+  function pick(id){
+    if(id==="import") fileRef.current.click();
+    else if(id==="material") onOpenMaterial();
+  }
   function onFile(e){
     const f=e.target.files[0]; if(!f)return; setErr("");
     const r=new FileReader();
@@ -268,6 +328,7 @@ function ModulScreen({drive,ki,onBack}){
       const name=f.name.toLowerCase();
       if(name.endsWith(".json")){const j=JSON.parse(r.result);setLv({prj:j.projekt||j.prj||f.name,groups:[],itemCount:(j.positionen||[]).length,upbkdn:0,bidder:0,groupCount:0});}
       else{setLv(parseX83(r.result));}
+      setErr("");
     }catch(ex){setErr("Datei konnte nicht verarbeitet werden: "+ex.message);setLv(null);} };
     r.readAsText(f,"UTF-8");
   }
@@ -298,7 +359,7 @@ function ModulScreen({drive,ki,onBack}){
 
       {lv && (
         <div className="result-panel">
-          <div className="rp-head"><h4>{lv.prj}</h4><button className="x" onClick={()=>setLv(null)}>{'\u00d7'}</button></div>
+          <div className="rp-head"><h4>{lv.prj}</h4><button className="weiter-btn" style={{padding:"8px 13px",fontSize:"12px",width:"auto"}} onClick={onOpenMaterial}>Zu Material {'\u2192'}</button></div>
           <div className="rp-stats">
             <div className="rp-stat"><div className="v">{lv.itemCount}</div><div className="l">Positionen</div></div>
             <div className="rp-stat"><div className="v">{lv.groupCount}</div><div className="l">Gruppen</div></div>
@@ -336,13 +397,159 @@ function ModulScreen({drive,ki,onBack}){
   );
 }
 
+
+// ============ KALKULATIONS-KERN (dokumentierte EP/GP-Formel) ============
+// EP = Verrechnungslohn * Zeitansatz
+//    + (Fliese + Verlegematerial) * (1 + Materialaufschlag%)
+//    + Geraete * (1 + Geraeteaufschlag%)
+// Verrechnungslohn ergibt sich aus Mittellohn * EFB-Lohnfaktor.
+function verrechnungslohn(mittellohn, lohnZuschlag){
+  return mittellohn * (1 + lohnZuschlag/100);
+}
+function calcEP(pos, z){
+  const vl = verrechnungslohn(z.mittellohn, z.lohnZuschlag);
+  const lohn = vl * (pos.zeit||0);
+  const material = (pos.ek||0) * (1 + z.materialZuschlag/100);
+  // Geraete sind im schlanken Modell pro Position 0 (kommt ueber Zuschlag); Platzhalter fuer spaeter
+  return lohn + material;
+}
+function fmtEUR(n){
+  if(!isFinite(n)) n=0;
+  return n.toLocaleString('de-DE',{minimumFractionDigits:2,maximumFractionDigits:2})+' €';
+}
+
+// ============ SEITE 3: MATERIAL & ZUSCHLÄGE ============
+function MaterialScreen({lv,setLv,zuschlag,setZuschlag,drive,ki,onBack}){
+  if(!lv || !lv.positionen){
+    return (
+      <div className="page-container">
+        <div className="back-row"><button className="back-btn" onClick={onBack}>{'\u2190'} Modul wählen</button></div>
+        <div className="head">
+          <div className="head-logo-scale"><FirmenLogo/></div>
+          <div className="head-title">Material & Zuschläge</div>
+          <div className="head-sub">Kein LV geladen</div>
+        </div>
+        <div className="m2-empty">
+          <span className="big">Erst importieren</span>
+          Bitte zuerst im Modul „Import" eine GAEB-X83-Datei oder LV-Basis einlesen.
+          Danach erscheinen hier alle Positionen zur Bepreisung.
+        </div>
+      </div>
+    );
+  }
+
+  function upd(i, feld, wert){
+    const ps=lv.positionen.slice();
+    ps[i]={...ps[i], [feld]: (feld==='format'||feld==='fabrikat')? wert : (parseFloat(String(wert).replace(',','.'))||0)};
+    setLv({...lv, positionen:ps});
+  }
+  function setZ(feld, wert){
+    setZuschlag({...zuschlag, [feld]: parseFloat(String(wert).replace(',','.'))||0});
+  }
+
+  const vl = verrechnungslohn(zuschlag.mittellohn, zuschlag.lohnZuschlag);
+  let gesamt=0;
+  lv.positionen.forEach(pos=>{ if(pos.typ!=='bid'){ gesamt += pos.qty * calcEP(pos, zuschlag); } });
+
+  return (
+    <div className="page-container">
+      <div className="back-row"><button className="back-btn" onClick={onBack}>{'\u2190'} Modul wählen</button></div>
+      <div className="head">
+        <div className="head-logo-scale"><FirmenLogo/></div>
+        <div className="head-title">Material & Zuschläge</div>
+        <div className="head-sub">{lv.prj}</div>
+      </div>
+
+      <div className="m2-section-title">Zuschlags-Dashboard</div>
+      <div className="dash">
+        <div className="dash-grid">
+          <div className="dash-field">
+            <label>Mittellohn</label>
+            <div className="dash-inputwrap"><input type="text" value={zuschlag.mittellohn} onChange={e=>setZ('mittellohn',e.target.value)}/><span className="dash-unit">€/h</span></div>
+          </div>
+          <div className="dash-field">
+            <label>Lohn-Zuschlag (EFB)</label>
+            <div className="dash-inputwrap"><input type="text" value={zuschlag.lohnZuschlag} onChange={e=>setZ('lohnZuschlag',e.target.value)}/><span className="dash-unit">%</span></div>
+          </div>
+          <div className="dash-field">
+            <label>Material-Zuschlag</label>
+            <div className="dash-inputwrap"><input type="text" value={zuschlag.materialZuschlag} onChange={e=>setZ('materialZuschlag',e.target.value)}/><span className="dash-unit">%</span></div>
+          </div>
+          <div className="dash-field">
+            <label>Geräte-Zuschlag</label>
+            <div className="dash-inputwrap"><input type="text" value={zuschlag.geraeteZuschlag} onChange={e=>setZ('geraeteZuschlag',e.target.value)}/><span className="dash-unit">%</span></div>
+          </div>
+          <div className="dash-vl">
+            <span className="k">Verrechnungslohn (errechnet)</span>
+            <span className="v">{fmtEUR(vl)}/h</span>
+          </div>
+        </div>
+      </div>
+
+      <div className="m2-section-title">Positionen ({lv.positionen.length})</div>
+      <div className="matlist">
+        {lv.positionen.map((pos,i)=>{
+          const isBid = pos.typ==='bid';
+          const ep = calcEP(pos, zuschlag);
+          const gp = pos.qty*ep;
+          return (
+            <div className={"matrow"+(isBid?" ro":"")} key={i}>
+              <div className="matrow-top">
+                <span className="matrow-oz">{pos.oz}</span>
+                <span className="matrow-kurz">
+                  {pos.kurz||'—'}
+                  {isBid && <span className="matrow-badge tag-bid">Bieterfeld</span>}
+                  {pos.typ==='lohn' && <span className="matrow-badge tag-lohn">Lohn</span>}
+                </span>
+                <span className="matrow-qty">{pos.qty.toLocaleString('de-DE')} {pos.qu}</span>
+              </div>
+              {!isBid && (
+                <div className="matrow-fields">
+                  <div className="mf"><label>Format</label><input type="text" value={pos.format} placeholder="z.B. 60×60" onChange={e=>upd(i,'format',e.target.value)}/></div>
+                  <div className="mf"><label>Material / Fabrikat</label><input type="text" value={pos.fabrikat} placeholder="Hersteller / Typ" onChange={e=>upd(i,'fabrikat',e.target.value)}/></div>
+                  <div className="mf ek"><label>EK-Preis</label><input type="text" value={pos.ek||''} placeholder="0,00" onChange={e=>upd(i,'ek',e.target.value)}/></div>
+                </div>
+              )}
+              {isBid ? (
+                <div className="matrow-calc"><span className="c">Sondermaterial – Preis aus Analyse</span></div>
+              ) : (
+                <div className="matrow-calc">
+                  <span className="c">Zeit<b>{(pos.zeit||0).toLocaleString('de-DE')} h</b></span>
+                  <span className="c">EP<b>{fmtEUR(ep)}</b></span>
+                  <span className="c gp">GP<b>{fmtEUR(gp)}</b></span>
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+
+      <div className="summary-bar">
+        <span className="lbl">Angebotssumme (netto, LV-Massen)</span>
+        <span className="sum">{fmtEUR(gesamt)}</span>
+      </div>
+
+      <div className="foot">
+        <span className="ver">
+          <span className={"dot "+(drive?"dot-on":"dot-off")}></span>Drive {drive?"verbunden":"offline"}
+          <span style={{margin:"0 8px",opacity:.4}}>·</span>
+          <span className={"dot "+(ki?"dot-on":"dot-off")}></span>KI {ki?"aktiv":"aus"}
+        </span>
+      </div>
+    </div>
+  );
+}
+
 function App(){
   const [page,setPage]=useState("start");
   const [drive,setDrive]=useState(false);
   const [ki,setKi]=useState(false);
   const [apiKey,setApiKey]=useState("");
+  const [lv,setLv]=useState(null);
+  const [zuschlag,setZuschlag]=useState({mittellohn:18.50, lohnZuschlag:131, materialZuschlag:15, geraeteZuschlag:10});
   if(page==="start") return <StartScreen drive={drive} setDrive={setDrive} ki={ki} setKi={setKi} apiKey={apiKey} setApiKey={setApiKey} onWeiter={()=>setPage("modul")} />;
-  return <ModulScreen drive={drive} ki={ki} onBack={()=>setPage("start")} />;
+  if(page==="material") return <MaterialScreen lv={lv} setLv={setLv} zuschlag={zuschlag} setZuschlag={setZuschlag} drive={drive} ki={ki} onBack={()=>setPage("modul")} />;
+  return <ModulScreen drive={drive} ki={ki} lv={lv} setLv={setLv} onOpenMaterial={()=>setPage("material")} onBack={()=>setPage("start")} />;
 }
 ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
 </script>
