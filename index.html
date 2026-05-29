@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TW Kalkulation</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20256%20256%22%20width%3D%22256%22%20height%3D%22256%22%20role%3D%22img%22%20aria-label%3D%22TW%20%E2%80%93%20Thomas%20Willwacher%22%3E%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%22256%22%20height%3D%22256%22%20rx%3D%2244%22%20fill%3D%22%230f1923%22/%3E%3Ctext%20x%3D%2286%22%20y%3D%22142%22%20text-anchor%3D%22middle%22%20font-family%3D%22Oswald%2C%20sans-serif%22%20font-weight%3D%22600%22%20font-size%3D%22100%22%20letter-spacing%3D%222%22%20transform%3D%22rotate%28-90%2086%20142%29%22%3E%3Ctspan%20fill%3D%22%23f0f2f5%22%3ET%3C/tspan%3E%3Ctspan%20fill%3D%22%238c0d0d%22%3EW%3C/tspan%3E%3C/text%3E%3Ctext%20x%3D%22170%22%20y%3D%22142%22%20text-anchor%3D%22middle%22%20font-family%3D%22Oswald%2C%20sans-serif%22%20font-weight%3D%22600%22%20font-size%3D%22100%22%20letter-spacing%3D%222%22%20transform%3D%22rotate%2890%20170%20142%29%22%3E%3Ctspan%20fill%3D%22%23f0f2f5%22%3ET%3C/tspan%3E%3Ctspan%20fill%3D%22%238c0d0d%22%3EW%3C/tspan%3E%3C/text%3E%3Crect%20x%3D%22114%22%20y%3D%2274%22%20width%3D%2228%22%20height%3D%2228%22%20fill%3D%22%238c0d0d%22/%3E%3Crect%20x%3D%22116.5%22%20y%3D%22112%22%20width%3D%2223%22%20height%3D%2278%22%20rx%3D%224%22%20fill%3D%22%23f0f2f5%22/%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20256%20256%22%20width%3D%22256%22%20height%3D%22256%22%20role%3D%22img%22%20aria-label%3D%22TW%20%E2%80%93%20Thomas%20Willwacher%22%3E%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%22256%22%20height%3D%22256%22%20rx%3D%2244%22%20fill%3D%22%230f1923%22/%3E%3Ctext%20x%3D%2286%22%20y%3D%22142%22%20text-anchor%3D%22middle%22%20font-family%3D%22Oswald%2C%20sans-serif%22%20font-weight%3D%22600%22%20font-size%3D%22100%22%20letter-spacing%3D%222%22%20transform%3D%22rotate%28-90%2086%20142%29%22%3E%3Ctspan%20fill%3D%22%23f0f2f5%22%3ET%3C/tspan%3E%3Ctspan%20fill%3D%22%238c0d0d%22%3EW%3C/tspan%3E%3C/text%3E%3Ctext%20x%3D%22170%22%20y%3D%22142%22%20text-anchor%3D%22middle%22%20font-family%3D%22Oswald%2C%20sans-serif%22%20font-weight%3D%22600%22%20font-size%3D%22100%22%20letter-spacing%3D%222%22%20transform%3D%22rotate%2890%20170%20142%29%22%3E%3Ctspan%20fill%3D%22%23f0f2f5%22%3ET%3C/tspan%3E%3Ctspan%20fill%3D%22%238c0d0d%22%3EW%3C/tspan%3E%3C/text%3E%3Crect%20x%3D%22114%22%20y%3D%2274%22%20width%3D%2228%22%20height%3D%2228%22%20fill%3D%22%238c0d0d%22/%3E%3Crect%20x%3D%22116.5%22%20y%3D%22112%22%20width%3D%2223%22%20height%3D%2278%22%20rx%3D%224%22%20fill%3D%22%23f0f2f5%22/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg-primary:#0f1923; --bg-secondary:#1a2a3c; --bg-tertiary:#223448;
+  --bg-card:#2a3a50; --bg-hover:#324560;
+  --accent-red:#c41e1e; --accent-red-light:#e63535;
+  --accent-blue:#4da6ff; --text-primary:#e8ecf1; --text-secondary:#b0c0d4;
+  --text-white:#f0f2f5; --text-light:#b8c4d4; --text-muted:#8a9ab4;
+  --border-color:#2e4562; --border-subtle:#243a52; --success:#27ae60;
+  --radius-sm:6px; --radius-md:12px; --radius-lg:20px;
+  --modul-grad:linear-gradient(135deg,#1E88E5,#1565C0);
+  --modul-grad-active:linear-gradient(135deg,#2f9bf0,#1b6fd6);
+  --modul-shadow:rgba(30,136,229,0.30);
+  --conn-grad:linear-gradient(135deg,#c8893a,#9a6420);
+  --conn-shadow:rgba(200,137,58,0.30);
+  --conn-on-grad:linear-gradient(135deg,#2ecc71,#1e9e54);
+  --conn-on-shadow:rgba(46,204,113,0.34);
+  --red-grad:linear-gradient(135deg,#e63535,#c41e1e);
+  --red-shadow:rgba(196,30,30,0.32);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Source Sans 3',-apple-system,sans-serif;background:var(--bg-primary);color:var(--text-white);-webkit-font-smoothing:antialiased;min-height:100vh;}
+.page-container{max-width:560px;margin:0 auto;padding:28px 16px 24px;min-height:100vh;display:flex;flex-direction:column;}
+
+/* ===== WORTMARKEN-LOGO (1:1 aus tw-design.css) ===== */
+.logo-container{display:inline-flex;flex-direction:column;align-items:flex-start;user-select:none;}
+.logo-thomas-row{display:flex;align-items:baseline;margin-bottom:-18px;padding-left:1px;align-self:flex-start;position:relative;z-index:2;}
+.logo-thomas-text{font-family:'Source Sans 3',serif;font-style:italic;font-weight:700;color:var(--accent-red);font-size:14.5px;letter-spacing:0.3px;}
+.logo-word-row{display:flex;align-items:baseline;font-family:'Oswald',sans-serif;font-weight:700;color:var(--text-white);line-height:1;}
+.logo-w{font-size:62px;}
+.logo-i-wrap{position:relative;font-size:62px;display:inline-block;}
+.logo-i-wrap .logo-i-char{font-size:62px;}
+.logo-i-dot{position:absolute;top:6px;left:50%;transform:translateX(-50%);width:10px;height:10px;background:var(--accent-red);}
+.logo-LL{font-size:84px;letter-spacing:1px;line-height:0.75;}
+.logo-wacher{font-size:62px;}
+.logo-subtitle-row{display:flex;justify-content:flex-end;width:100%;margin-top:1px;}
+.logo-subtitle-text{font-family:'Source Sans 3',sans-serif;font-weight:600;color:var(--accent-red);font-size:14.5px;letter-spacing:2.5px;}
+
+.head{text-align:center;margin-bottom:24px;display:flex;flex-direction:column;align-items:center;}
+.head-logo-scale{transform:scale(0.62);transform-origin:center;margin-bottom:-6px;}
+.head-title{margin-top:12px;font-size:17px;font-weight:700;color:var(--text-white);font-family:'Oswald',sans-serif;letter-spacing:0.5px;}
+.head-sub{font-size:11px;color:var(--text-muted);margin-top:4px;letter-spacing:2px;text-transform:uppercase;font-family:'Oswald',sans-serif;font-weight:500;}
+
+/* ===== EINHEITLICHE BUTTONS (alle gleiche Farbe; aktiv = heller + leicht größer) ===== */
+.tw-list{display:flex;flex-direction:column;gap:10px;}
+.tw-btn{width:100%;padding:13px 15px;border-radius:var(--radius-lg);border:1px solid rgba(255,255,255,0.10);cursor:pointer;
+  display:flex;align-items:center;gap:12px;text-align:left;transition:all .22s ease;position:relative;overflow:hidden;
+  background:var(--modul-grad);color:#fff;box-shadow:0 6px 20px var(--modul-shadow);font-family:inherit;}
+.tw-btn:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(30,136,229,0.40);}
+.tw-btn:active{transform:translateY(0);}
+.tw-btn.is-active{background:var(--modul-grad-active);transform:scale(1.02);box-shadow:0 10px 30px rgba(47,155,240,0.50);border-color:rgba(255,255,255,0.35);}
+.conn-row{display:flex;gap:10px;}
+.conn-row .tw-btn{flex:1;flex-direction:column;align-items:center;text-align:center;gap:7px;padding:14px 10px;}
+.conn-row .tw-ico{width:30px;height:30px;}
+.conn-row .tw-txt{flex:none;}
+.conn-row .tw-name{margin-bottom:3px;}
+.conn-row .tw-desc{font-size:10px;line-height:1.35;}
+.conn-row .tw-right{margin-top:8px;font-size:11px;justify-content:center;}
+.tw-btn.conn{background:var(--conn-grad);box-shadow:0 6px 20px var(--conn-shadow);}
+.tw-btn.conn:hover{box-shadow:0 10px 26px rgba(200,137,58,0.42);}
+.tw-btn.conn.is-active{background:var(--conn-on-grad);box-shadow:0 10px 30px var(--conn-on-shadow);transform:scale(1.02);border-color:rgba(255,255,255,0.4);}
+.tw-ico{flex-shrink:0;display:flex;align-items:center;justify-content:center;width:34px;height:34px;}
+.tw-txt{flex:1;}
+.tw-name{font-size:14px;font-weight:600;margin-bottom:2px;font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:0.5px;}
+.tw-desc{font-size:11px;opacity:.88;line-height:1.4;}
+.tw-right{font-size:13px;font-family:'Oswald',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;opacity:.92;display:flex;align-items:center;gap:6px;}
+.tw-statusdot{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,0.55);display:inline-block;}
+.tw-btn.is-active .tw-statusdot{background:#fff;box-shadow:0 0 0 3px rgba(255,255,255,0.25);}
+.tw-arrow{font-size:16px;opacity:.7;}
+.hidden-input{display:none;}
+
+/* Schlüssel-Eingabe (klappt unter KI-Button auf) */
+.key-box{margin-top:-2px;background:var(--bg-secondary);border:1px solid var(--border-subtle);border-radius:var(--radius-md);padding:13px 14px;}
+.key-box label{display:block;font-size:10px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;font-family:'Oswald',sans-serif;}
+.key-box input{width:100%;padding:9px 11px;border:1px solid var(--border-color);border-radius:8px;background:var(--bg-tertiary);color:var(--text-primary);font-size:13px;font-family:'Source Sans 3',sans-serif;}
+.key-box input:focus{outline:none;border-color:var(--accent-blue);box-shadow:0 0 0 3px rgba(77,166,255,0.14);}
+.key-box .hint{font-size:11px;color:var(--text-muted);margin-top:7px;line-height:1.45;}
+
+.weiter-wrap{margin-top:18px;}
+.weiter-btn{width:100%;padding:14px;border:none;border-radius:var(--radius-lg);cursor:pointer;font-family:'Oswald',sans-serif;
+  font-size:15px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:#fff;background:var(--red-grad);
+  box-shadow:0 6px 20px var(--red-shadow);transition:all .22s ease;}
+.weiter-btn:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(196,30,30,0.48);}
+.skip{display:block;width:100%;text-align:center;margin-top:12px;background:none;border:none;color:var(--text-muted);font-size:12px;cursor:pointer;font-family:'Source Sans 3',sans-serif;text-decoration:underline;}
+
+/* ===== IMPORT-ERGEBNIS ===== */
+.result-panel{margin-top:18px;background:var(--bg-secondary);border:1px solid var(--border-subtle);border-radius:var(--radius-md);overflow:hidden;}
+.rp-head{display:flex;align-items:center;justify-content:space-between;padding:13px 16px;background:var(--bg-tertiary);border-bottom:1px solid var(--border-color);}
+.rp-head h4{font-family:'Oswald',sans-serif;font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--text-white);}
+.rp-head .x{background:none;border:none;color:var(--text-muted);font-size:20px;cursor:pointer;line-height:1;}
+.rp-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border-color);}
+.rp-stat{background:var(--bg-secondary);padding:14px 6px;text-align:center;}
+.rp-stat .v{font-family:'Oswald',sans-serif;font-size:24px;font-weight:700;color:var(--accent-blue);}
+.rp-stat .l{font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.4px;margin-top:3px;}
+.rp-list{max-height:280px;overflow-y:auto;}
+.rp-grp{font-family:'Oswald',sans-serif;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--text-secondary);padding:9px 16px;background:var(--bg-tertiary);border-top:1px solid var(--border-color);}
+.rp-item{display:grid;grid-template-columns:84px 1fr 64px 56px;gap:8px;align-items:center;padding:8px 16px;border-top:1px solid var(--border-subtle);font-size:12px;}
+.rp-item:hover{background:var(--bg-tertiary);}
+.rp-oz{font-family:'Oswald',sans-serif;font-weight:600;color:var(--text-secondary);}
+.rp-tx{color:var(--text-light);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.rp-qty{text-align:right;color:var(--text-muted);}
+.rp-tag{justify-self:end;font-size:9px;font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.4px;padding:3px 6px;border-radius:5px;}
+.tag-mat{background:rgba(196,30,30,.14);color:var(--accent-red-light);border:1px solid var(--accent-red);}
+.tag-lohn{background:rgba(77,166,255,.12);color:var(--accent-blue);border:1px solid var(--accent-blue);}
+.tag-bid{background:rgba(255,255,255,.06);color:var(--text-light);border:1px solid var(--border-color);}
+.tag-none{background:var(--bg-tertiary);color:var(--text-muted);border:1px solid var(--border-color);}
+.err-note{margin-top:14px;color:var(--accent-red-light);font-size:13px;text-align:center;}
+
+.back-row{margin-bottom:8px;}
+.back-btn{background:rgba(196,30,30,0.12);border:1px solid var(--accent-red);color:var(--accent-red-light);font-size:12px;cursor:pointer;font-family:'Oswald',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:0.8px;display:inline-flex;align-items:center;gap:6px;padding:7px 13px;border-radius:var(--radius-lg);transition:all .2s ease;}
+.back-btn:hover{background:var(--red-grad);color:#fff;border-color:transparent;}
+.foot{margin-top:auto;padding-top:18px;text-align:center;}
+.foot .ver{display:inline-block;padding:8px 14px;background:var(--bg-secondary);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);font-size:11px;color:var(--text-muted);font-family:'Oswald',sans-serif;letter-spacing:0.5px;}
+.foot .ver .dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:6px;vertical-align:middle;}
+.dot-on{background:var(--success);} .dot-off{background:var(--text-muted);}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+<script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
+<script type="text/babel">
+const { useState, useRef } = React;
+
+function FirmenLogo(){
+  return (
+    <div className="logo-container">
+      <div className="logo-thomas-row"><span className="logo-thomas-text">Thomas</span></div>
+      <div className="logo-word-row">
+        <span className="logo-w">w</span>
+        <span className="logo-i-wrap"><span className="logo-i-char">{'\u0131'}</span><span className="logo-i-dot"></span></span>
+        <span className="logo-LL">LL</span>
+        <span className="logo-wacher">wacher</span>
+      </div>
+      <div className="logo-subtitle-row"><span className="logo-subtitle-text">Fliesenlegermeister e.K.</span></div>
+    </div>
+  );
+}
+
+function Icon({id}){
+  const s={width:34,height:34,viewBox:"0 0 32 32",fill:"none",xmlns:"http://www.w3.org/2000/svg"};
+  if(id==="drive") return <svg {...s}><path d="M11 5h10l7 12-5 9H9l-5-9L11 5z" stroke="white" strokeWidth="2" strokeLinejoin="round"/><path d="M11 5l5 9M21 5l-5 9M9 26l5-9M28 17H16" stroke="rgba(255,255,255,.7)" strokeWidth="1.6" strokeLinecap="round"/></svg>;
+  if(id==="ki") return <svg {...s}><circle cx="16" cy="16" r="4" stroke="white" strokeWidth="2"/><path d="M16 4v3M16 25v3M28 16h-3M7 16H4M24 8l-2 2M10 22l-2 2M24 24l-2-2M10 10L8 8" stroke="white" strokeWidth="2" strokeLinecap="round"/></svg>;
+  if(id==="import") return <svg {...s}><path d="M16 4v16M16 20l-6-6M16 20l6-6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><path d="M6 24v2a2 2 0 002 2h16a2 2 0 002-2v-2" stroke="white" strokeWidth="2" strokeLinecap="round"/></svg>;
+  if(id==="material") return <svg {...s}><rect x="5" y="5" width="9" height="9" rx="1" stroke="white" strokeWidth="2"/><rect x="18" y="5" width="9" height="9" rx="1" stroke="rgba(255,255,255,.6)" strokeWidth="2"/><rect x="5" y="18" width="9" height="9" rx="1" stroke="rgba(255,255,255,.6)" strokeWidth="2"/><rect x="18" y="18" width="9" height="9" rx="1" stroke="white" strokeWidth="2"/></svg>;
+  if(id==="kalk") return <svg {...s}><rect x="6" y="4" width="20" height="24" rx="2" stroke="white" strokeWidth="2"/><line x1="10" y1="9" x2="22" y2="9" stroke="white" strokeWidth="1.6"/><line x1="10" y1="14" x2="14" y2="14" stroke="rgba(255,255,255,.7)" strokeWidth="1.6"/><line x1="18" y1="14" x2="22" y2="14" stroke="rgba(255,255,255,.7)" strokeWidth="1.6"/><line x1="10" y1="19" x2="14" y2="19" stroke="rgba(255,255,255,.7)" strokeWidth="1.6"/><line x1="18" y1="19" x2="22" y2="19" stroke="rgba(255,255,255,.7)" strokeWidth="1.6"/><line x1="10" y1="24" x2="22" y2="24" stroke="white" strokeWidth="1.6"/></svg>;
+  if(id==="export") return <svg {...s}><path d="M16 20V4M16 4l-6 6M16 4l6 6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><path d="M6 24v2a2 2 0 002 2h16a2 2 0 002-2v-2" stroke="white" strokeWidth="2" strokeLinecap="round"/></svg>;
+  if(id==="settings") return <svg {...s}><circle cx="16" cy="16" r="4" stroke="white" strokeWidth="2"/><path d="M16 4v3M16 25v3M28 16h-3M7 16H4M24 8l-2 2M10 22l-2 2M24 24l-2-2M10 10L8 8" stroke="white" strokeWidth="2" strokeLinecap="round"/></svg>;
+  return null;
+}
+
+function txt(node, sel){const e=node.querySelector(sel);return e?e.textContent.trim():"";}
+function collectText(node, tag){const out=[];node.querySelectorAll(tag+" span, "+tag).forEach(s=>{if(s.children.length===0){const t=s.textContent.trim();if(t)out.push(t);}});return out.join(" ").replace(/\s+/g," ").trim();}
+function classify(lang, hasBid){const t=(lang||"").toLowerCase();if(hasBid)return "bid";if(/(bodenbelag|bekleidung|fliesen|platten|klinker|sockel|stufen|fensterbank)/.test(t))return "mat";if(/(reinigen|bürsten|voranstrich|spachteln|abdichtung|randfuge|anschlussfuge|stundenlohn)/.test(t))return "lohn";return "none";}
+function parseX83(xmlString){
+  const dom=new DOMParser().parseFromString(xmlString,"application/xml");
+  if(dom.querySelector("parsererror"))throw new Error("XML konnte nicht gelesen werden.");
+  const prj=txt(dom,"NamePrj")||txt(dom,"LblPrj")||"(ohne Projektname)";
+  const groups=[];let itemCount=0,upbkdn=0,bidder=0;
+  dom.querySelectorAll("BoQCtgy").forEach(ctgy=>{
+    const lbl=collectText(ctgy,"LblTx")||ctgy.getAttribute("RNoPart")||"Gruppe";
+    const items=[];
+    ctgy.querySelectorAll("Itemlist > Item").forEach(it=>{
+      if(it.closest("BoQCtgy")!==ctgy)return;
+      const oz=it.getAttribute("RNoPart")||"";
+      const qty=txt(it,"Qty");const qu=txt(it,"QU");
+      const kurz=collectText(it,"TextOutlTxt")||collectText(it,"OutlTxt")||collectText(it,"OutlineText");
+      const lang=collectText(it,"DetailTxt");
+      const hasUP=!!Array.from(it.children).find(c=>c.tagName==="UPBkdn"&&c.textContent.trim()==="Yes");
+      const hasBid=!!it.querySelector('TextComplement[Kind="Bidder"]');
+      if(hasUP)upbkdn++;if(hasBid)bidder++;
+      items.push({oz,qty,qu,kurz:kurz||lang.slice(0,80),typ:classify(lang,hasBid)});
+      itemCount++;
+    });
+    if(items.length)groups.push({lbl,items});
+  });
+  return {prj,groups,itemCount,upbkdn,bidder,groupCount:groups.length};
+}
+
+const MODULE=[
+  {id:"import",ico:"import",name:"Import",desc:"GAEB X83 / LV-Basis / Drive einlesen"},
+  {id:"material",ico:"material",name:"Material & Zuschläge",desc:"EK-Preise, Mittellohn, BGK / AGK / W&G"},
+  {id:"kalk",ico:"kalk",name:"Kalkulation",desc:"EP / GP, 3-Szenarien-Vergleich"},
+  {id:"export",ico:"export",name:"Export X84",desc:"Versandfertige GAEB-Angebotsdatei"},
+  {id:"settings",ico:"settings",name:"Einstellungen",desc:"Zuschläge & optionaler KI-Schlüssel"},
+];
+const TAGLABEL={mat:"Material",lohn:"Lohn",bid:"Bieter",none:"–"};
+
+// ============ SEITE 1: VERBINDUNGEN ============
+function StartScreen({drive,setDrive,ki,setKi,apiKey,setApiKey,onWeiter}){
+  const [showKey,setShowKey]=useState(false);
+  function toggleKi(){ const n=!ki; setKi(n); setShowKey(n); }
+  return (
+    <div className="page-container">
+      <div className="head">
+        <div className="head-logo-scale"><FirmenLogo/></div>
+        <div className="head-title">Kalkulation</div>
+        <div className="head-sub">Verbindungen einrichten</div>
+      </div>
+
+      <div className="tw-list">
+        <div className="conn-row">
+          <button className={"tw-btn conn"+(drive?" is-active":"")} onClick={()=>setDrive(!drive)}>
+            <span className="tw-ico"><Icon id="drive"/></span>
+            <span className="tw-txt">
+              <span className="tw-name">Google Drive</span>
+              <span className="tw-desc">Kundenordner</span>
+            </span>
+            <span className="tw-right"><span className="tw-statusdot"></span>{drive?"Verbunden":"Verbinden"}</span>
+          </button>
+
+          <button className={"tw-btn conn"+(ki?" is-active":"")} onClick={toggleKi}>
+            <span className="tw-ico"><Icon id="ki"/></span>
+            <span className="tw-txt">
+              <span className="tw-name">KI</span>
+              <span className="tw-desc">Optional</span>
+            </span>
+            <span className="tw-right"><span className="tw-statusdot"></span>{ki?"Aktiv":"Aktivieren"}</span>
+          </button>
+        </div>
+
+        {showKey && (
+          <div className="key-box">
+            <label>Anthropic API-Schlüssel (nur lokal)</label>
+            <input type="password" value={apiKey} placeholder="sk-ant-..." onChange={e=>setApiKey(e.target.value)} />
+            <div className="hint">Wird nur in der App gehalten – nie im Code, nie auf GitHub. Ohne Schlüssel rechnet die App ganz normal weiter (Heuristik).</div>
+          </div>
+        )}
+      </div>
+
+      <div className="weiter-wrap">
+        <button className="weiter-btn" onClick={onWeiter}>Weiter zur Kalkulation {'\u2192'}</button>
+        <button className="skip" onClick={onWeiter}>Ohne Verbindungen fortfahren</button>
+      </div>
+
+      <div className="foot">
+        <span className="ver">
+          <span className={"dot "+(drive?"dot-on":"dot-off")}></span>Drive {drive?"verbunden":"offline"}
+          <span style={{margin:"0 8px",opacity:.4}}>·</span>
+          <span className={"dot "+(ki?"dot-on":"dot-off")}></span>KI {ki?"aktiv":"aus"}
+        </span>
+      </div>
+    </div>
+  );
+}
+
+// ============ SEITE 2: MODULWAHL ============
+function ModulScreen({drive,ki,onBack}){
+  const [lv,setLv]=useState(null);
+  const [err,setErr]=useState("");
+  const fileRef=useRef(null);
+  function pick(id){ if(id==="import") fileRef.current.click(); }
+  function onFile(e){
+    const f=e.target.files[0]; if(!f)return; setErr("");
+    const r=new FileReader();
+    r.onload=()=>{ try{
+      const name=f.name.toLowerCase();
+      if(name.endsWith(".json")){const j=JSON.parse(r.result);setLv({prj:j.projekt||j.prj||f.name,groups:[],itemCount:(j.positionen||[]).length,upbkdn:0,bidder:0,groupCount:0});}
+      else{setLv(parseX83(r.result));}
+    }catch(ex){setErr("Datei konnte nicht verarbeitet werden: "+ex.message);setLv(null);} };
+    r.readAsText(f,"UTF-8");
+  }
+  return (
+    <div className="page-container">
+      <div className="back-row"><button className="back-btn" onClick={onBack}>{'\u2190'} Verbindungen</button></div>
+      <div className="head">
+        <div className="head-logo-scale"><FirmenLogo/></div>
+        <div className="head-title">Kalkulation</div>
+        <div className="head-sub">Modul wählen</div>
+      </div>
+
+      <div className="tw-list">
+        {MODULE.map(m=>(
+          <button key={m.id} className="tw-btn" onClick={()=>pick(m.id)}>
+            <span className="tw-ico"><Icon id={m.ico}/></span>
+            <span className="tw-txt">
+              <span className="tw-name">{m.name}</span>
+              <span className="tw-desc">{m.desc}</span>
+            </span>
+            <span className="tw-arrow">{'\u2192'}</span>
+          </button>
+        ))}
+      </div>
+      <input ref={fileRef} className="hidden-input" type="file" accept=".x83,.X83,.xml,.json" onChange={onFile}/>
+
+      {err && <div className="err-note">{err}</div>}
+
+      {lv && (
+        <div className="result-panel">
+          <div className="rp-head"><h4>{lv.prj}</h4><button className="x" onClick={()=>setLv(null)}>{'\u00d7'}</button></div>
+          <div className="rp-stats">
+            <div className="rp-stat"><div className="v">{lv.itemCount}</div><div className="l">Positionen</div></div>
+            <div className="rp-stat"><div className="v">{lv.groupCount}</div><div className="l">Gruppen</div></div>
+            <div className="rp-stat"><div className="v">{lv.upbkdn}</div><div className="l">EP-Aufgl.</div></div>
+            <div className="rp-stat"><div className="v">{lv.bidder}</div><div className="l">Bieterfeld</div></div>
+          </div>
+          {lv.groups.length>0 && (
+            <div className="rp-list">
+              {lv.groups.map((g,gi)=>(
+                <div key={gi}>
+                  <div className="rp-grp">{g.lbl}</div>
+                  {g.items.map((it,ii)=>(
+                    <div className="rp-item" key={ii}>
+                      <span className="rp-oz">{it.oz}</span>
+                      <span className="rp-tx" title={it.kurz}>{it.kurz||"—"}</span>
+                      <span className="rp-qty">{it.qty} {it.qu}</span>
+                      <span className={"rp-tag "+(it.typ==="mat"?"tag-mat":it.typ==="lohn"?"tag-lohn":it.typ==="bid"?"tag-bid":"tag-none")}>{TAGLABEL[it.typ]}</span>
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+
+      <div className="foot">
+        <span className="ver">
+          <span className={"dot "+(drive?"dot-on":"dot-off")}></span>Drive {drive?"verbunden":"offline"}
+          <span style={{margin:"0 8px",opacity:.4}}>·</span>
+          <span className={"dot "+(ki?"dot-on":"dot-off")}></span>KI {ki?"aktiv":"aus"}
+        </span>
+      </div>
+    </div>
+  );
+}
+
+function App(){
+  const [page,setPage]=useState("start");
+  const [drive,setDrive]=useState(false);
+  const [ki,setKi]=useState(false);
+  const [apiKey,setApiKey]=useState("");
+  if(page==="start") return <StartScreen drive={drive} setDrive={setDrive} ki={ki} setKi={setKi} apiKey={apiKey} setApiKey={setApiKey} onWeiter={()=>setPage("modul")} />;
+  return <ModulScreen drive={drive} ki={ki} onBack={()=>setPage("start")} />;
+}
+ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
+</script>
+</body>
+</html>
