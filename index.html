@@ -226,6 +226,80 @@ body{font-family:'Source Sans 3',-apple-system,sans-serif;background:var(--bg-pr
 .exp-done{background:rgba(46,204,113,0.10);border:1px solid #2ecc71;border-radius:var(--radius-md);padding:13px;margin-top:10px;font-size:13px;color:var(--text-light);line-height:1.5;text-align:center;}
 .exp-done b{color:#2ecc71;font-family:'Oswald',sans-serif;}
 
+/* ===== MODUL 5: PREISSPIEGEL & WETTBEWERB ===== */
+.ps-tabs{display:flex;gap:6px;background:var(--bg-secondary);border-radius:var(--radius-md);padding:4px;margin-bottom:16px;}
+.ps-tab{flex:1;padding:9px 8px;border:none;background:transparent;color:var(--text-muted);font-family:'Oswald',sans-serif;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.6px;cursor:pointer;border-radius:8px;transition:all .2s;}
+.ps-tab.active{background:var(--accent-blue);color:#fff;}
+.ps-tab:hover:not(.active){background:var(--bg-tertiary);color:var(--text-light);}
+
+.ps-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:16px;}
+.ps-kpi{background:var(--bg-secondary);border:1px solid var(--border-subtle);border-radius:var(--radius-md);padding:12px 8px;text-align:center;}
+.ps-kpi .v{font-family:'Oswald',sans-serif;font-size:22px;font-weight:700;color:var(--accent-blue);line-height:1;}
+.ps-kpi .l{font-size:9px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.4px;margin-top:5px;line-height:1.3;}
+.ps-kpi.green .v{color:#2ecc71;} .ps-kpi.amber .v{color:#f39c12;} .ps-kpi.red .v{color:var(--accent-red-light);}
+
+/* Wettbewerber-Profilkarten */
+.comp-card{background:var(--bg-secondary);border:1px solid var(--border-subtle);border-radius:var(--radius-md);padding:13px 14px;margin-bottom:10px;}
+.comp-head{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.comp-name{flex:1;font-family:'Oswald',sans-serif;font-weight:600;font-size:15px;color:var(--text-white);}
+.comp-ampel{display:flex;align-items:center;gap:6px;font-size:10px;font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:0.5px;padding:4px 9px;border-radius:20px;}
+.comp-ampel .ad{width:8px;height:8px;border-radius:50%;}
+.comp-ampel.hot{background:rgba(196,30,30,0.14);color:var(--accent-red-light);} .comp-ampel.hot .ad{background:var(--accent-red-light);}
+.comp-ampel.busy{background:rgba(243,156,18,0.14);color:#f39c12;} .comp-ampel.busy .ad{background:#f39c12;}
+.comp-ampel.cold{background:rgba(46,204,113,0.14);color:#2ecc71;} .comp-ampel.cold .ad{background:#2ecc71;}
+.comp-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:10px;}
+.comp-stat{background:var(--bg-tertiary);border-radius:8px;padding:8px;text-align:center;}
+.comp-stat .cv{font-family:'Oswald',sans-serif;font-weight:700;font-size:15px;color:var(--text-white);}
+.comp-stat .cl{font-size:9px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.4px;margin-top:3px;}
+.comp-vs{font-size:12px;color:var(--text-light);line-height:1.5;background:var(--bg-tertiary);border-radius:8px;padding:9px 11px;border-left:3px solid var(--accent-blue);}
+.comp-vs b{font-family:'Oswald',sans-serif;}
+.comp-vs .under{color:#2ecc71;} .comp-vs .over{color:var(--accent-red-light);}
+
+/* Chronik-Tabelle (kompakt) */
+.chron-tbl{background:var(--bg-secondary);border:1px solid var(--border-subtle);border-radius:var(--radius-md);overflow:hidden;}
+.chron-hd{display:grid;grid-template-columns:58px 1fr 44px 70px 16px;gap:8px;padding:9px 12px;background:var(--bg-tertiary);border-bottom:1px solid var(--border-color);font-family:'Oswald',sans-serif;font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;color:var(--text-muted);}
+.chron-row{border-top:1px solid var(--border-subtle);}
+.chron-row:first-of-type{border-top:none;}
+.chron-main{display:grid;grid-template-columns:58px 1fr 44px 70px 16px;gap:8px;align-items:center;padding:10px 12px;cursor:pointer;transition:background .15s;}
+.chron-main:hover{background:var(--bg-tertiary);}
+.chron-date{font-family:'Oswald',sans-serif;font-size:11px;color:var(--text-secondary);}
+.chron-bv{font-size:12px;color:var(--text-light);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.chron-rang{font-family:'Oswald',sans-serif;font-weight:700;font-size:13px;text-align:center;}
+.chron-rang.r1{color:#2ecc71;} .chron-rang.rmid{color:#f39c12;} .chron-rang.rlow{color:var(--text-muted);}
+.chron-abst{font-family:'Oswald',sans-serif;font-weight:600;font-size:12px;text-align:right;}
+.chron-abst.win{color:#2ecc71;} .chron-abst.near{color:#f39c12;} .chron-abst.far{color:var(--accent-red-light);}
+.chron-exp{font-size:13px;color:var(--text-muted);text-align:center;}
+.chron-detail{padding:0 12px 12px;background:var(--bg-tertiary);}
+.chron-detail-inner{padding:10px 0;}
+.cd-bidder{display:flex;justify-content:space-between;align-items:center;padding:6px 10px;border-radius:7px;margin-bottom:4px;font-size:12px;background:var(--bg-secondary);}
+.cd-bidder.me{border:1px solid var(--accent-blue);}
+.cd-bidder.winner{border:1px solid #2ecc71;}
+.cd-bidder .cbn{color:var(--text-light);} .cd-bidder.me .cbn{color:var(--accent-blue);font-weight:600;} .cd-bidder.winner .cbn{color:#2ecc71;font-weight:600;}
+.cd-bidder .cbs{font-family:'Oswald',sans-serif;font-weight:600;color:var(--text-white);}
+.cd-badge{font-size:9px;font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:0.4px;padding:2px 6px;border-radius:5px;margin-left:7px;}
+.cd-badge.me{background:rgba(77,166,255,0.15);color:var(--accent-blue);} .cd-badge.winner{background:rgba(46,204,113,0.15);color:#2ecc71;}
+
+/* Erfassung */
+.ps-add{background:var(--bg-secondary);border:1px solid var(--border-subtle);border-radius:var(--radius-md);padding:14px;margin-bottom:14px;}
+.ps-add-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:9px;}
+.psf label{display:block;font-size:10px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.6px;margin-bottom:4px;font-family:'Oswald',sans-serif;}
+.psf input{width:100%;padding:8px 10px;border:1px solid var(--border-color);border-radius:7px;background:var(--bg-tertiary);color:var(--text-primary);font-size:13px;font-family:'Source Sans 3',sans-serif;}
+.psf input:focus{outline:none;border-color:var(--accent-blue);box-shadow:0 0 0 2px rgba(77,166,255,0.14);}
+.bidder-add{display:grid;grid-template-columns:1fr 90px 36px 36px;gap:7px;align-items:end;margin-bottom:7px;}
+.bidder-add .mini{font-size:9px;}
+.bidder-chip{display:flex;align-items:center;gap:8px;padding:7px 10px;background:var(--bg-tertiary);border-radius:7px;margin-bottom:5px;font-size:12px;}
+.bidder-chip .bcn{flex:1;color:var(--text-light);}
+.bidder-chip .bcs{font-family:'Oswald',sans-serif;font-weight:600;color:var(--text-white);}
+.bidder-chip .bctag{font-size:9px;padding:2px 6px;border-radius:5px;font-family:'Oswald',sans-serif;text-transform:uppercase;}
+.tag-me{background:rgba(77,166,255,0.15);color:var(--accent-blue);} .tag-win{background:rgba(46,204,113,0.15);color:#2ecc71;}
+.bidder-chip .bcx{background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:16px;}
+.mini-btn{padding:7px 10px;border:1px solid var(--border-color);border-radius:7px;background:var(--bg-card);color:var(--text-light);font-family:'Oswald',sans-serif;font-size:11px;text-transform:uppercase;letter-spacing:0.4px;cursor:pointer;}
+.mini-btn:hover{background:var(--bg-hover);border-color:var(--accent-blue);}
+.mini-btn.blue{background:var(--accent-blue);color:#fff;border-color:var(--accent-blue);}
+.ps-empty{text-align:center;color:var(--text-muted);font-size:13px;padding:30px 16px;line-height:1.6;}
+.ps-empty .big{font-size:15px;color:var(--text-light);margin-bottom:6px;display:block;font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:0.5px;}
+.ps-info{font-size:11px;color:var(--text-muted);line-height:1.5;margin-top:6px;padding:0 4px;}
+
 </style>
 </head>
 <body>
@@ -259,6 +333,7 @@ function Icon({id}){
   if(id==="material") return <svg {...s}><rect x="5" y="5" width="9" height="9" rx="1" stroke="white" strokeWidth="2"/><rect x="18" y="5" width="9" height="9" rx="1" stroke="rgba(255,255,255,.6)" strokeWidth="2"/><rect x="5" y="18" width="9" height="9" rx="1" stroke="rgba(255,255,255,.6)" strokeWidth="2"/><rect x="18" y="18" width="9" height="9" rx="1" stroke="white" strokeWidth="2"/></svg>;
   if(id==="kalk") return <svg {...s}><rect x="6" y="4" width="20" height="24" rx="2" stroke="white" strokeWidth="2"/><line x1="10" y1="9" x2="22" y2="9" stroke="white" strokeWidth="1.6"/><line x1="10" y1="14" x2="14" y2="14" stroke="rgba(255,255,255,.7)" strokeWidth="1.6"/><line x1="18" y1="14" x2="22" y2="14" stroke="rgba(255,255,255,.7)" strokeWidth="1.6"/><line x1="10" y1="19" x2="14" y2="19" stroke="rgba(255,255,255,.7)" strokeWidth="1.6"/><line x1="18" y1="19" x2="22" y2="19" stroke="rgba(255,255,255,.7)" strokeWidth="1.6"/><line x1="10" y1="24" x2="22" y2="24" stroke="white" strokeWidth="1.6"/></svg>;
   if(id==="export") return <svg {...s}><path d="M16 20V4M16 4l-6 6M16 4l6 6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><path d="M6 24v2a2 2 0 002 2h16a2 2 0 002-2v-2" stroke="white" strokeWidth="2" strokeLinecap="round"/></svg>;
+  if(id==="preisspiegel") return <svg {...s}><line x1="5" y1="27" x2="27" y2="27" stroke="white" strokeWidth="2" strokeLinecap="round"/><rect x="7" y="17" width="4" height="9" fill="rgba(255,255,255,.55)"/><rect x="14" y="11" width="4" height="15" fill="white"/><rect x="21" y="20" width="4" height="6" fill="rgba(255,255,255,.55)"/></svg>;
   if(id==="settings") return <svg {...s}><circle cx="16" cy="16" r="4" stroke="white" strokeWidth="2"/><path d="M16 4v3M16 25v3M28 16h-3M7 16H4M24 8l-2 2M10 22l-2 2M24 24l-2-2M10 10L8 8" stroke="white" strokeWidth="2" strokeLinecap="round"/></svg>;
   return null;
 }
@@ -321,6 +396,7 @@ const MODULE=[
   {id:"material",ico:"material",name:"Material & Zuschläge",desc:"EK-Preise, Mittellohn, BGK / AGK / W&G"},
   {id:"kalk",ico:"kalk",name:"Kalkulation",desc:"EP / GP, 3-Szenarien-Vergleich"},
   {id:"export",ico:"export",name:"Export X84",desc:"Versandfertige GAEB-Angebotsdatei"},
+  {id:"preisspiegel",ico:"preisspiegel",name:"Preisspiegel & Wettbewerb",desc:"Submissionen, Mitbewerber-Profile, Vorausschau"},
   {id:"settings",ico:"settings",name:"Einstellungen",desc:"Zuschläge & optionaler KI-Schlüssel"},
 ];
 const TAGLABEL={mat:"Material",lohn:"Lohn",bid:"Bieter",none:"–"};
@@ -384,7 +460,7 @@ function StartScreen({drive,setDrive,ki,setKi,apiKey,setApiKey,onWeiter}){
 }
 
 // ============ SEITE 2: MODULWAHL ============
-function ModulScreen({drive,ki,onBack,lv,setLv,onOpenMaterial,onOpenKalk,onOpenExport}){
+function ModulScreen({drive,ki,onBack,lv,setLv,onOpenMaterial,onOpenKalk,onOpenExport,onOpenPreisspiegel}){
   const [err,setErr]=useState("");
   const fileRef=useRef(null);
   function pick(id){
@@ -392,6 +468,7 @@ function ModulScreen({drive,ki,onBack,lv,setLv,onOpenMaterial,onOpenKalk,onOpenE
     else if(id==="material") onOpenMaterial();
     else if(id==="kalk") onOpenKalk();
     else if(id==="export") onOpenExport();
+    else if(id==="preisspiegel") onOpenPreisspiegel();
   }
   function onFile(e){
     const f=e.target.files[0]; if(!f)return; setErr("");
@@ -950,6 +1027,284 @@ function ExportScreen({lv,zuschlag,drive,ki,onBack}){
   );
 }
 
+// ============ PREISSPIEGEL-ANALYSE-LOGIK ============
+function fmtPct(n){ if(!isFinite(n))n=0; return (n>=0?'+':'')+n.toFixed(1)+' %'; }
+function parseSumme(str){
+  if(typeof str==='number') return str;
+  return parseFloat(String(str).replace(/\./g,'').replace(',','.').replace(/[^0-9.]/g,''))||0;
+}
+// Aus den Submissionen die Wettbewerber-Profile errechnen
+function analysiereWettbewerb(subs){
+  const profile={}; // name -> {teilnahmen, siege, abst:[], letzteSiege:[]}
+  const sorted=[...subs].sort((a,b)=>(a.datum||'').localeCompare(b.datum||''));
+  sorted.forEach(sub=>{
+    const bg=sub.bieter.filter(b=>b.summe>0);
+    if(bg.length===0) return;
+    const minSumme=Math.min(...bg.map(b=>b.summe));
+    const me=bg.find(b=>b.istMir);
+    bg.forEach(b=>{
+      if(b.istMir) return;
+      if(!profile[b.name]) profile[b.name]={name:b.name,teilnahmen:0,siege:0,abstZuMir:[],reihe:[]};
+      const pr=profile[b.name];
+      pr.teilnahmen++;
+      if(Math.abs(b.summe-minSumme)<0.01) pr.siege++;
+      if(me && me.summe>0){
+        // Abstand des Mitbewerbers zu MIR in %: (er - ich)/ich
+        pr.abstZuMir.push((b.summe-me.summe)/me.summe*100);
+      }
+      pr.reihe.push({datum:sub.datum, gewonnen:Math.abs(b.summe-minSumme)<0.01});
+    });
+  });
+  // Kennzahlen je Profil
+  return Object.values(profile).map(pr=>{
+    const avg=pr.abstZuMir.length? pr.abstZuMir.reduce((a,b)=>a+b,0)/pr.abstZuMir.length : null;
+    // Streuung (Standardabw.) als Berechenbarkeit
+    let std=null;
+    if(pr.abstZuMir.length>1){
+      const m=avg; const vari=pr.abstZuMir.reduce((a,b)=>a+(b-m)*(b-m),0)/pr.abstZuMir.length;
+      std=Math.sqrt(vari);
+    }
+    // Auslastungs-Ampel: letzte 3 Teilnahmen -> wie oft gewonnen?
+    const letzte=pr.reihe.slice(-3);
+    const letzteSiege=letzte.filter(r=>r.gewonnen).length;
+    let ampel='cold', ampelTxt='hungrig';
+    if(letzteSiege>=2){ ampel='hot'; ampelTxt='ausgelastet'; }
+    else if(letzteSiege===1){ ampel='busy'; ampelTxt='normal'; }
+    const quote= pr.teilnahmen? pr.siege/pr.teilnahmen*100 : 0;
+    return {...pr, avg, std, ampel, ampelTxt, quote};
+  }).sort((a,b)=>b.teilnahmen-a.teilnahmen);
+}
+// Kennzahlen ueber alle Submissionen (fuer Chronik-KPIs)
+function gesamtKennzahlen(subs){
+  let teiln=0, siege=0, abst=[];
+  const chron=[];
+  const sorted=[...subs].sort((a,b)=>(b.datum||'').localeCompare(a.datum||'')); // neueste zuerst
+  sorted.forEach(sub=>{
+    const bg=sub.bieter.filter(b=>b.summe>0).sort((a,b)=>a.summe-b.summe);
+    if(bg.length===0) return;
+    const me=bg.find(b=>b.istMir);
+    const minSumme=bg[0].summe;
+    let rang=null, abstPct=null, abstEur=null;
+    if(me){
+      teiln++;
+      rang=bg.findIndex(b=>b===me)+1;
+      if(rang===1) siege++;
+      abstPct=(me.summe-minSumme)/minSumme*100;
+      abstEur=me.summe-minSumme;
+      abst.push(abstPct);
+    }
+    chron.push({...sub, bgSorted:bg, rang, abstPct, abstEur, anzahl:bg.length, sieger:bg[0]});
+  });
+  const avgAbst= abst.length? abst.reduce((a,b)=>a+b,0)/abst.length : 0;
+  // Trend: erste Haelfte vs zweite Haelfte des Zeitraums (Abstand sinkt = besser)
+  let trend='–';
+  if(abst.length>=4){
+    const mid=Math.floor(abst.length/2);
+    // abst ist in neueste-zuerst Reihenfolge entstanden -> juengste = vorne
+    const jung=abst.slice(0,mid).reduce((a,b)=>a+b,0)/mid;
+    const alt=abst.slice(mid).reduce((a,b)=>a+b,0)/(abst.length-mid);
+    if(jung < alt-0.5) trend='↑ besser';
+    else if(jung > alt+0.5) trend='↓ schlechter';
+    else trend='→ stabil';
+  }
+  return {teiln, siege, quote: teiln? siege/teiln*100:0, avgAbst, trend, chron};
+}
+
+
+// ============ SEITE 6: PREISSPIEGEL & WETTBEWERB ============
+function PreisspiegelScreen({subs,setSubs,drive,ki,onBack}){
+  const [tab,setTab]=useState("uebersicht"); // uebersicht | chronik | erfassen
+  // Erfassungs-Formular
+  const [fDatum,setFDatum]=useState("");
+  const [fBv,setFBv]=useState("");
+  const [fGewerk,setFGewerk]=useState("Fliesenarbeiten");
+  const [bidders,setBidders]=useState([]);
+  const [bName,setBName]=useState("");
+  const [bSumme,setBSumme]=useState("");
+  const fileRef=useRef(null);
+
+  function addBidder(istMir){
+    if(!bName.trim()||!bSumme) return;
+    setBidders([...bidders,{name:bName.trim(),summe:parseSumme(bSumme),istMir:!!istMir}]);
+    setBName(""); setBSumme("");
+  }
+  function rmBidder(i){ setBidders(bidders.filter((_,x)=>x!==i)); }
+  function saveSub(){
+    if(!fDatum||!fBv||bidders.length===0) return;
+    const neu={id:Date.now(), datum:fDatum, bv:fBv, gewerk:fGewerk, bieter:bidders};
+    setSubs([...subs, neu]);
+    setFDatum(""); setFBv(""); setBidders([]); setTab("chronik");
+  }
+  function onPdf(e){
+    const f=e.target.files[0]; if(!f) return;
+    // PDF-Auto-Parsing ist layoutabhaengig -> wir fuellen den Dateinamen als BV-Vorschlag
+    // und bitten um manuelle Erfassung (ehrlich: zuverlaessiger als Fehlinterpretation)
+    setFBv(f.name.replace(/\.pdf$/i,'').replace(/_/g,' '));
+    alert("PDF übernommen als Vorlage.\n\nDie Bieterliste bitte unten kurz manuell erfassen – das ist zuverlässiger als automatisches Auslesen, da jede Vergabestelle die Niederschrift anders aufbaut.\n\n(In der späteren Suite-Version kann hier die KI das PDF automatisch auslesen.)");
+    setTab("erfassen");
+  }
+
+  const profile = analysiereWettbewerb(subs);
+  const kpi = gesamtKennzahlen(subs);
+
+  return (
+    <div className="page-container">
+      <div className="back-row"><button className="back-btn" onClick={onBack}>{'\u2190'} Modul wählen</button></div>
+      <div className="head"><div className="head-logo-scale"><FirmenLogo/></div>
+        <div className="head-title">Preisspiegel</div><div className="head-sub">Wettbewerb & Marktbeobachtung</div></div>
+
+      <div className="ps-tabs">
+        <button className={"ps-tab"+(tab==="uebersicht"?" active":"")} onClick={()=>setTab("uebersicht")}>Übersicht</button>
+        <button className={"ps-tab"+(tab==="chronik"?" active":"")} onClick={()=>setTab("chronik")}>Chronik</button>
+        <button className={"ps-tab"+(tab==="erfassen"?" active":"")} onClick={()=>setTab("erfassen")}>Erfassen</button>
+      </div>
+
+      {subs.length===0 && tab!=="erfassen" && (
+        <div className="ps-empty"><span className="big">Noch keine Daten</span>
+          Erfasse deine erste Submission über den Tab „Erfassen" – dann erscheinen hier Mitbewerber-Profile und Auswertungen.</div>
+      )}
+
+      {/* ===== TAB ÜBERSICHT: Wettbewerber-Profile + Vorausschau ===== */}
+      {tab==="uebersicht" && subs.length>0 && (
+        <div>
+          <div className="ps-kpis">
+            <div className="ps-kpi"><div className="v">{kpi.teiln}</div><div className="l">Teilnahmen</div></div>
+            <div className="ps-kpi green"><div className="v">{kpi.siege}</div><div className="l">Zuschläge</div></div>
+            <div className="ps-kpi amber"><div className="v">{kpi.quote.toFixed(0)}%</div><div className="l">Trefferquote</div></div>
+            <div className="ps-kpi"><div className="v" style={{fontSize:'15px'}}>{kpi.trend}</div><div className="l">Trend</div></div>
+          </div>
+
+          <div className="m2-section-title">Mitbewerber-Profile</div>
+          {profile.length===0 && <div className="ps-info">Noch keine Mitbewerber erfasst (nur eigene Angebote vorhanden).</div>}
+          {profile.map((p,i)=>(
+            <div className="comp-card" key={i}>
+              <div className="comp-head">
+                <span className="comp-name">{p.name}</span>
+                <span className={"comp-ampel "+p.ampel}><span className="ad"></span>{p.ampelTxt}</span>
+              </div>
+              <div className="comp-stats">
+                <div className="comp-stat"><div className="cv">{p.teilnahmen}×</div><div className="cl">getroffen</div></div>
+                <div className="comp-stat"><div className="cv">{p.siege}×</div><div className="cl">gewonnen</div></div>
+                <div className="comp-stat"><div className="cv">{p.quote.toFixed(0)}%</div><div className="cl">Quote</div></div>
+              </div>
+              <div className="comp-vs">
+                {p.avg==null ? "Noch kein direkter Preisvergleich (keine gemeinsame Submission mit eigenem Gebot)." : (
+                  <span>Bietet im Schnitt <b className={p.avg<0?"under":"over"}>{fmtPct(p.avg)}</b> {p.avg<0?'günstiger':'teurer'} als du
+                  {p.std!=null && <span> · Schwankung ±{p.std.toFixed(1)}% ({p.std<5?'sehr berechenbar':p.std<12?'berechenbar':'unberechenbar'})</span>}.
+                  {p.ampel==='hot' && <span> Zuletzt häufig erfolgreich – wahrscheinlich gut ausgelastet, dürfte teurer bieten oder aussetzen.</span>}
+                  {p.ampel==='cold' && <span> Zuletzt ohne Zuschlag – vermutlich hungrig, dürfte aggressiv kalkulieren.</span>}
+                  </span>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* ===== TAB CHRONIK: kompakte Verlaufstabelle ===== */}
+      {tab==="chronik" && subs.length>0 && (
+        <div>
+          <div className="ps-kpis">
+            <div className="ps-kpi"><div className="v">{kpi.chron.length}</div><div className="l">Submissionen</div></div>
+            <div className="ps-kpi green"><div className="v">{kpi.siege}</div><div className="l">gewonnen</div></div>
+            <div className="ps-kpi amber"><div className="v">{fmtPct(kpi.avgAbst).replace('+','')}</div><div className="l">Ø Abstand z. Sieger</div></div>
+            <div className="ps-kpi"><div className="v" style={{fontSize:'15px'}}>{kpi.trend}</div><div className="l">Trend</div></div>
+          </div>
+          <ChronikTabelle chron={kpi.chron}/>
+          <div className="ps-info">Tippe eine Zeile an, um den vollständigen Preisspiegel der Submission zu sehen. Sortiert nach Datum, neueste zuerst.</div>
+        </div>
+      )}
+
+      {/* ===== TAB ERFASSEN ===== */}
+      {tab==="erfassen" && (
+        <div>
+          <div className="m2-section-title">Submission erfassen</div>
+          <div className="ps-add">
+            <div style={{marginBottom:'10px'}}>
+              <button className="mini-btn blue" onClick={()=>fileRef.current.click()} style={{width:'100%',padding:'10px'}}>{'\u2191'} PDF-Niederschrift als Vorlage laden</button>
+              <input ref={fileRef} type="file" accept=".pdf" style={{display:'none'}} onChange={onPdf}/>
+            </div>
+            <div className="ps-add-grid">
+              <div className="psf"><label>Datum</label><input type="date" value={fDatum} onChange={e=>setFDatum(e.target.value)}/></div>
+              <div className="psf"><label>Gewerk</label><input type="text" value={fGewerk} onChange={e=>setFGewerk(e.target.value)}/></div>
+            </div>
+            <div className="psf" style={{marginBottom:'12px'}}><label>Bauvorhaben</label><input type="text" value={fBv} placeholder="z.B. Sanierung Schule Musterstadt" onChange={e=>setFBv(e.target.value)}/></div>
+
+            <div className="m2-section-title" style={{marginTop:'4px'}}>Bieter</div>
+            {bidders.map((b,i)=>(
+              <div className="bidder-chip" key={i}>
+                <span className="bcn">{b.name}</span>
+                {b.istMir && <span className="bctag tag-me">Ich</span>}
+                <span className="bcs">{fmtEUR(b.summe)}</span>
+                <button className="bcx" onClick={()=>rmBidder(i)}>{'\u00d7'}</button>
+              </div>
+            ))}
+            <div className="bidder-add">
+              <div className="psf"><label className="mini">Firma</label><input type="text" value={bName} placeholder="Bietername" onChange={e=>setBName(e.target.value)}/></div>
+              <div className="psf"><label className="mini">Summe €</label><input type="text" value={bSumme} placeholder="0,00" onChange={e=>setBSumme(e.target.value)}/></div>
+              <button className="mini-btn" onClick={()=>addBidder(false)} title="Mitbewerber">+</button>
+              <button className="mini-btn blue" onClick={()=>addBidder(true)} title="Das bin ich">Ich</button>
+            </div>
+            <div className="ps-info">„+" fügt einen Mitbewerber hinzu, „Ich" markiert dein eigenes Gebot. Der günstigste Bieter wird automatisch als Sieger erkannt.</div>
+          </div>
+          <div className="weiter-wrap">
+            <button className="weiter-btn" style={{background:'linear-gradient(135deg,#2ecc71,#1e9e54)',boxShadow:'0 6px 20px rgba(46,204,113,0.34)'}} onClick={saveSub}>Submission speichern</button>
+          </div>
+        </div>
+      )}
+
+      <div className="foot"><span className="ver">
+        <span className={"dot "+(drive?"dot-on":"dot-off")}></span>Drive {drive?"verbunden":"offline"}
+        <span style={{margin:"0 8px",opacity:.4}}>·</span>
+        <span className={"dot "+(ki?"dot-on":"dot-off")}></span>KI {ki?"aktiv":"aus"}
+      </span></div>
+    </div>
+  );
+}
+
+// Chronik-Tabelle mit aufklappbaren Zeilen
+function ChronikTabelle({chron}){
+  const [open,setOpen]=useState(null);
+  function rangCls(r,n){ if(r===1)return"r1"; if(r&&r<=Math.ceil(n/2))return"rmid"; return"rlow"; }
+  function abstCls(p){ if(p==null)return""; if(p<0.01)return"win"; if(p<5)return"near"; return"far"; }
+  return (
+    <div className="chron-tbl">
+      <div className="chron-hd">
+        <span>Datum</span><span>Bauvorhaben</span><span style={{textAlign:'center'}}>Rang</span><span style={{textAlign:'right'}}>z. Sieger</span><span></span>
+      </div>
+      {chron.map((c,i)=>{
+        const isOpen=open===i;
+        const datum=c.datum? c.datum.split('-').reverse().slice(0,2).join('.') : '–';
+        return (
+          <div className="chron-row" key={c.id||i}>
+            <div className="chron-main" onClick={()=>setOpen(isOpen?null:i)}>
+              <span className="chron-date">{datum}</span>
+              <span className="chron-bv" title={c.bv}>{c.bv||'—'}</span>
+              <span className={"chron-rang "+rangCls(c.rang,c.anzahl)}>{c.rang? c.rang+'/'+c.anzahl : '–'}</span>
+              <span className={"chron-abst "+abstCls(c.abstPct)}>{c.abstPct==null?'—':(c.abstPct<0.01?'Sieg':fmtPct(c.abstPct))}</span>
+              <span className="chron-exp">{isOpen?'\u2212':'+'}</span>
+            </div>
+            {isOpen && (
+              <div className="chron-detail"><div className="chron-detail-inner">
+                {c.bgSorted.map((b,bi)=>(
+                  <div className={"cd-bidder"+(b.istMir?" me":"")+(bi===0?" winner":"")} key={bi}>
+                    <span className="cbn">{bi+1}. {b.name}
+                      {b.istMir && <span className="cd-badge me">Ich</span>}
+                      {bi===0 && <span className="cd-badge winner">Sieger</span>}
+                    </span>
+                    <span className="cbs">{fmtEUR(b.summe)}</span>
+                  </div>
+                ))}
+              </div></div>
+            )}
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+
 function App(){
   const [page,setPage]=useState("start");
   const [drive,setDrive]=useState(false);
@@ -957,11 +1312,13 @@ function App(){
   const [apiKey,setApiKey]=useState("");
   const [lv,setLv]=useState(null);
   const [zuschlag,setZuschlag]=useState({mittellohn:18.50, lohnZuschlag:131, materialZuschlag:15, geraeteZuschlag:10});
+  const [subs,setSubs]=useState([]);
   if(page==="start") return <StartScreen drive={drive} setDrive={setDrive} ki={ki} setKi={setKi} apiKey={apiKey} setApiKey={setApiKey} onWeiter={()=>setPage("modul")} />;
   if(page==="material") return <MaterialScreen lv={lv} setLv={setLv} zuschlag={zuschlag} setZuschlag={setZuschlag} drive={drive} ki={ki} onBack={()=>setPage("modul")} onOpenKalk={()=>setPage("kalk")} />;
   if(page==="kalk") return <KalkulationScreen lv={lv} setLv={setLv} zuschlag={zuschlag} drive={drive} ki={ki} onBack={()=>setPage("modul")} onOpenExport={()=>setPage("export")} />;
   if(page==="export") return <ExportScreen lv={lv} zuschlag={zuschlag} drive={drive} ki={ki} onBack={()=>setPage("modul")} />;
-  return <ModulScreen drive={drive} ki={ki} lv={lv} setLv={setLv} onOpenMaterial={()=>setPage("material")} onOpenKalk={()=>setPage("kalk")} onOpenExport={()=>setPage("export")} onBack={()=>setPage("start")} />;
+  if(page==="preisspiegel") return <PreisspiegelScreen subs={subs} setSubs={setSubs} drive={drive} ki={ki} onBack={()=>setPage("modul")} />;
+  return <ModulScreen drive={drive} ki={ki} lv={lv} setLv={setLv} onOpenMaterial={()=>setPage("material")} onOpenKalk={()=>setPage("kalk")} onOpenExport={()=>setPage("export")} onOpenPreisspiegel={()=>setPage("preisspiegel")} onBack={()=>setPage("start")} />;
 }
 ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
 </script>
